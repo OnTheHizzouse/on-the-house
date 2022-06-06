@@ -5,7 +5,7 @@ USE oth_db;
 CREATE TABLE users
 (
     id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    user_name VARCHAR(60) NOT NULL,
+    username VARCHAR(60) NOT NULL,
     email VARCHAR(200) NOT NULL,
     password VARCHAR(60) NOT NULL,
     phone_number VARCHAR(13) NOT NULL,
