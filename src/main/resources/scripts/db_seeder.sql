@@ -1,5 +1,5 @@
 USE oth_db;
-INSERT INTO users(user_name, email, password, phone_number, address)
+INSERT INTO users(username, email, password, phone_number, address)
 VALUES ('test_user_one', 'test1@email.com', 'password1', 1111111111, '3601 Conti St. New Orleans, LA 70119'),
        ('test_user_two', 'test2@email.com', 'password2', 2222222222, '359 Bayless Ln. Duncanville, TX 75116'),
        ('test_user_three', 'test3@email.com', 'password3', 3333333333, '69 Nice St. Paramountplus, TX 90210');
