@@ -5,6 +5,8 @@ import com.codeup.on_the_house.data.UsersRepository;
 import com.codeup.on_the_house.dto.CreateUserDTO;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -21,5 +23,9 @@ public class UserService {
                 createUserDTO.getPassword(),
                 createUserDTO.getPhoneNumber(),
                 createUserDTO.getAddress()));
+    }
+
+    public List<User> getAllUsers(){
+        return usersRepository.findAll();
     }
 }
