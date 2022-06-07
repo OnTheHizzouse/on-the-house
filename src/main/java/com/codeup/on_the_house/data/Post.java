@@ -2,6 +2,7 @@ package com.codeup.on_the_house.data;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name="posts")
@@ -14,14 +15,24 @@ public class Post {
     private String itemName;
     private String description;
     private String itemPhoto;
-    private Date expiryDate;
+    private LocalDate expiryDate;
     private int quantity;
+
+//    TODO Add nested user object.
 
 //    ***** constructor *******
 
 
-    public Post(Long id, String itemName, String description, String itemPhoto, Date expiryDate, int quantity) {
+    public Post(Long id, String itemName, String description, String itemPhoto, LocalDate expiryDate, int quantity) {
         this.id = id;
+        this.itemName = itemName;
+        this.description = description;
+        this.itemPhoto = itemPhoto;
+        this.expiryDate = expiryDate;
+        this.quantity = quantity;
+    }
+
+    public Post(String itemName, String description, String itemPhoto, LocalDate expiryDate, int quantity) {
         this.itemName = itemName;
         this.description = description;
         this.itemPhoto = itemPhoto;
@@ -67,11 +78,11 @@ public class Post {
         this.itemPhoto = itemPhoto;
     }
 
-    public Date getExpiryDate() {
+    public LocalDate getExpiryDate() {
         return expiryDate;
     }
 
-    public void setExpiryDate(Date expiryDate) {
+    public void setExpiryDate(LocalDate expiryDate) {
         this.expiryDate = expiryDate;
     }
 

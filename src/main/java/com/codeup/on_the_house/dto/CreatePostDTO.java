@@ -1,6 +1,7 @@
 package com.codeup.on_the_house.dto;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class CreatePostDTO {
 
@@ -9,16 +10,16 @@ public class CreatePostDTO {
     private String itemName;
     private String description;
     private String itemPhoto;
-    private Date date;
+    private LocalDate expiryDate;
     private int quantity;
 
 //    ***** Constructor ******
 
-    public CreatePostDTO(String itemName, String description, String itemPhoto, Date date, int quantity) {
+    public CreatePostDTO(String itemName, String description, String itemPhoto, LocalDate expiryDate, int quantity) {
         this.itemName = itemName;
         this.description = description;
         this.itemPhoto = itemPhoto;
-        this.date = date;
+        this.expiryDate = expiryDate;
         this.quantity = quantity;
     }
 
@@ -51,12 +52,12 @@ public class CreatePostDTO {
         this.itemPhoto = itemPhoto;
     }
 
-    public Date getDate() {
-        return date;
+    public LocalDate getExpiryDate() {
+        return expiryDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setExpiryDate(LocalDate expiryDate) {
+        this.expiryDate = expiryDate;
     }
 
     public int getQuantity() {
