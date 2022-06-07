@@ -6,18 +6,24 @@ export default function Home(props) {
             <h1></h1>
         </header>
         <main>
-            <div id="box" >
-            <div class="card" style="width: 40rem;">
-  <div class="card-body">
-    <h5 class="card-title">Registration</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
-  </div>
-</div>
-             
-            </div>
+            <form id="box" action="action_page.php" method="post">
+                <div class="container">
+                    <label for="uname"><b>Username</b></label>
+                    <input type="text" placeholder="Enter Username" name="uname" required>
+
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="psw" required>
+
+                    <button type="submit">Login</button>
+                    <label>
+                        <input type="checkbox" checked="checked" name="remember"> Remember me
+                    </label>
+                </div>
+                <div class="container" style="background-color:#f1f1f1">
+                    <button type="button" class="cancelbtn">Cancel</button>
+                    <span class="psw">Forgot <a href="#">password?</a></span>
+                </div>
+            </form>
         </main>
     `;
 }
