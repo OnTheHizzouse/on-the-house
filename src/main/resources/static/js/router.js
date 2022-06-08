@@ -1,4 +1,4 @@
-import Home from "./views/Home.js";
+import Splash from "./views/Splash.js";
 import Error404 from "./views/Error404.js";
 import Loading from "./views/Loading.js";
 
@@ -11,10 +11,10 @@ import Loading from "./views/Loading.js";
 export default function router(URI) {
     const routes = {
         '/': {
-            returnView: Home,
+            returnView: Splash,
             state: {},
             uri: '/',
-            title: 'Home',
+            title: 'Splash',
         },'/error': {
             returnView: Error404,
             state: {},

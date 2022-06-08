@@ -1,9 +1,10 @@
-export default function Home(props) {
+export default function Splash(props) {
     console.log("The frontend did it. HER FAULT");
 // language=html
     return `
+<!--        header is important do not remove-->
         <header>
-            <h1>OTH</h1>
+            <h1> </h1>
         </header>
         <main>
             <form id="box" action="action_page.php" method="post">
