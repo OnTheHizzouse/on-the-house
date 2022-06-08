@@ -1,22 +1,34 @@
 package com.codeup.on_the_house.data;
 
+import javax.management.relation.Role;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
 public class User {
 
+//********* properties *******
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String firstName;
+    private String lastName;
     private String username;
     private String email;
     private String password;
     private String phoneNumber;
     private String address;
+    //    @EMUN ENFORCES THAT THE EMUN VALUE IS A STRING, NOT AN INT.
+    @Enumerated(EnumType.STRING)
+    private Role role = Role.USER;
 
-    public User(Long id, String username, String email, String password, String phoneNumber, String address) {
+    public enum Role {USER, ADMIN}
+
+//    ******** constructors ********
+    public User(Long id, String firstName, String lastName, String username, String email, String password, String phoneNumber, String address) {
         this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -24,7 +36,9 @@ public class User {
         this.address = address;
     }
 
-    public User(String username, String email, String password, String phoneNumber, String address) {
+    public User(String firstName, String lastName, String username, String email, String password, String phoneNumber, String address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -32,7 +46,19 @@ public class User {
         this.address = address;
     }
 
-    public User() {}
+    public User() {
+    }
+
+//    ********** getters and setters ***********
+
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
     public Long getId() {
         return id;
@@ -40,6 +66,22 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getUsername() {
@@ -82,15 +124,19 @@ public class User {
         this.address = address;
     }
 
+//    ********* to String ***********
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", address='" + address + '\'' +
+                ", role=" + role +
                 '}';
     }
 }

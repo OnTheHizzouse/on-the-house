@@ -18,6 +18,8 @@ public class UserService {
 
     public void createUser(CreateUserDTO createUserDTO) {
         usersRepository.save(new User(
+                createUserDTO.getFirstName(),
+                createUserDTO.getLastName(),
                 createUserDTO.getUsername(),
                 createUserDTO.getEmail(),
                 createUserDTO.getPassword(),
