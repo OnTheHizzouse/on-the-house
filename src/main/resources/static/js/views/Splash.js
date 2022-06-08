@@ -2,9 +2,9 @@ export default function Splash(props) {
     console.log("The frontend did it. HER FAULT");
 // language=html
     return `
-<!--        header is important do not remove-->
+        <!--        header is important do not remove-->
         <header>
-            <h1> </h1>
+            <h1></h1>
         </header>
         <main>
             <form id="box" action="action_page.php" method="post">
@@ -27,7 +27,7 @@ export default function Splash(props) {
                 <div id="register-fields"></div>
 
                 <div class="container" style="background-color:#f1f1f1">
-                    <button type="button" class="cancelbtn">Cancel</button>
+                    <button type="button" class="cancelbtn" id="cancel-btn">Cancel</button>
                     <span class="psw">Forgot <a href="#">password?</a></span>
                 </div>
                 </span>
@@ -36,7 +36,25 @@ export default function Splash(props) {
     `;
 }
 
-RegisterFields()
+RegisterFields();
+CancelButtonPressed();
+
+function CancelButtonPressed() {
+    $(document).on('click', '#cancel-btn', function (e) {
+        $('#register-fields').html('');
+        $('#registration-remove-area').html(`
+        <button type="submit">Login</button>
+                    <button type="submit" class="btn btn-danger" id="register-btn">Register</button>
+                    <label>
+                        <input type="checkbox" checked="checked" name="remember"> Remember me
+                    </label>
+
+                </div>
+
+                <div id="register-fields"></div>
+        `)
+    })
+}
 
 function RegisterFields() {
     // language=html
@@ -66,13 +84,11 @@ function RegisterFields() {
 
 }
 
-RegisterEvent()
-
 export function RegisterEvent() {
     $(document).on('click', '#register-btn-two', function (e) {
         console.log('clicked');
-        let newPassword =  $('#password').val();
-        if (newPassword.length >= 8 ) {
+        let newPassword = $('#password').val();
+        if (newPassword.length >= 8) {
 
             const reqBody = {
                 firstName: $('#firstName').val(),
@@ -99,8 +115,7 @@ export function RegisterEvent() {
                 //toDo: redirect user to a page or give viusal feedback
                 .finally(alert("You have created a user 🌚"))
 
-        }
-        else {
+        } else {
             alert("The pass need to have a min of 8 characters")
         }
     })
