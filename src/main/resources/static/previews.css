@@ -29,9 +29,8 @@ h1 {
     border: 1px solid white;
     background-color: white;
     border-radius: 6px;
-    height: 400px;
-    width: 400px;
-
+    height: 470px;
+    width: 450px;
     justify-content: center;
     align-content: center;
     align-items: center;
@@ -51,7 +50,8 @@ input[type=text], input[type=password] {
 button {
     background-color: #04AA6D;
     color: white;
-    padding: 14px 20px;
+    border-radius: 10px;
+    padding: 10px 18px;
     margin: 8px 0;
     border: none;
     cursor: pointer;
