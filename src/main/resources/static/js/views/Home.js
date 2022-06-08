@@ -95,6 +95,9 @@ export function RegisterEvent() {
                 .then(res => res.json())
                 .then(data => console.log(data))
                 .catch(err => console.log(err))
+                //toDo: redirect user to a page or give viusal feedback
+                .finally(alert("You have created a user 🌚"))
+
         }
         else {
             alert("The pass need to have a min of 8 characters")
