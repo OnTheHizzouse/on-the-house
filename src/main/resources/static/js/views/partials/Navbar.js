@@ -1,7 +1,7 @@
 export default function Navbar(props) {
     return `
-        <nav>
+        <!--<nav>
             <a href="/" data-link>Home</a>
-        </nav>
+        </nav>-->
     `;
 }
