@@ -26,7 +26,8 @@ export default function router(URI) {
             state: {},
             uri: location.pathname,
             title: 'Loading...',
-        }
+        },
+
     };
 
     return routes[URI];
