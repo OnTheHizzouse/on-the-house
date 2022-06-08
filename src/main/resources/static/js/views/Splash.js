@@ -9,9 +9,10 @@ export default function Splash(props) {
         <main>
             <form id="box" action="action_page.php" method="post">
                 <div class="container">
-                    <label for="uname"><b>Username</b></label>
-                    <input type="text" placeholder="Enter Username" name="uname" id="username" required>
 
+                    <label for="email"><b>E-mail</b></label>
+                    <input type="email" placeholder="Enter E-mail" name="email" id="email" required>
+                    
                     <label for="psw"><b>Password</b></label>
                     <input type="password" placeholder="Enter Password" name="psw" id="password" required>
 
@@ -67,8 +68,8 @@ function RegisterFields() {
             <label for="lastName"><b>Last Name</b></label>
             <input type="name" placeholder="Enter last name" name="lastname" id="lastName" required>
             <br>
-            <label for="email"><b>E-mail</b></label>
-            <input type="email" placeholder="Enter E-mail" name="email" id="email" required>
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" id="username" required>
             <br>
             <label for="address"><b>Address</b></label>
             <input type="address" placeholder="Enter Valid Address" name="address" id="address" required>
