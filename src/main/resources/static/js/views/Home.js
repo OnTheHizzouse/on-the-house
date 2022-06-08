@@ -70,28 +70,34 @@ RegisterEvent()
 export function RegisterEvent() {
     $(document).on('click', '#register-btn-two', function (e) {
         console.log('clicked');
-        const reqBody = {
-            firstName: $('#firstName').val(),
-            lastName:$('#lastName').val(),
-            username: $('#username').val(),
-            email: $('#email').val(),
-            password: $('#password').val(),
-            phoneNumber: $('#phoneNumber').val(),
-            address: $('#address').val()
+        let newPassword =  $('#password').val();
+        if (newPassword.length >= 8 ) {
+
+            const reqBody = {
+                firstName: $('#firstName').val(),
+                lastName: $('#lastName').val(),
+                username: $('#username').val(),
+                email: $('#email').val(),
+                password: newPassword,
+                phoneNumber: $('#phoneNumber').val(),
+                address: $('#address').val()
+            }
+
+            const options = {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                method: 'POST',
+                body: JSON.stringify(reqBody)
+            }
+
+            fetch("http://localhost:8080/api/users/createUser", options)
+                .then(res => res.json())
+                .then(data => console.log(data))
+                .catch(err => console.log(err))
         }
-
-        const options = {
-            headers: {
-                "Content-Type": "application/json"
-            },
-            method: 'POST',
-            body: JSON.stringify(reqBody)
+        else {
+            alert("The pass need to have a min of 8 characters")
         }
-
-        fetch("http://localhost:8080/api/users/createUser", options)
-            .then(res => res.json())
-            .then(data => console.log(data))
-            .catch(err => console.log(err))
-
     })
 }
