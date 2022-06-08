@@ -3,7 +3,7 @@ export default function Home(props) {
 // language=html
     return `
         <header>
-            <h1></h1>
+            <h1>OTH</h1>
         </header>
         <main>
             <form id="box" action="action_page.php" method="post">
