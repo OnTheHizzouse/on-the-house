@@ -1,6 +1,7 @@
 import Splash, {SplashEvents} from "./views/Splash.js";
 import Error404 from "./views/Error404.js";
 import Loading from "./views/Loading.js";
+import Home from "./views/partials/Home.js";
 
 
 /**
@@ -28,7 +29,12 @@ export default function router(URI) {
             uri: location.pathname,
             title: 'Loading...',
         },
-
+       /* '/home': {
+            returnView: Home,
+            state: {},
+            uri: location.pathname,
+            title: 'Home',
+        },*/
     };
 
     return routes[URI];

@@ -1,5 +1,5 @@
 export default function Splash(props) {
-    console.log("The frontend did it. HER FAULT");
+    console.log("This is the Splash page");
 // language=html
     return `
         <!--        header is important do not remove-->
@@ -143,12 +143,12 @@ function LoginEvent(){
                 let checkPassword = $('#password').val();
                 let checkEmail = $('#email').val();
                 for (let i = 0; i < users.length; i++) {
-                    if (users[i].email == checkEmail || users[i].password == checkPassword) {
+                    if (users[i].email == checkEmail && users[i].password == checkPassword) {
                         console.log(users[i]);
                         alert("This user exists!")
                     }
                 }
-                console.log(users)
+               /* console.log(users)*/
             })
             .catch(err => console.log(err))
     })
