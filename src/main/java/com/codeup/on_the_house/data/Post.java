@@ -1,5 +1,8 @@
 package com.codeup.on_the_house.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -15,10 +18,15 @@ public class Post {
     private String itemName;
     private String description;
     private String itemPhoto;
+
+
     private LocalDate expiryDate;
     private int quantity;
 
 //    TODO Add nested user object.
+    @ManyToOne
+    @JsonIgnoreProperties({"posts", "password"})
+    private User user;
 
 //    ***** constructor *******
 
@@ -44,7 +52,17 @@ public class Post {
     }
 
 //    ******** getters and setters *******
+//    ******* User *********
 
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+//    ***********************
 
     public Long getId() {
         return id;
