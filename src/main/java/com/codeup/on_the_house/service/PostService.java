@@ -43,7 +43,9 @@ public class PostService {
         if (post.getItemName() != null && !post.getItemName().isEmpty()) {
             postToEdit.setItemName(post.getItemName());
         }
-        postToEdit.setQuantity(post.getQuantity());
+        if (post.getQuantity() >= 1) {
+            postToEdit.setQuantity(post.getQuantity());
+        }
         if (post.getExpiryDate() != null) {
             postToEdit.setExpiryDate(post.getExpiryDate());
         }
