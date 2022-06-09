@@ -4,6 +4,7 @@ import com.codeup.on_the_house.data.Post;
 import com.codeup.on_the_house.data.PostsRepository;
 import com.codeup.on_the_house.data.User;
 import com.codeup.on_the_house.dto.CreatePostDTO;
+import com.sun.xml.bind.v2.TODO;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
@@ -16,16 +17,6 @@ public class PostService {
         this.postsRepository = postsRepository;
         this.userService = userService;
     }
-
-//    public void createPost(CreatePostDTO createPostDTO){
-//        postsRepository.save(new Post(
-//                createPostDTO.getItemName(),
-//                createPostDTO.getDescription(),
-//                createPostDTO.getItemPhoto(),
-//                createPostDTO.getExpiryDate(),
-//                createPostDTO.getQuantity()
-//        ));
-//    }
 
     public void createPost (CreatePostDTO dto, Post newPost, String username){
         User user = userService.getUserByUsername(username);
@@ -40,5 +31,26 @@ public class PostService {
         newPost.setUser(user);
 
         postsRepository.save(newPost);
+    }
+
+    public void editPost(Long postId, Post post) {
+        Post postToEdit = postsRepository.findById(postId).orElseThrow();
+
+        //TODO - Will probably require refactoring after implementing photo service
+        if (post.getDescription() != null && !post.getDescription().isEmpty()) {
+            postToEdit.setDescription(post.getDescription());
+        }
+        if (post.getItemName() != null && !post.getItemName().isEmpty()) {
+            postToEdit.setItemName(post.getItemName());
+        }
+        postToEdit.setQuantity(post.getQuantity());
+        if (post.getExpiryDate() != null) {
+            postToEdit.setExpiryDate(post.getExpiryDate());
+        }
+        if(post.getItemPhoto() != null && !post.getItemPhoto().isEmpty()) {
+            postToEdit.setItemPhoto(post.getItemPhoto());
+        }
+
+        postsRepository.save(postToEdit);
     }
 }

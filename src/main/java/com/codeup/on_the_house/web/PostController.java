@@ -23,4 +23,10 @@ public class PostController {
         postService.createPost(createPostDTO, newPost, username);
         System.out.println("New post has been created by user: " + username);
     }
+
+    @PutMapping("{id}")
+    public void editPost(@PathVariable Long id, @RequestBody Post editedPost) {
+        postService.editPost(id, editedPost);
+        System.out.println("Post with ID of " + id + " has been updated successfully");
+    }
 }

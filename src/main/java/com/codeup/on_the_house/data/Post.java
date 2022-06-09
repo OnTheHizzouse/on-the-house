@@ -1,6 +1,7 @@
 package com.codeup.on_the_house.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name="posts")
+@DynamicUpdate
 public class Post {
 
 //    ******* properties ******
