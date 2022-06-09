@@ -55,4 +55,8 @@ public class PostService {
 
         postsRepository.save(postToEdit);
     }
+
+    public void deletePostById(Long id) {
+        postsRepository.deleteById(id);
+    }
 }
