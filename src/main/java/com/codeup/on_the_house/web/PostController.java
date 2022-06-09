@@ -29,4 +29,9 @@ public class PostController {
         postService.editPost(id, editedPost);
         System.out.println("Post with ID of " + id + " has been updated successfully");
     }
+
+    @DeleteMapping("{id}")
+    public void deletePost(@PathVariable Long id) {
+        postService.deletePostById(id);
+    }
 }
