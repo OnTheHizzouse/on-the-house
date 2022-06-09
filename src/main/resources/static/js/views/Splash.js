@@ -17,7 +17,7 @@ export default function Splash(props) {
                     <input type="password" placeholder="Enter Password" name="psw" id="password" required>
 
                     <span id="registration-remove-area">
-                        <button type="submit">Login</button>
+                        <button type="submit" id="login-btn">Login</button>
                     <button type="submit" class="btn btn-danger" id="register-btn">Register</button>
                     <label>
                         <input type="checkbox" checked="checked" name="remember"> Remember me
@@ -40,6 +40,7 @@ export function SplashEvents(){
     RegisterFields();
     RegisterEvent();
     CancelButtonPressed();
+    LoginEvent();
 }
 
 
@@ -128,14 +129,27 @@ function RegisterFields() {
 }
 
 function LoginEvent(){
-    const options = {
-        headers: {
-            "Content-Type": "application/json"
-        },
-        method: 'GET'
-    }
-    fetch("http://localhost:8080/api/users", options )
-        .then(res => res.json())
-        .then(data => console.log(data))
-        .catch(err => console.log(err))
+    $(document).on('click', '#login-btn', function (e) {
+        console.log('clicked');
+        const options = {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: 'GET'
+        }
+        fetch("http://localhost:8080/api/users", options)
+            .then(res => res.json())
+            .then(users => {
+                let checkPassword = $('#password').val();
+                let checkEmail = $('#email').val();
+                for (let i = 0; i < users.length; i++) {
+                    if (users[i].email == checkEmail || users[i].password == checkPassword) {
+                        console.log(users[i]);
+                        alert("This user exists!")
+                    }
+                }
+                console.log(users)
+            })
+            .catch(err => console.log(err))
+    })
 }
