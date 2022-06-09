@@ -1,5 +1,5 @@
 export default function Splash(props) {
-    console.log("The frontend did it. HER FAULT");
+    console.log("This is the Splash page");
 // language=html
     return `
         <!--        header is important do not remove-->
@@ -17,7 +17,7 @@ export default function Splash(props) {
                     <input type="password" placeholder="Enter Password" name="psw" id="password" required>
 
                     <span id="registration-remove-area">
-                        <button type="submit">Login</button>
+                        <button type="submit" id="login-btn">Login</button>
                     <button type="submit" class="btn btn-danger" id="register-btn">Register</button>
                     <label>
                         <input type="checkbox" checked="checked" name="remember"> Remember me
@@ -36,9 +36,15 @@ export default function Splash(props) {
         </main>
     `;
 }
+export function SplashEvents(){
+    RegisterFields();
+    RegisterEvent();
+    CancelButtonPressed();
+    LoginEvent();
+}
 
-RegisterFields();
-CancelButtonPressed();
+
+
 
 function CancelButtonPressed() {
     $(document).on('click', '#cancel-btn', function (e) {
@@ -85,7 +91,7 @@ function RegisterFields() {
 
 }
 
-export function RegisterEvent() {
+ function RegisterEvent() {
     $(document).on('click', '#register-btn-two', function (e) {
         console.log('clicked');
         let newPassword = $('#password').val();
@@ -119,5 +125,31 @@ export function RegisterEvent() {
         } else {
             alert("The pass need to have a min of 8 characters")
         }
+    })
+}
+
+function LoginEvent(){
+    $(document).on('click', '#login-btn', function (e) {
+        console.log('clicked');
+        const options = {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: 'GET'
+        }
+        fetch("http://localhost:8080/api/users", options)
+            .then(res => res.json())
+            .then(users => {
+                let checkPassword = $('#password').val();
+                let checkEmail = $('#email').val();
+                for (let i = 0; i < users.length; i++) {
+                    if (users[i].email == checkEmail && users[i].password == checkPassword) {
+                        console.log(users[i]);
+                        alert("This user exists!")
+                    }
+                }
+               /* console.log(users)*/
+            })
+            .catch(err => console.log(err))
     })
 }
