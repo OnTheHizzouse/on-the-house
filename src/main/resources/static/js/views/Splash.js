@@ -36,9 +36,14 @@ export default function Splash(props) {
         </main>
     `;
 }
+export function SplashEvents(){
+    RegisterFields();
+    RegisterEvent();
+    CancelButtonPressed();
+}
 
-RegisterFields();
-CancelButtonPressed();
+
+
 
 function CancelButtonPressed() {
     $(document).on('click', '#cancel-btn', function (e) {
@@ -85,7 +90,7 @@ function RegisterFields() {
 
 }
 
-export function RegisterEvent() {
+ function RegisterEvent() {
     $(document).on('click', '#register-btn-two', function (e) {
         console.log('clicked');
         let newPassword = $('#password').val();
@@ -120,4 +125,17 @@ export function RegisterEvent() {
             alert("The pass need to have a min of 8 characters")
         }
     })
+}
+
+function LoginEvent(){
+    const options = {
+        headers: {
+            "Content-Type": "application/json"
+        },
+        method: 'GET'
+    }
+    fetch("http://localhost:8080/api/users", options )
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .catch(err => console.log(err))
 }
