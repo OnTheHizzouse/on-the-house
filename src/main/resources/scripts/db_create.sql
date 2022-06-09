@@ -22,7 +22,7 @@ CREATE TABLE posts
     item_name VARCHAR(70) NOT NULL,
     description TEXT NOT NULL,
     item_photo VARCHAR(150) NOT NULL,
-    post_expiry_date DATE NOT NULL,
+    expiry_date DATE NOT NULL,
     quantity INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );

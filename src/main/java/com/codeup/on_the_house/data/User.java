@@ -1,7 +1,11 @@
 package com.codeup.on_the_house.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.management.relation.Role;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -23,6 +27,10 @@ public class User {
     private Role role = Role.USER;
 
     public enum Role {USER, ADMIN}
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties("user")// we want to ignore the post.user field to prevent a StackOverflowError
+    private List<Post> posts = new ArrayList<>();
 
 //    ******** constructors ********
     public User(Long id, String firstName, String lastName, String username, String email, String password, String phoneNumber, String address) {
@@ -50,6 +58,15 @@ public class User {
     }
 
 //    ********** getters and setters ***********
+//    **********POST GETTERS AND SETTERS *******
+public List<Post> getPosts() {
+    return posts;
+}
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+//****************************************
 
 
     public Role getRole() {
