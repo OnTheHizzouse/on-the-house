@@ -44,12 +44,9 @@ export function SplashEvents(){
 }
 
 
-
-
-function CancelButtonPressed() {
-    $(document).on('click', '#cancel-btn', function (e) {
-        $('#register-fields').html('');
-        $('#registration-remove-area').html(`
+function collapseRegis(){
+    $('#register-fields').html('');
+    $('#registration-remove-area').html(`
         <button type="submit">Login</button>
                     <button type="submit" class="btn btn-danger" id="register-btn">Register</button>
                     <label>
@@ -60,6 +57,12 @@ function CancelButtonPressed() {
 
                 <div id="register-fields"></div>
         `)
+}
+
+
+function CancelButtonPressed() {
+    $(document).on('click', '#cancel-btn', function (e) {
+      collapseRegis();
     })
 }
 
@@ -116,17 +119,30 @@ function RegisterFields() {
             }
 
             fetch("http://localhost:8080/api/users/createUser", options)
-                .then(res => res.json())
-                .then(data => console.log(data))
+                .then(res =>{ res.json()
+                    console.log(res)
+                })
+                .then(alert("You have created a user 🌚"))//todo: get rid of this alert
                 .catch(err => console.log(err))
-                //toDo: redirect user to a page or give viusal feedback
-                .finally(alert("You have created a user 🌚"))
+                .finally(
+                   emptyAllFields()
+                )
 
         } else {
             alert("The pass need to have a min of 8 characters")
         }
     })
 }
+
+
+function  emptyAllFields(){
+    collapseRegis();
+    var emailClear  = document.querySelector("#email");
+    var passwordClear = document.querySelector("#password");
+    emailClear.value = "";
+    passwordClear.value = "";
+}
+
 
 function LoginEvent(){
     $(document).on('click', '#login-btn', function (e) {
