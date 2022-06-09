@@ -69,19 +69,19 @@ function RegisterFields() {
         $('#registration-remove-area').html('');
         $('#register-fields').html(`
             <label for="firstName"><b>First Name</b></label>
-            <input type="name" placeholder="Enter first name" name="firstname" id="firstName" required>
+            <input type="text" placeholder="Enter first name" name="firstname" id="firstName" required>
             <br>
             <label for="lastName"><b>Last Name</b></label>
-            <input type="name" placeholder="Enter last name" name="lastname" id="lastName" required>
+            <input type="text" placeholder="Enter last name" name="lastname" id="lastName" required>
             <br>
             <label for="uname"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="uname" id="username" required>
             <br>
             <label for="address"><b>Address</b></label>
-            <input type="address" placeholder="Enter Valid Address" name="address" id="address" required>
+            <input type="text" placeholder="Enter Valid Address" name="address" id="address" required>
             <br>
             <label for="phone"><b>Phone</b></label>
-            <input type="phone" placeholder="Enter Phone Number" name="phone" id="phoneNumber" required>
+            <input type="text" placeholder="Enter Phone Number" name="phone" id="phoneNumber" required>
 
             <button type="submit" class="btn btn-danger" id="register-btn-two">Register</button>
 
