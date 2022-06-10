@@ -29,12 +29,12 @@ export default function router(URI) {
             uri: location.pathname,
             title: 'Loading...',
         },
-       /* '/home': {
+        '/home': {
             returnView: Home,
             state: {},
             uri: location.pathname,
             title: 'Home',
-        },*/
+        },
     };
 
     return routes[URI];
