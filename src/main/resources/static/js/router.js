@@ -31,7 +31,10 @@ export default function router(URI) {
         },
         '/home': {
             returnView: Home,
-            state: {},
+            state: {
+                //todo change from fake user to a real user
+                user:'/api/users/test1@email.com'
+            },
             uri: location.pathname,
             title: 'Home',
         },
