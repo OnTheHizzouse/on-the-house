@@ -195,11 +195,9 @@ function LoginEvent(){
         fetch(`http://localhost:8080/api/users/${checkEmail}`, options)
             .then(res => res.json())
             .then(users => {
+                //todo change refactor to with security when implemented
                 if (users.password == checkPassword){
-                    console.log(users)
-                    alert("This user Exist")
-
-                    //todo: Redirect user to home screen and remove the alert
+                    window.location.href="/home"
                 }
             })
             .catch(err => {console.log(err +" The email is not correct")
