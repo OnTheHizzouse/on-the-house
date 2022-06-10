@@ -36,6 +36,8 @@ export default function Splash(props) {
         </main>
     `;
 }
+
+//Event listener
 export function SplashEvents(){
     RegisterFields();
     RegisterEvent();
@@ -43,13 +45,10 @@ export function SplashEvents(){
     LoginEvent();
 }
 
-
-
-
-function CancelButtonPressed() {
-    $(document).on('click', '#cancel-btn', function (e) {
-        $('#register-fields').html('');
-        $('#registration-remove-area').html(`
+//function that collapse the Registration form
+function collapseRegis(){
+    $('#register-fields').html('');
+    $('#registration-remove-area').html(`
         <button type="submit">Login</button>
                     <button type="submit" class="btn btn-danger" id="register-btn">Register</button>
                     <label>
@@ -60,9 +59,16 @@ function CancelButtonPressed() {
 
                 <div id="register-fields"></div>
         `)
+}
+
+//when the cancel button is click it calls the collapseRegis function
+function CancelButtonPressed() {
+    $(document).on('click', '#cancel-btn', function (e) {
+      collapseRegis();
     })
 }
 
+//When the register button is click it will create the registration field
 function RegisterFields() {
     // language=html
     $(document).on('click', '#register-btn', function (e) {
@@ -91,65 +97,110 @@ function RegisterFields() {
 
 }
 
+//Allows the visitor to register as a user
  function RegisterEvent() {
     $(document).on('click', '#register-btn-two', function (e) {
         console.log('clicked');
         let newPassword = $('#password').val();
-        if (newPassword.length >= 8) {
-
-            const reqBody = {
-                firstName: $('#firstName').val(),
-                lastName: $('#lastName').val(),
-                username: $('#username').val(),
-                email: $('#email').val(),
-                password: newPassword,
-                phoneNumber: $('#phoneNumber').val(),
-                address: $('#address').val()
-            }
-
-            const options = {
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                method: 'POST',
-                body: JSON.stringify(reqBody)
-            }
-
-            fetch("http://localhost:8080/api/users/createUser", options)
-                .then(res => res.json())
-                .then(data => console.log(data))
-                .catch(err => console.log(err))
-                //toDo: redirect user to a page or give viusal feedback
-                .finally(alert("You have created a user 🌚"))
-
-        } else {
-            alert("The pass need to have a min of 8 characters")
+        let newEmail = $('#email').val();
+        const optionEmailCheck = {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: 'GET'
         }
+        //checks if email is already being used
+        checkIfEmailExists(newEmail, optionEmailCheck, newPassword)
+
     })
 }
 
+//the fetch request that creates a user and add the user to database
+function createUserFetch( options){
+    fetch("http://localhost:8080/api/users/createUser", options)
+        .then(res =>{ res.json()
+            console.log(res)
+        })
+        .then(alert("You have created a user 🌚"))//todo: get rid of this alert
+        .catch(err => console.log(err))
+        .finally(
+            emptyAllFields()
+        )
+}
+
+//function that checks if email is already being used
+function checkIfEmailExists(checkEmail, options, newPassword){
+
+    fetch(`http://localhost:8080/api/users/${checkEmail}`, options)
+        .then(res => res.json())
+        .then(data =>{
+            alert("This Email is already being used plz try a different email")
+        })
+    .catch(err => {
+        //check if newPassword is at least 8 characters long
+    checkPasswordLength(checkEmail, newPassword)
+    })
+}
+
+//function that checks if newPassword is at least 8 characters long
+function checkPasswordLength(newEmail, newPassword){
+    if (newPassword.length >= 8) {
+
+        const reqBody = {
+            firstName: $('#firstName').val(),
+            lastName: $('#lastName').val(),
+            username: $('#username').val(),
+            email: newEmail,
+            password: newPassword,
+            phoneNumber: $('#phoneNumber').val(),
+            address: $('#address').val()
+        }
+
+        const options = {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: 'POST',
+            body: JSON.stringify(reqBody)
+        }
+        //calls function that creates the user and saves it to the database
+        createUserFetch(options)
+
+    } else {
+        alert("The pass need to have a min of 8 characters")
+    }
+}
+//function that collapses the registration form and clears the email and password fields
+function  emptyAllFields(){
+    collapseRegis();
+    var emailClear  = document.querySelector("#email");
+    var passwordClear = document.querySelector("#password");
+    emailClear.value = "";
+    passwordClear.value = "";
+}
+
+
+//function that checks if the email and password are correct and provides feed if successful
 function LoginEvent(){
     $(document).on('click', '#login-btn', function (e) {
-        console.log('clicked');
+        console.log('clicked login');
         const options = {
             headers: {
                 "Content-Type": "application/json"
             },
             method: 'GET'
         }
-        fetch("http://localhost:8080/api/users", options)
+        let checkPassword = $('#password').val();
+        let checkEmail = $('#email').val();
+        fetch(`http://localhost:8080/api/users/${checkEmail}`, options)
             .then(res => res.json())
             .then(users => {
-                let checkPassword = $('#password').val();
-                let checkEmail = $('#email').val();
-                for (let i = 0; i < users.length; i++) {
-                    if (users[i].email == checkEmail && users[i].password == checkPassword) {
-                        console.log(users[i]);
-                        alert("This user exists!")
-                    }
+                //todo change refactor to with security when implemented
+                if (users.password == checkPassword){
+                    window.location.href="/home"
                 }
-               /* console.log(users)*/
             })
-            .catch(err => console.log(err))
+            .catch(err => {console.log(err +" The email is not correct")
+            })
     })
 }

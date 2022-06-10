@@ -29,12 +29,15 @@ export default function router(URI) {
             uri: location.pathname,
             title: 'Loading...',
         },
-       /* '/home': {
+        '/home': {
             returnView: Home,
-            state: {},
+            state: {
+                //todo change from fake user to a real user
+                user:'/api/users/test1@email.com'
+            },
             uri: location.pathname,
             title: 'Home',
-        },*/
+        },
     };
 
     return routes[URI];
