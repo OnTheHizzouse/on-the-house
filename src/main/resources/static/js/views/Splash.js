@@ -10,6 +10,17 @@ export default function Splash(props) {
             <form id="box" action="action_page.php" method="post">
                 <div class="container">
 
+                    <style>
+                        #geocoder {
+                            z-index: 1;
+                            margin: 20px;
+                        }
+
+                        .mapboxgl-ctrl-geocoder {
+                            min-width: 100%;
+                        }
+                    </style>
+                    
                     <label for="email"><b>E-mail</b></label>
                     <input type="email" placeholder="Enter E-mail" name="email" id="email" required>
                     
@@ -34,6 +45,8 @@ export default function Splash(props) {
                 </span>
             </form>
         </main>
+       
+
     `;
 }
 
@@ -43,6 +56,7 @@ export function SplashEvents(){
     RegisterEvent();
     CancelButtonPressed();
     LoginEvent();
+    $('nav').hide()
 }
 
 //function that collapse the Registration form
@@ -64,6 +78,7 @@ function collapseRegis(){
 //when the cancel button is click it calls the collapseRegis function
 function CancelButtonPressed() {
     $(document).on('click', '#cancel-btn', function (e) {
+        location.reload()
       collapseRegis();
     })
 }
@@ -85,11 +100,15 @@ function RegisterFields() {
             <br>
             <label for="address"><b>Address</b></label>
             <input type="address" placeholder="Enter Valid Address" name="address" id="address" required>
+            <div id="geocoder"></div>
+            <pre id="result"></pre>
             <br>
             <label for="phone"><b>Phone</b></label>
             <input type="phone" placeholder="Enter Phone Number" name="phone" id="phoneNumber" required>
 
             <button type="submit" class="btn btn-danger" id="register-btn-two">Register</button>
+
+            <script src="js/mapboxSearch.js"></script>
 
         `)
     })
