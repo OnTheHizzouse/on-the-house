@@ -43,6 +43,7 @@ export function SplashEvents(){
     RegisterEvent();
     CancelButtonPressed();
     LoginEvent();
+    $('nav').hide()
 }
 
 //function that collapse the Registration form
