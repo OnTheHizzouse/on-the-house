@@ -41,8 +41,11 @@
 
     // Add geocoder result to container.
     geocoder.on('result', (e) => {
-    results.innerText = JSON.stringify(e.result, null, 2);
-});
+        let address = e.result.place_name;
+        results.innerText = JSON.stringify(address, null, 2);
+
+        // console.log(address)
+    });
 
     // Clear results container when search is cleared.
     geocoder.on('clear', () => {
