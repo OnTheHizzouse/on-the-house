@@ -102,9 +102,9 @@ function RegisterFields() {
             <input type="text" placeholder="Enter Username" name="uname" id="username" required>
             <br>
             <label for="address"><b>Address</b></label>
-            <input type="address" placeholder="Enter Valid Address" name="address" id="address" required>
+<!--            <input type="address" placeholder="Enter Valid Address" name="address" id="address" required>-->
             <div id="geocoder"></div>
-            <pre id="result"></pre>
+            <div id="result"></div>
             <br>
             <label for="phone"><b>Phone</b></label>
             <input type="phone" placeholder="Enter Phone Number" name="phone" id="phoneNumber" required>
@@ -112,8 +112,8 @@ function RegisterFields() {
             <button type="submit" class="btn btn-danger" id="register-btn-two">Register</button>
 
             <script src="js/mapboxSearch.js"></script>
-
         `)
+
     })
 
 
@@ -122,9 +122,13 @@ function RegisterFields() {
 //Allows the visitor to register as a user
  function RegisterEvent() {
     $(document).on('click', '#register-btn-two', function (e) {
-        console.log('clicked');
         let newPassword = $('#password').val();
         let newEmail = $('#email').val();
+        let geoCoderAddress= $('#result').text();
+        let address = geoCoderAddress.replace('"',"")
+        address = address.replace('"',"")
+        console.log(address);
+
         const optionEmailCheck = {
             headers: {
                 "Content-Type": "application/json"
@@ -132,7 +136,7 @@ function RegisterFields() {
             method: 'GET'
         }
         //checks if email is already being used
-        checkIfEmailExists(newEmail, optionEmailCheck, newPassword)
+        checkIfEmailExists(newEmail, optionEmailCheck, newPassword, address)
 
     })
 }
@@ -151,7 +155,7 @@ function createUserFetch( options){
 }
 
 //function that checks if email is already being used
-function checkIfEmailExists(checkEmail, options, newPassword){
+function checkIfEmailExists(checkEmail, options, newPassword, address){
 
     fetch(`http://localhost:8080/api/users/${checkEmail}`, options)
         .then(res => res.json())
@@ -160,12 +164,12 @@ function checkIfEmailExists(checkEmail, options, newPassword){
         })
     .catch(err => {
         //check if newPassword is at least 8 characters long
-    checkPasswordLength(checkEmail, newPassword)
+    checkPasswordLength(checkEmail, newPassword, address)
     })
 }
 
 //function that checks if newPassword is at least 8 characters long
-function checkPasswordLength(newEmail, newPassword){
+function checkPasswordLength(newEmail, newPassword, address){
     if (newPassword.length >= 8) {
 
         const reqBody = {
@@ -175,7 +179,7 @@ function checkPasswordLength(newEmail, newPassword){
             email: newEmail,
             password: newPassword,
             phoneNumber: $('#phoneNumber').val(),
-            address: $('#address').val()
+            address:address
         }
 
         const options = {

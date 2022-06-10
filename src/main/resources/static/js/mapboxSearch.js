@@ -2,7 +2,7 @@
     mapboxgl.accessToken = 'pk.eyJ1IjoibWVuZG96YXIiLCJhIjoiY2wwdjB3a3Z4MHRoczNlbnA0ajFiaWttMSJ9.wyy70W2kiLvadQuWo-EBeQ';
     const geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
-    types: 'country,region,place,postcode,locality,neighborhood,address'
+    types: 'address'
 });
 
 
@@ -41,8 +41,10 @@
 
     // Add geocoder result to container.
     geocoder.on('result', (e) => {
+        console.log(e.result)
         let address = e.result.place_name;
         results.innerText = JSON.stringify(address, null, 2);
+        $('#result').hide()
 
         // console.log(address)
     });
