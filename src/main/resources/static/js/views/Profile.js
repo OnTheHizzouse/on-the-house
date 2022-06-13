@@ -2,13 +2,6 @@ export default function Profile(props) {
     console.log("This is the Profile page");
 // language=html
     return `
-        
-        <head>
-            <!--ADDING CSS LINK HERE DOESN'T HELP IN PROPERLY RENDERING THIS PAGE. PAGE RENDERS PROPERLY WHEN previews.css LINK IS COMMENTED OUT IN index.html
-            I BELIEVE THIS CSS LINK IS NOT DOING ANYTHING AS THIS PAGE IS ONLY PROPERLY RENDERED WHEN profile2.css IS ACTIVE IN index.html  -->
-            <link rel="stylesheet" href="css/profile2.css">
-        </head>
-        
         <body>
         <div class="container">
             <div class="main-body">
@@ -209,7 +202,6 @@ export default function Profile(props) {
                 <small>Copyright &copy; On The House 2022</small>
             </div>
         </footer>
-        <script src="https://cdn.tailwindcss.com"></script>
 
         </body>
     `;
