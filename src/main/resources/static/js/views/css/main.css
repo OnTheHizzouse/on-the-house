@@ -1,19 +1,12 @@
 * {
     box-sizing: border-box;
-    margin: 0;
+    margin: 1px;
     padding: 0;
 }
 
 body {
     background: rgb(255, 253, 244);
     background: linear-gradient(90deg, rgba(255, 253, 244, 1) 1%, rgba(34, 135, 187, 1) 53%, rgba(100, 174, 139, 1) 100%);
-}
-
-h1 {
-    justify-content: center;
-    font-size: 82px;
-    text-align: center;
-    padding-top: 50vh;
 }
 
 #bg {
@@ -29,19 +22,20 @@ h1 {
     border: 1px solid white;
     background-color: white;
     border-radius: 6px;
-    height: 470px;
-    width: 450px;
+    height: auto;
+    width: 60%;
     justify-content: center;
     align-content: center;
     align-items: center;
-    margin-top: -300px;
-    margin-left: 540px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-input[type=text], input[type=password] {
+.inputFields {
     width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
+    padding: 6px 12px;
+    margin: 3px 0;
     display: inline-block;
     border: 1px dotted #ccc;
     box-sizing: border-box;
@@ -73,8 +67,6 @@ button:hover {
     margin: 24px 0 12px 0;
 }
 
-
-
 .container {
     padding: 16px;
 }
@@ -95,7 +87,6 @@ span.psw {
     }
 }
 
-
 /*************************************************** HOMEPAGE.CSS*/
 
 #OTH{
@@ -108,7 +99,6 @@ span.psw {
     width: 400px;
 
 }
-
 
 .containers {
     display: grid;

@@ -24,10 +24,10 @@ export default function Splash(props) {
                     </style>
 
                     <label for="email"><b>E-mail</b></label>
-                    <input type="email" placeholder="Enter E-mail" name="email" id="email" required>
-
+                    <input class="inputFields" placeholder="Enter E-mail" name="email" id="email" required>
+                    <br>
                     <label for="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" id="password" required>
+                    <input class="inputFields" placeholder="Enter Password" name="psw" id="password" required>
 
                     <span id="registration-remove-area">
                         <button type="submit" id="login-btn">Login</button>
@@ -93,13 +93,13 @@ function RegisterFields() {
         $('#registration-remove-area').html('');
         $('#register-fields').html(`
             <label for="firstName"><b>First Name</b></label>
-            <input type="name" placeholder="Enter first name" name="firstname" id="firstName" required>
+            <input class="inputFields" placeholder="Enter first name" name="firstname" id="firstName" required>
             <br>
             <label for="lastName"><b>Last Name</b></label>
-            <input type="name" placeholder="Enter last name" name="lastname" id="lastName" required>
+            <input class="inputFields" placeholder="Enter last name" name="lastname" id="lastName" required>
             <br>
             <label for="uname"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="uname" id="username" required>
+            <input class="inputFields" placeholder="Enter Username" name="uname" id="username" required>
             <br>
             <label for="address"><b>Address</b></label>
             <!--            <input type="address" placeholder="Enter Valid Address" name="address" id="address" required>-->
@@ -107,7 +107,7 @@ function RegisterFields() {
             <div id="result"></div>
             <br>
             <label for="phone"><b>Phone</b></label>
-            <input type="phone" placeholder="Enter Phone Number" name="phone" id="phoneNumber" required>
+            <input class="inputFields" placeholder="Enter Phone Number" name="phone" id="phoneNumber" required>
 
             <button type="submit" class="btn btn-danger" id="register-btn-two">Register</button>
 
