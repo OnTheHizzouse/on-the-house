@@ -2,17 +2,11 @@ export default function Home(props) {
     console.log("This is the Home Page");
     console.log(props)
     //props.user.username displays the user which currently is a testUser
+
     return `
 
 <head>
-
-<!--ADDING CSS LINK HERE DOESN'T HELP IN PROPERLY RENDERING THIS PAGE. PAGE RENDERS PROPERLY WHEN previews.css LINK IS COMMENTED OUT IN index.html
-            I BELIEVE THIS CSS LINK IS NOT DOING ANYTHING AS THIS PAGE IS ONLY PROPERLY RENDERED WHEN homepage.css IS ACTIVE IN index.html  -->
-    <link rel="stylesheet" href="css/homepage.css">
-
-
-
-    <style>
+<style>
         body {
             margin: 0;
             padding: 0;
@@ -24,7 +18,6 @@ export default function Home(props) {
         }
     </style>
     <title>On the house</title>
-<!--    <link rel="stylesheet" href="/caps.css">-->
 </head>
 
 <header>
@@ -134,8 +127,8 @@ export default function Home(props) {
     });
 
     document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
+    
 </script>
-<script src="https://cdn.tailwindcss.com"></script>
 </body>
 
 
