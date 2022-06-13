@@ -41,7 +41,7 @@ export default function Splash(props) {
                 <div id="register-fields"></div>
 
                 <div class="container" style="background-color:#f1f1f1">
-                    <button type="button" class="cancelbtn">Cancel</button>
+                    <button type="button" class="cancel-btn">Cancel</button>
                     <span class="psw">Forgot <a href="#">password?</a></span>
                 </div>
                 </span>
@@ -80,7 +80,7 @@ function collapseRegis() {
 
 //when the cancel button is click it calls the collapseRegis function
 function CancelButtonPressed() {
-    $(document).on('click', '#cancel-btn', function (e) {
+    $(document).on('click', '.cancel-btn', function (e) {
         location.reload()
         collapseRegis();
     })
@@ -101,14 +101,12 @@ function RegisterFields() {
             <label for="uname"><b>Username</b></label>
             <input class="inputFields" placeholder="Enter Username" name="uname" id="username" required>
             <br>
+            <label for="phone"><b>Phone</b></label>
+            <input class="inputFields" placeholder="Enter Phone Number" name="phone" id="phoneNumber" required>
             <label for="address"><b>Address</b></label>
             <!--            <input type="address" placeholder="Enter Valid Address" name="address" id="address" required>-->
             <div id="geocoder"></div>
             <div id="result"></div>
-            <br>
-            <label for="phone"><b>Phone</b></label>
-            <input class="inputFields" placeholder="Enter Phone Number" name="phone" id="phoneNumber" required>
-
             <button type="submit" class="btn btn-danger" id="register-btn-two">Register</button>
 
             <script src="js/mapboxSearch.js"></script>
