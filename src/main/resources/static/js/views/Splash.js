@@ -3,9 +3,6 @@ export default function Splash(props) {
 // language=html
     return `
         <!--        header is important do not remove-->
-        <head>
-        <link rel="stylesheet" href="CSS/previews.css">
-        </head>
         <header>
             <h1></h1>
         </header>

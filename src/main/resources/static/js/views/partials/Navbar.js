@@ -1,7 +1,6 @@
 export default function Navbar(props) {
     //language=HTML
     return `
-        <script src="https://cdn.tailwindcss.com"></script>
 
         <nav id="nav" class="bg-white border-white-200 px-2 sm:px-4 py-2.5 rounded dark:bg-white-800">
             <div class="container flex flex-wrap justify-between items-center mx-auto">
@@ -41,10 +40,15 @@ export default function Navbar(props) {
                                aria-current="page">Home</a>
                         </li>
                         <li>
-                            <a href="#"
-                               class="block py-2 pr-4 pl-3 text-white-700 border-b border-white-100 hover:bg-white-50 md:hover:bg-transparent
+<!--                            <a href="#"-->
+<!--                               class="block py-2 pr-4 pl-3 text-white-700 border-b border-white-100 hover:bg-white-50 md:hover:bg-transparent-->
+<!--                           md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700-->
+<!--                           dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Profile</a>-->
+                            
+                            <a class="block py-2 pr-4 pl-3 text-white-700 border-b border-white-100 hover:bg-white-50 md:hover:bg-transparent
                            md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700
-                           dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Profile</a>
+                           dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 nav-link" href="/profile" data-link>Profile</a>
+
                         </li>
                         <li>
                             <a href="#"
@@ -67,6 +71,8 @@ export default function Navbar(props) {
                 </div>
             </div>
         </nav>
+
+<!--        <script src="https://cdn.tailwindcss.com"></script>-->
 
     `;
 }
