@@ -1,7 +1,8 @@
 import Splash, {SplashEvents} from "./views/Splash.js";
 import Error404 from "./views/Error404.js";
 import Loading from "./views/Loading.js";
-import Home from "./views/partials/Home.js";
+import Home from "./views/Home.js";
+import Profile from "./views/Profile.js";
 
 
 /**
@@ -38,6 +39,15 @@ export default function router(URI) {
             uri: location.pathname,
             title: 'Home',
         },
+        '/profile': {
+            returnView: Profile,
+            state: {
+                //todo change from fake user to a real user
+                user:'/api/users/test1@email.com'
+            },
+            uri: '/profile',
+            title: 'Profile',
+        }
     };
 
     return routes[URI];
