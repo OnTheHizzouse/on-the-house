@@ -6,17 +6,17 @@ export default function Home(props) {
     return `
 
 <head>
-<!--<style>-->
-<!--        body {-->
-<!--            margin: 0;-->
-<!--            padding: 0;-->
-<!--        }-->
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
 
-<!--        #map {-->
-<!--            top: 0;-->
-<!--            bottom: 0;-->
-<!--        }-->
-<!--    </style>-->
+        #map {
+            top: 0;
+            bottom: 0;
+        }
+    </style>
     <title>On the house</title>
 </head>
 
@@ -110,7 +110,7 @@ export default function Home(props) {
     // TO MAKE THE MAP APPEAR YOU MUST
     // ADD YOUR ACCESS TOKEN FROM
     // https://account.mapbox.com
-    mapboxgl.accessToken = 'pk.eyJ1IjoidHlyZWlrMTQiLCJhIjoiY2w0NzVxdzJsMGY1YjNqbXhmZnhwaDlkbSJ9.-15Z40XQyhrHOu2lnZzzDA';
+    mapboxgl.accessToken = KEY_mapbox;
     const map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
@@ -134,20 +134,3 @@ export default function Home(props) {
 
     `;
 }
-//
-// <head>
-//     <!--    <script type=“text/javascript” src=“src/main/resources/static/js/views/partials/controller.js”></script>-->
-// </head>
-// <header>
-//     <h1>Home Page</h1>
-//     <h3>Hello, ${props.user.username}</h3>
-//
-// </header>
-// <main>
-//     <div>
-//         <p>
-//             This is the home page text.
-//         </p>
-//     </div>
-//
-// </main>
