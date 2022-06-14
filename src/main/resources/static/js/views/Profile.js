@@ -147,11 +147,13 @@ export default function Profile(props) {
 }
 
 export function postEvents() {
-    editPostListener();
+
 }
+editPostListener();
 
 function editPostListener(){
    $(document).on('click', '#editBtn', function (e) {
+       e.preventDefault();
        console.log("edit button clicked");
     })
 }
