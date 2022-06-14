@@ -156,36 +156,7 @@ function userPostCards(posts) {
                                         <p class="card-text">${posts[i].description}</p>
                                         <label for="expiryDate">Expiry Date:</label>
                                         <p class="card-text"><small class="text-muted">${posts[i].expiryDate}</small></p>
-                                        
-<!--                ******************************************************modal start                       -->
-                                        
-<!--                                        <button id="editBtn" type="button" class="btn btn-primary">Edit</button>-->
-                                        
-                                        <button id="editBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            Edit
-                                          </button>
-                                          <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button id="saveBtn" type="button" class="btn btn-success">Save</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!--                ******************************************************modal  end                      -->
-                                        
-                                        
-                                        
+                                        ${editPostModal(posts[i])}                                 
                                         <button id="deleteBtn" type="button" class="btn btn-danger" onclick="confirmAction()" data-id="${posts[i].id}">Delete</button>
 <!--                                        <button id="saveBtn" type="button" class="btn btn-success">Save</button>-->
 
@@ -203,7 +174,7 @@ export function userPostEvents() {
     deletePostListener();
 }
 
-editPostListener();
+// editPostListener();
 
 savePostListener();
 
@@ -212,6 +183,7 @@ function editPostListener() {
     $(document).on('click', '#editBtn', function (e) {
         e.preventDefault();
         console.log("edit button clicked");
+        editPostModal();
     })
 }
 
@@ -260,4 +232,55 @@ function confirmAction() {
     } else {
         alert("Canceled");
     }
+}
+
+//TODO: get info from posts
+function editPostModal(posts) {
+    console.log(posts);
+    //language=HTML
+    let htmlModal = ``
+    htmlModal += `
+<!--    TODO: change data-bs-target name to edit {id} -->
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#postModal">
+Create Post
+</button>
+<!--   TODO: change id to edit {id} -->
+<div class="modal" tabindex="-1" id="postModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Create a New Post</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+<!--      todo: get better name-->
+      <label for="item-name"><b>Item:</b></label>
+      <input class="inputFields" placeholder="Enter Item name" name="item-name" id="create-item-name"  required>
+      <br>
+       <label for="description"><b>Describe the item to share:</b></label>
+      <textarea class="inputFields " placeholder="Description of Item" name="description" id="create-description" required></textarea>
+      <br>
+<!--      todo change this to take in a photo-->
+       <label for="photo"><b>photo:</b></label>
+      <input class="inputFields" placeholder="this will be change later" name="photo" id="create-photo"  required>
+      <br>
+<!--     todo possible calender integration -->
+       <label for="date"><b>Post Expiration Date:</b></label>
+      <input class="inputFields" placeholder="yyyy-mm-dd" name="date" id="create-expire-date"  required>
+      <br>
+       <label for="quantity"><b>Quantity:</b></label>
+      <input class="inputFields" placeholder="Enter the number available" name="quantity" id="create-quantity"  required>
+      <br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button> 
+<!--          todo make sure the inputfields are not null-->
+        <button type="button" class="btn btn-primary" id="create-post-btn" data-bs-dismiss="modal" >Save Post</button>
+      </div>
+    </div>
+  </div>
+</div>
+    `
+    return htmlModal;
 }
