@@ -30,10 +30,10 @@ export default function Home(props) {
       type="text/css">
 
 <img id="OTH" src="officialPhoto.png" alt="">
-//todo:Delete this div later
-<div>
-${postCards(props.posts)}
-</div>
+<!--todo:Delete this div later-->
+
+${createPostModal()}
+
 <h4>Hello, ${props.user.username}</h4>
 <div class="containers">
 
@@ -42,6 +42,10 @@ ${postCards(props.posts)}
     </div>
 
 
+
+<div>
+${postCards(props.posts)}
+</div>
 
 
     <footer id="homeFooter" class="footer">
@@ -119,4 +123,36 @@ function postCards(posts) {
 `
     }
     return htmlCard
+}
+
+function createPostModal() {
+    //language=HTML
+
+    let htmlModal = ``
+
+    htmlModal += `
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#postModal">
+  Launch demo modal
+</button>
+
+<div class="modal" tabindex="-1" id="postModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Modal Test </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+    `
+
 }
