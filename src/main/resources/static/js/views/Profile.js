@@ -113,8 +113,9 @@ export default function Profile(props) {
                                 <hr>
                             </div>
                         </div>
+                        
 
-
+                    ${props.posts.map(post => `
                         <div class="card mb-3" style="max-width: 540px;">
                             <div class="row g-0">
                                 <div class="col-md-4">
@@ -133,6 +134,8 @@ export default function Profile(props) {
                                 </div>
                             </div>
                         </div>
+                         <br>`)
+                        .join('')}
                     </div>
                 </div>
             </div>
@@ -163,12 +166,31 @@ function editPostListener(){
     })
 }
 
+
+//********** DELETE POST FUNCTION *************
 function deletePostListener(){
     $(document).on('click', '#deleteBtn', function (e) {
         e.preventDefault();
         console.log("delete button clicked");
-    })
-}
+
+        const id = $(this).data("id");
+
+                const request = {
+                    method: "DELETE"
+                }
+
+                fetch(`${postUrl}/${id}`, request)
+                    .then(res => {
+                        console.log(res.status);
+                        // createView("/posts")
+                    }).catch(error => {
+                    console.log(error);
+                    // createView("/posts");
+                }).finally(() => {
+                    createView("/posts")
+                })
+            })
+        }
 
 //save button will be inside modal
 function savePostListener(){
