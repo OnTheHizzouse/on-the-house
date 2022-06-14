@@ -43,6 +43,8 @@ export default function Home(props) {
         <div class="carousel-item">
             <img src="https://www.ncagr.gov/agscool/images/pyramid.gif" class="rounded-box" alt=""/>
         </div>
+        
+        
         <div class="carousel-item">
             <img src="https://www.eatthis.com/wp-content/uploads/sites/4/2020/12/unhealthiest-foods-planet.jpg?quality=82&strip=1"
                  class="rounded-box"

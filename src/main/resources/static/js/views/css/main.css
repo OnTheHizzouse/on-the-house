@@ -123,7 +123,7 @@ span.psw {
     width: 100%;
 }
 
-#map {
+#homeMap {
     background: #84ffff;
     grid-area: main;
     border-radius: 3px;

@@ -2,8 +2,7 @@ import Splash, {SplashEvents} from "./views/Splash.js";
 import Error404 from "./views/Error404.js";
 import Loading from "./views/Loading.js";
 import Home from "./views/Home.js";
-import Profile from "./views/Profile.js";
-
+import Profile, {postEvents} from "./views/Profile.js";
 
 /**
  * Returns the route object for a specific route based on the given URI
@@ -47,6 +46,15 @@ export default function router(URI) {
             },
             uri: '/profile',
             title: 'Profile',
+        },
+        '/userposts': {
+            returnView: Profile,
+            state: {
+                posts:'/api/posts'
+            },
+            uri: '/userposts',
+            title: 'Userposts',
+            viewEvent: postEvents
         }
     };
 
