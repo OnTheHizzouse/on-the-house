@@ -1,7 +1,4 @@
-
 const postUrl = "http://localhost:8080/api/posts"
-
-
 
 
 export default function Profile(props) {
@@ -123,13 +120,13 @@ export default function Profile(props) {
                         <div>
                             ${userPostCards(props.posts)}
                         </div>
-                   
+
                     </div>
                 </div>
             </div>
         </div>
-                        <!--                ********************************************-->
-                      
+        <!--                ********************************************-->
+
         <footer class="flex-shrink-0 py-4 text-white-50">
             <div class="container text-center">
                 <small>Copyright &copy; On The House 2022</small>
@@ -141,7 +138,7 @@ export default function Profile(props) {
 
 }
 
-function userPostCards(posts){
+function userPostCards(posts) {
     //language=HTML
     console.log(posts)
     let htmlCard = ``
@@ -159,9 +156,38 @@ function userPostCards(posts){
                                         <p class="card-text">${posts[i].description}</p>
                                         <label for="expiryDate">Expiry Date:</label>
                                         <p class="card-text"><small class="text-muted">${posts[i].expiryDate}</small></p>
-                                        <button id="editBtn" type="button" class="btn btn-primary">Edit</button>
-                                        <button id="deleteBtn" type="button" class="btn btn-danger" data-id="${posts[i].id}">Delete</button>
-                                        <button id="saveBtn" type="button" class="btn btn-success">Save</button>
+                                        
+<!--                ******************************************************modal start                       -->
+                                        
+<!--                                        <button id="editBtn" type="button" class="btn btn-primary">Edit</button>-->
+                                        
+                                        <button id="editBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            Edit
+                                          </button>
+                                          <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button id="saveBtn" type="button" class="btn btn-success">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--                ******************************************************modal  end                      -->
+                                        
+                                        
+                                        
+                                        <button id="deleteBtn" type="button" class="btn btn-danger" onclick="confirmAction()" data-id="${posts[i].id}">Delete</button>
+<!--                                        <button id="saveBtn" type="button" class="btn btn-success">Save</button>-->
 
                                     </div>
                                 </div>
@@ -176,49 +202,62 @@ function userPostCards(posts){
 export function userPostEvents() {
     deletePostListener();
 }
+
 editPostListener();
 
 savePostListener();
 
-function editPostListener(){
-   $(document).on('click', '#editBtn', function (e) {
-       e.preventDefault();
-       console.log("edit button clicked");
+
+function editPostListener() {
+    $(document).on('click', '#editBtn', function (e) {
+        e.preventDefault();
+        console.log("edit button clicked");
     })
 }
 
 
 //********** DELETE POST FUNCTION *************
-function deletePostListener(){
+function deletePostListener() {
     $(document).on('click', '#deleteBtn', function (e) {
         e.preventDefault();
         console.log("delete button clicked");
-
+        confirmAction();
         const id = $(this).data("id");
 
-                const request = {
-                    method: "DELETE"
-                }
-
-                fetch(`${postUrl}/${id}`, request)
-                    .then(res => {
-                        console.log(res.status);
-                    }).catch(error => {
-                    console.log(error);
-                }).finally(() => {
-                    location.reload()
-                })
-                //CAUSING ERRORS WHEN UNCOMMENTED...FOR NOW JUST IMPLEMENTING PAGE RELOAD
-                //     .finally(() => {
-                //     createView("/profile")
-                // })
-            })
+        const request = {
+            method: "DELETE"
         }
 
+        fetch(`${postUrl}/${id}`, request)
+            .then(res => {
+                console.log(res.status);
+            }).catch(error => {
+            console.log(error);
+        }).finally(() => {
+            location.reload()
+        })
+        //CAUSING ERRORS WHEN UNCOMMENTED...FOR NOW JUST IMPLEMENTING PAGE RELOAD
+        //     .finally(() => {
+        //     createView("/profile")
+        // })
+    })
+}
+
 //save button will be inside modal
-function savePostListener(){
+function savePostListener() {
     $(document).on('click', '#saveBtn', function (e) {
         e.preventDefault();
         console.log("save button clicked");
     })
+}
+
+//confirmation (Y/N)
+
+function confirmAction() {
+    let confirmAction = confirm("Would you like to delete this post?");
+    if (confirmAction) {
+        alert("Post deleted");
+    } else {
+        alert("Canceled");
+    }
 }
