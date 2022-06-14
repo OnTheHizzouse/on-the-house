@@ -10,7 +10,7 @@ export default function Profile(props) {
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex flex-column align-items-center text-center">
-                                    <img src="pieguy.png" alt="Admin"
+                                    <img src="pieguy2.png" alt="Admin"
                                          class="rounded-circle" width="150">
                                     <div class="mt-3">
                                         <h4>Pie Guy Jr</h4>
@@ -127,13 +127,16 @@ export default function Profile(props) {
                                         <p class="card-text"><small class="text-muted">TIMER</small></p>
                                         <button id="editBtn" type="button" class="btn btn-primary">Edit</button>
                                         <button id="deleteBtn" type="button" class="btn btn-danger">Delete</button>
-
+                                        <button id="saveBtn" type="button" class="btn btn-success">Save</button>
 
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+                    </div>
+                </div>
+            </div>
+        </div>
                         <!--                ********************************************-->
                       
         <footer class="flex-shrink-0 py-4 text-white-50">
@@ -150,10 +153,27 @@ export function postEvents() {
 
 }
 editPostListener();
+deletePostListener();
+savePostListener();
 
 function editPostListener(){
    $(document).on('click', '#editBtn', function (e) {
        e.preventDefault();
        console.log("edit button clicked");
+    })
+}
+
+function deletePostListener(){
+    $(document).on('click', '#deleteBtn', function (e) {
+        e.preventDefault();
+        console.log("delete button clicked");
+    })
+}
+
+//save button will be inside modal
+function savePostListener(){
+    $(document).on('click', '#saveBtn', function (e) {
+        e.preventDefault();
+        console.log("save button clicked");
     })
 }
