@@ -1,4 +1,6 @@
 export default function Home(props) {
+    //todo styling
+
     console.log("This is the Home Page");
     console.log(props)
     console.log(props.posts.length)
