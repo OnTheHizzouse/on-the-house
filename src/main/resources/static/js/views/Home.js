@@ -95,8 +95,10 @@ ${postCards(props.posts)}
 // todo add to router
 export function homepageEvent() {
     savePostEventListener();
+    cancelBtnEventListener()
 }
 
+cancelBtnEventListener()
 savePostEventListener();
 
 
@@ -166,7 +168,7 @@ Create Post
       <br>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button> 
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancel-btn">Cancel</button> 
 <!--          todo make sure the inputfields are not null-->
         <button type="button" class="btn btn-primary"  data-id="${username}" id="create-post-btn" data-bs-dismiss="modal" >Save Post</button>
       </div>
@@ -177,10 +179,23 @@ Create Post
     return htmlModal;
 }
 
+function clearModalFields(){
+    $('#create-item-name').val("")
+    $('#create-description').val("")
+    $('#create-photo').val("")
+    $('#create-expire-date').val("")
+    $('#create-quantity').val("")
+}
+
+function cancelBtnEventListener(){
+    $(document).on('click', '#cancel-btn', function (e){
+        clearModalFields();
+    })
+}
+
 function savePostEventListener() {
     $(document).on('click', '#create-post-btn', function (e) {
 
-        console.log("hello this post on save. not")
         let currentUser= $('#create-post-btn').data('id');
         let itemName =  $('#create-item-name').val()
         let description = $('#create-description').val()
@@ -195,12 +210,7 @@ function savePostEventListener() {
             quantity: quantity
         }
         savePostFetch(currentUser, postReqBody)
-        $('#create-item-name').val("")
-        $('#create-description').val("")
-        $('#create-photo').val("")
-        $('#create-expire-date').val("")
-        $('#create-quantity').val("")
-
+       clearModalFields();
     })
 }
 
