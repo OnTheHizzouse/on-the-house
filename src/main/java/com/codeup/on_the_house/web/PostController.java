@@ -6,6 +6,8 @@ import com.codeup.on_the_house.dto.CreateUserDTO;
 import com.codeup.on_the_house.service.PostService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/api/posts", headers = "Accept=application/json")
@@ -15,6 +17,11 @@ public class PostController {
 
     public PostController(PostService postService) {
         this.postService = postService;
+    }
+
+    @GetMapping
+    public List<Post> getAllPost(){
+        return postService.getAllPost();
     }
 
     @PostMapping("{username}")
