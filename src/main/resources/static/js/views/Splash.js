@@ -15,7 +15,7 @@ export default function Splash(props) {
                     <style>
                         #geocoder {
                             z-index: 1;
-                            margin: 20px;
+                            /*margin: 20px;*/
                         }
 
                         .mapboxgl-ctrl-geocoder {
@@ -27,7 +27,7 @@ export default function Splash(props) {
                     <input class="inputFields" placeholder="Enter E-mail" name="email" id="email" required>
                     <br>
                     <label for="psw"><b>Password</b></label>
-                    <input class="inputFields" placeholder="Enter Password" name="psw" id="password" required>
+                    <input class="inputFields" placeholder="Enter Password" name="psw" id="password" type="password" required>
 
                     <span id="registration-remove-area">
                         <button type="submit" id="login-btn">Login</button>
@@ -38,7 +38,7 @@ export default function Splash(props) {
 
                 </div>
 
-                <div id="register-fields"></div>
+                <div id="register-fields" class="container"></div>
 
                 <div class="container" style="background-color:#f1f1f1">
                     <button type="button" class="cancel-btn">Cancel</button>
@@ -107,6 +107,7 @@ function RegisterFields() {
             <!--            <input type="address" placeholder="Enter Valid Address" name="address" id="address" required>-->
             <div id="geocoder"></div>
             <div id="result"></div>
+            <br>
             <button type="submit" class="btn btn-danger" id="register-btn-two">Register</button>
 
             <script src="js/mapboxSearch.js"></script>
