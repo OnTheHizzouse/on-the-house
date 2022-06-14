@@ -1,5 +1,6 @@
 export default function Navbar(props) {
     //language=HTML
+    //todo: change navbar
     return `
 
         <nav class="navbar navbar-expand-lg bg-light">
