@@ -8,6 +8,8 @@ import com.sun.xml.bind.v2.TODO;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PostService {
     private final PostsRepository postsRepository;
@@ -59,4 +61,9 @@ public class PostService {
     public void deletePostById(Long id) {
         postsRepository.deleteById(id);
     }
+
+    public List<Post> getAllPost(){
+        return postsRepository.findAll();
+    }
 }
+
