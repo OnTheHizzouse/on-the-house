@@ -143,10 +143,7 @@ function RegisterEvent() {
 //the fetch request that creates a user and add the user to database
 function createUserFetch(options) {
     fetch("http://localhost:8080/api/users/createUser", options)
-        .then(res => {
-            res.json()
-            console.log(res)
-        })
+
         .then(alert("You have created a user 🌚"))//todo: get rid of this alert
         .catch(err => console.log(err))
         .finally(
@@ -220,7 +217,7 @@ function LoginEvent() {
         let checkPassword = $('#password').val();
         let checkEmail = $('#email').val();
         fetch(`http://localhost:8080/api/users/${checkEmail}`, options)
-            .then(res => res.json())
+
             .then(users => {
                 //todo change refactor to with security when implemented
                 if (users.password == checkPassword) {
