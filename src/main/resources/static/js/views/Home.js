@@ -29,7 +29,11 @@ export default function Home(props) {
       href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css"
       type="text/css">
 <img id="OTH" src="officialPhoto.png" alt="">
-<!--todo:Delete this div later-->
+<!--TODO: MOVE INPUT FIELD/SEARCHBAR TO WHERE IT NEEDS TO BE-->
+<div>
+    <input class="inputFields" placeholder="Search items..." name="search-by-item-name" id="search-by-item-name-input"  required>
+    <button type="button" class="btn btn-success" id="search-by-item-name-submit-btn">Search</button>
+</div>
 ${createPostModal(props.user.username)}
 <h4>Hello, ${props.user.username}</h4>
 <div class="containers">
@@ -77,15 +81,11 @@ ${postCards(props.posts)}
     `;
 }
 
-// todo add to router
 export function homepageEvent() {
     savePostEventListener();
-    cancelBtnEventListener()
+    cancelBtnEventListener();
+    searchPostsByItemNameEventListener();
 }
-
-cancelBtnEventListener()
-savePostEventListener();
-
 
 function postCards(posts) {
     //language=HTML
@@ -163,7 +163,7 @@ Create Post
     return htmlModal;
 }
 
-function clearModalFields(){
+function clearModalFields() {
     $('#create-item-name').val("")
     $('#create-description').val("")
     $('#create-photo').val("")
@@ -171,8 +171,26 @@ function clearModalFields(){
     $('#create-quantity').val("")
 }
 
-function cancelBtnEventListener(){
-    $(document).on('click', '#cancel-btn', function (e){
+function searchPostsByItemNameEventListener() {
+    $(document).on('click', '#search-by-item-name-submit-btn', function (e) {
+        let itemNameToSearch = $('#search-by-item-name-input').val();
+
+        const options = {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: 'GET'
+        }
+
+        fetch(`http://localhost:8080/api/posts/searchItems/${itemNameToSearch}`, options)
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(err => console.log(err))
+    })
+}
+
+function cancelBtnEventListener() {
+    $(document).on('click', '#cancel-btn', function (e) {
         clearModalFields();
     })
 }
@@ -180,12 +198,12 @@ function cancelBtnEventListener(){
 function savePostEventListener() {
     $(document).on('click', '#create-post-btn', function (e) {
 
-        let currentUser= $('#create-post-btn').data('id');
-        let itemName =  $('#create-item-name').val()
+        let currentUser = $('#create-post-btn').data('id');
+        let itemName = $('#create-item-name').val()
         let description = $('#create-description').val()
-        let itemPhoto =  $('#create-photo').val()
+        let itemPhoto = $('#create-photo').val()
         let expiryDate = $('#create-expire-date').val()
-        let quantity =     $('#create-quantity').val()
+        let quantity = $('#create-quantity').val()
         const postReqBody = {
             itemName: itemName,
             description: description,
@@ -198,7 +216,7 @@ function savePostEventListener() {
     })
 }
 
-function savePostFetch(username, reqBody){
+function savePostFetch(username, reqBody) {
     console.log(username)
     console.log(reqBody)
     const options = {
