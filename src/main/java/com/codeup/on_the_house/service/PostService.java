@@ -65,5 +65,10 @@ public class PostService {
     public List<Post> getAllPost(){
         return postsRepository.findAll();
     }
+
+    //    ******** GET POSTS BY ID ***********
+    public Post getPostById(Long id) {
+        return postsRepository.findById(id).orElseThrow();
+    }
 }
 

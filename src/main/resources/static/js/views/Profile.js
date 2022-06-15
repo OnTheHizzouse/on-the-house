@@ -3,7 +3,6 @@ const postUrl = "http://localhost:8080/api/posts"
 
 export default function Profile(props) {
     console.log("This is the Profile page");
-    console.log(props.posts)
 // language=html
     return `
         <body>
@@ -118,7 +117,7 @@ export default function Profile(props) {
                             </div>
                         </div>
                         <div>
-                            ${userPostCards(props.posts)}
+                            ${userPostCards(props)}
                         </div>
 
                     </div>
@@ -138,12 +137,11 @@ export default function Profile(props) {
 
 }
 
-function userPostCards(posts) {
+function userPostCards(props) {
     //language=HTML
-    console.log(posts)
-    let htmlCard = ``
-    for (let i = 0; i < posts.length; i++) {
-        htmlCard += `
+    return `
+        ${props.posts.map(post => `
+                            ${post.id}
                         <div class="card mb-3" style="max-width: 540px;">
                             <div class="row g-0">
                                 <div class="col-md-4">
@@ -151,22 +149,22 @@ function userPostCards(posts) {
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
-                                        <h5 class="card-title">${posts[i].itemName}</h5>
-                                        <label for="description">Description:</label>
-                                        <p class="card-text">${posts[i].description}</p>
+                                        <h5 class="card-title">${post.itemName}</h5>
+                                        <label for="description">${post.id}</label>
+                                        <p class="card-text">${post.description}</p>
                                         <label for="expiryDate">Expiry Date:</label>
-                                        <p class="card-text"><small class="text-muted">${posts[i].expiryDate}</small></p>
-                                        ${editPostModal(posts[i])}                                 
-                                        <button id="deleteBtn" type="button" class="btn btn-danger" onclick="confirmAction()" data-id="${posts[i].id}">Delete</button>
+                                        <p class="card-text"><small class="text-muted">${post.expiryDate}</small></p>
+                                        ${editPostModal(post.id)}                                 
+                                        <button id="deleteBtn" type="button" class="btn btn-danger" onclick="confirmAction()" data-id="${post.id}">Delete</button>
 <!--                                        <button id="saveBtn" type="button" class="btn btn-success">Save</button>-->
 
                                     </div>
                                 </div>
                             </div>
                         </div>
-                         <br>`
-    }
-    return htmlCard
+                        <br>`)
+                        .join('')}
+        `;
 }
 
 

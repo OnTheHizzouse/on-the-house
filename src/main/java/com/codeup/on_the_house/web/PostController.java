@@ -19,6 +19,14 @@ public class PostController {
         this.postService = postService;
     }
 
+    //******** GET BY ID *************
+    @GetMapping("{id}")
+    public Post getById(@PathVariable Long id) {
+        System.out.println("Post with an ID of: " + id + "has been retrieved");
+        return postService.getPostById(id);
+
+    }
+
     @GetMapping
     public List<Post> getAllPost(){
         return postService.getAllPost();
