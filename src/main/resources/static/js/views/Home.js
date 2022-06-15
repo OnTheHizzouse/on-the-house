@@ -1,5 +1,6 @@
 export default function Home(props) {
     //todo styling
+    //todo add search bar for US6
 
     console.log("This is the Home Page");
     console.log(props)
