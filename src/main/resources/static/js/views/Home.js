@@ -5,12 +5,9 @@ import {createPostModal} from "./partials/modals.js";
 export default function Home(props) {
     //todo styling
     //todo add search bar for US6
-
     console.log("This is the Home Page");
     console.log(props)
-    console.log(props.posts.length)
     //props.user.username displays the user which currently is a testUser
-
     return `
 <style>
 #map { 
@@ -51,14 +48,12 @@ ${createPostModal(props.user.username)}
         </div>
     </footer>
 </div>
-
 </body>
     `;
 }
 
 var postProps ;
 
-initMap(-79.4512, 43.6568);
 // [-79.4512, 43.6568]
 function initMap(lng, lat) {
     waitForElm('#map').then((elm) => {
@@ -72,17 +67,19 @@ function initMap(lng, lat) {
         });
     })
 }
+waitForElm('#OTH').then((elm)=>{
+    // $('#OTH').attr("src", "../views/img/othNavImg.png")
+})
+
 
 function getprops(props){
     postProps = props;
-    let img = `<img id="OTH" src="officialPhoto.png" alt="">`
-    return  img
+    return  `<img id="OTH" src="js/views/img/officialPhoto.png" alt="Oth logo">`
 }
 
 function startCards(props) {
     waitForElm('#cards').then((elm) => {
         $('#cards').html(postCards(props))
-        console.log('hi')
     })
 }
 
@@ -91,6 +88,7 @@ export function homepageEvent() {
     cancelBtnEventListener();
     searchPostsByItemNameEventListener();
     startCards(postProps)
+    initMap(-79.4512, 43.6568);
 }
 
 function clearModalFields() {
@@ -112,14 +110,26 @@ function searchPostsByItemNameEventListener() {
             method: 'GET'
         }
 
-        fetch(`http://localhost:8080/api/posts/searchItems/${itemNameToSearch}`, options)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                startCards(data)
+if (itemNameToSearch != "") {
+        do {
+            let p = 0
+        if (postProps[p].itemName.toLowerCase().includes(itemNameToSearch)){
+    fetch(`http://localhost:8080/api/posts/searchItems/${itemNameToSearch}`, options)
+        .then(res => res.json())
+        .then(data => {
+            startCards(data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+        }
+            startCards(postProps)
+            p++
+}while ( p <postProps.length)
+}else {
+    startCards(postProps)
+}
 
-            })
-            .catch(err => console.log(err))
     })
 }
 
