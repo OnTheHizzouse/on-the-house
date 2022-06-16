@@ -12,30 +12,11 @@ export default function Home(props) {
     //props.user.username displays the user which currently is a testUser
 
     return `
-<head>
 <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
-        #map {
-            top: 0;
-            bottom: 0;
-        }
-    </style>
-    <title>On the house</title>
-</head>
-<header>
-</header>
-<body>
-<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
-<link rel="stylesheet"
-      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css"
-      type="text/css">
+#map { width: 100%;height: 100% }
+</style>
 
 ${getprops(props.posts)}
-
-
 
 <!--TODO: MOVE INPUT FIELD/SEARCHBAR TO WHERE IT NEEDS TO BE-->
 <div>
@@ -46,7 +27,7 @@ ${createPostModal(props.user.username)}
 <h4>Hello, ${props.user.username}</h4>
 <div class="containers">
     <div id="homeMap">
-        <div id="geocoder" class="geocoder"></div>
+    <div id="map"></div>
     </div>
 <div id="cards">
 </div>
@@ -65,29 +46,27 @@ ${createPostModal(props.user.username)}
         </div>
     </footer>
 </div>
-<script>
-    // TO MAKE THE MAP APPEAR YOU MUST
-    // ADD YOUR ACCESS TOKEN FROM
-    // https://account.mapbox.com
-    mapboxgl.accessToken = KEY_mapbox;
-    const map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [-79.4512, 43.6568],
-        zoom: 13
-    });
-    // Add the control to the map.
-    const geocoder = new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        mapboxgl: mapboxgl
-    });
-    document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
-   
-</script>
+
 </body>
     `;
 }
 var postProps ;
+
+initMap(-79.4512, 43.6568);
+// [-79.4512, 43.6568]
+function initMap(lng, lat) {
+    waitForElm('#map').then((elm) => {
+        console.log('hello')
+        mapboxgl.accessToken = KEY_mapbox;
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [lng, lat],
+            zoom: 13
+        });
+        console.log(map)
+    })
+}
 
 function getprops(props){
     postProps = props;

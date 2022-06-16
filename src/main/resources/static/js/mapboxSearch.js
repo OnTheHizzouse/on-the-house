@@ -1,10 +1,8 @@
 
-    mapboxgl.accessToken = 'pk.eyJ1IjoibWVuZG96YXIiLCJhIjoiY2wwdjB3a3Z4MHRoczNlbnA0ajFiaWttMSJ9.wyy70W2kiLvadQuWo-EBeQ';
     const geocoder = new MapboxGeocoder({
-    accessToken: mapboxgl.accessToken,
+    accessToken: KEY_mapbox,
     types: 'address'
 });
-
 
  export   function waitForElm(selector) {
     return new Promise(resolve => {
@@ -42,10 +40,8 @@
     // Add geocoder result to container.
     geocoder.on('result', (e) => {
         let address = e.result.place_name;
-
         $('#result').html(address)
         $('#result').hide()
-
     });
 
     // Clear results container when search is cleared.
