@@ -1,6 +1,4 @@
 export default function Splash(props) {
-    console.log("This is the Splash page");
-
 // language=HTML
     return `
         <!--        header is important do not remove-->
@@ -15,11 +13,10 @@ export default function Splash(props) {
                     <style>
                         #geocoder {
                             z-index: 1;
-                            /*margin: 20px;*/
                         }
 
                         .mapboxgl-ctrl-geocoder {
-                            min-width: 100%;
+                            min-width: 90%;
                         }
                     </style>
 
@@ -47,9 +44,6 @@ export default function Splash(props) {
                 </span>
             </form>
         </main>
-
-
-
     `;
 }
 
@@ -110,7 +104,6 @@ function RegisterFields() {
             <br>
             <button type="submit" class="btn btn-danger" id="register-btn-two">Register</button>
 
-            <script src="js/mapboxSearch.js"></script>
         `)
 
     })
@@ -143,12 +136,11 @@ function RegisterEvent() {
 //the fetch request that creates a user and add the user to database
 function createUserFetch(options) {
     fetch("http://localhost:8080/api/users/createUser", options)
-
         .then(alert("You have created a user 🌚"))//todo: get rid of this alert
         .catch(err => console.log(err))
         .finally(
-            emptyAllFields()
-        )
+    location.reload()
+)
 }
 
 //function that checks if email is already being used
@@ -207,7 +199,6 @@ function emptyAllFields() {
 //function that checks if the email and password are correct and provides feed if successful
 function LoginEvent() {
     $(document).on('click', '#login-btn', function (e) {
-        console.log('clicked login');
         const options = {
             headers: {
                 "Content-Type": "application/json"
@@ -216,11 +207,13 @@ function LoginEvent() {
         }
         let checkPassword = $('#password').val();
         let checkEmail = $('#email').val();
+        console.log(checkPassword)
+        console.log(checkEmail)
         fetch(`http://localhost:8080/api/users/${checkEmail}`, options)
-
+            .then(res => res.json())
             .then(users => {
                 //todo change refactor to with security when implemented
-                if (users.password == checkPassword) {
+                if (users.password === checkPassword) {
                     window.location.href = "/home"
                 }
             })

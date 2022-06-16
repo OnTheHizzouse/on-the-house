@@ -6,7 +6,7 @@
 });
 
 
-    function waitForElm(selector) {
+ export   function waitForElm(selector) {
     return new Promise(resolve => {
     if (document.querySelector(selector)) {
     return resolve(document.querySelector(selector));
@@ -41,12 +41,11 @@
 
     // Add geocoder result to container.
     geocoder.on('result', (e) => {
-        console.log(e.result)
         let address = e.result.place_name;
-        results.innerText = JSON.stringify(address, null, 2);
+
+        $('#result').html(address)
         $('#result').hide()
 
-        // console.log(address)
     });
 
     // Clear results container when search is cleared.
