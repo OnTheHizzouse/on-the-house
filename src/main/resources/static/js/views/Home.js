@@ -1,5 +1,10 @@
+import {waitForElm} from "../mapboxSearch.js";
+import {postCards} from "./partials/postCards.js";
+import {createPostModal} from "./partials/modals.js";
+
 export default function Home(props) {
     //todo styling
+    //todo add search bar for US6
 
     console.log("This is the Home Page");
     console.log(props)
@@ -7,36 +12,29 @@ export default function Home(props) {
     //props.user.username displays the user which currently is a testUser
 
     return `
-<head>
 <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
-        #map {
-            top: 0;
-            bottom: 0;
-        }
-    </style>
-    <title>On the house</title>
-</head>
-<header>
-</header>
-<body>
-<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
-<link rel="stylesheet"
-      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css"
-      type="text/css">
-<img id="OTH" src="officialPhoto.png" alt="">
-<!--todo:Delete this div later-->
+#map { 
+    width: 90vh;
+    height: 40vh; 
+    }
+</style>
+
+${getprops(props.posts)}
+
+<!--TODO: MOVE INPUT FIELD/SEARCHBAR TO WHERE IT NEEDS TO BE-->
+<div>
+    <input class="inputFields" placeholder="Search items..." name="search-by-item-name" id="search-by-item-name-input"  required>
+    <button type="button" class="btn btn-success" id="search-by-item-name-submit-btn">Search</button>
+</div>
 ${createPostModal(props.user.username)}
 <h4>Hello, ${props.user.username}</h4>
+<div class="d-flex justify-content-center mb-3">
+    <div id="map"></div>
+</div>
 <div class="containers">
-    <div id="homeMap">
-        <div id="geocoder" class="geocoder"></div>
-    </div>
-<div>
-${postCards(props.posts)}
+    
+</div>
+<div id="cards">
 </div>
     <footer id="homeFooter" class="footer">
         <div>
@@ -53,116 +51,49 @@ ${postCards(props.posts)}
         </div>
     </footer>
 </div>
-<script>
-    // TO MAKE THE MAP APPEAR YOU MUST
-    // ADD YOUR ACCESS TOKEN FROM
-    // https://account.mapbox.com
-    mapboxgl.accessToken = KEY_mapbox;
-    const map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [-79.4512, 43.6568],
-        zoom: 13
-    });
-    // Add the control to the map.
-    const geocoder = new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        mapboxgl: mapboxgl
-    });
-    document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
-   
-</script>
+
 </body>
     `;
 }
+var postProps ;
 
-// todo add to router
+initMap(-79.4512, 43.6568);
+// [-79.4512, 43.6568]
+function initMap(lng, lat) {
+    waitForElm('#map').then((elm) => {
+        console.log('hello')
+        mapboxgl.accessToken = KEY_mapbox;
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [lng, lat],
+            zoom: 13
+        });
+        console.log(map)
+    })
+}
+
+function getprops(props){
+    postProps = props;
+    let img = `<img id="OTH" src="officialPhoto.png" alt="">`
+    return  img
+}
+
+function startCards(props) {
+    waitForElm('#cards').then((elm) => {
+        $('#cards').html(postCards(props))
+        console.log('hi')
+    })
+}
+
 export function homepageEvent() {
     savePostEventListener();
-    cancelBtnEventListener()
+    cancelBtnEventListener();
+    searchPostsByItemNameEventListener();
+    startCards(postProps)
 }
 
-cancelBtnEventListener()
-savePostEventListener();
-
-
-function postCards(posts) {
-    //language=HTML
-    console.log(posts)
-    let htmlCard = ``
-    for (let i = 0; i < posts.length; i++) {
-        htmlCard += `
-        <div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src='${posts[i].itemPhoto}' class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">${posts[i].itemName}</h5>
-        <p class="card-text"><small class="text-muted">Quantity: ${posts[i].quantity}</small></p>
-        <p class="card-text"><small class="text-muted">Expiry Date: ${posts[i].expiryDate}</small></p>
-        <p class="card-text">${posts[i].description}</p>
-        
-        <button type="button" class="btn btn-primary">Request</button>
-        <button type="button" class="btn btn-success">Message</button>
-       
-      </div>
-    </div>
-  </div>
-</div>
-`
-    }
-    return htmlCard
-}
-
-function createPostModal(username) {
-    //language=HTML
-    let htmlModal = ``
-    htmlModal += `
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#postModal">
-Create Post
-</button>
-<div class="modal" tabindex="-1" id="postModal">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Create a New Post</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-<!--      todo: get better name-->
-      <label for="item-name"><b>Item:</b></label>
-      <input class="inputFields" placeholder="Enter Item name" name="item-name" id="create-item-name"  required>
-      <br>
-       <label for="description"><b>Describe the item to share:</b></label>
-      <textarea class="inputFields " placeholder="Description of Item" name="description" id="create-description" required></textarea>
-      <br>
-<!--      todo change this to take in a photo-->
-       <label for="photo"><b>photo:</b></label>
-      <input class="inputFields" placeholder="this will be change later" name="photo" id="create-photo"  required>
-      <br>
-<!--     todo possible calender integration -->
-       <label for="date"><b>Post Expiration Date:</b></label>
-      <input class="inputFields" placeholder="yyyy-mm-dd" name="date" id="create-expire-date"  required>
-      <br>
-       <label for="quantity"><b>Quantity:</b></label>
-      <input class="inputFields" placeholder="Enter the number available" name="quantity" id="create-quantity"  required>
-      <br>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancel-btn">Cancel</button> 
-<!--          todo make sure the inputfields are not null-->
-        <button type="button" class="btn btn-primary"  data-id="${username}" id="create-post-btn" data-bs-dismiss="modal" >Save Post</button>
-      </div>
-    </div>
-  </div>
-</div>
-    `
-    return htmlModal;
-}
-
-function clearModalFields(){
+function clearModalFields() {
     $('#create-item-name').val("")
     $('#create-description').val("")
     $('#create-photo').val("")
@@ -170,21 +101,42 @@ function clearModalFields(){
     $('#create-quantity').val("")
 }
 
-function cancelBtnEventListener(){
-    $(document).on('click', '#cancel-btn', function (e){
+function searchPostsByItemNameEventListener() {
+    $(document).on('click', '#search-by-item-name-submit-btn', function (e) {
+        let itemNameToSearch = $('#search-by-item-name-input').val();
+
+        const options = {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: 'GET'
+        }
+
+        fetch(`http://localhost:8080/api/posts/searchItems/${itemNameToSearch}`, options)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                startCards(data)
+
+            })
+            .catch(err => console.log(err))
+    })
+}
+
+function cancelBtnEventListener() {
+    $(document).on('click', '#cancel-btn', function (e) {
         clearModalFields();
     })
 }
 
 function savePostEventListener() {
     $(document).on('click', '#create-post-btn', function (e) {
-
-        let currentUser= $('#create-post-btn').data('id');
-        let itemName =  $('#create-item-name').val()
+        let currentUser = $('#create-post-btn').data('id');
+        let itemName = $('#create-item-name').val()
         let description = $('#create-description').val()
-        let itemPhoto =  $('#create-photo').val()
+        let itemPhoto = $('#create-photo').val()
         let expiryDate = $('#create-expire-date').val()
-        let quantity =     $('#create-quantity').val()
+        let quantity = $('#create-quantity').val()
         const postReqBody = {
             itemName: itemName,
             description: description,
@@ -197,7 +149,7 @@ function savePostEventListener() {
     })
 }
 
-function savePostFetch(username, reqBody){
+function savePostFetch(username, reqBody) {
     console.log(username)
     console.log(reqBody)
     const options = {
