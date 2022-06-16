@@ -13,7 +13,10 @@ export default function Home(props) {
 
     return `
 <style>
-#map { width: 100%;height: 100% }
+#map { 
+    width: 90vh;
+    height: 40vh; 
+    }
 </style>
 
 ${getprops(props.posts)}
@@ -25,10 +28,12 @@ ${getprops(props.posts)}
 </div>
 ${createPostModal(props.user.username)}
 <h4>Hello, ${props.user.username}</h4>
-<div class="containers">
-    <div id="homeMap">
+<div class="d-flex justify-content-center mb-3">
     <div id="map"></div>
-    </div>
+</div>
+<div class="containers">
+    
+</div>
 <div id="cards">
 </div>
     <footer id="homeFooter" class="footer">
