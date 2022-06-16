@@ -55,6 +55,7 @@ ${createPostModal(props.user.username)}
 </body>
     `;
 }
+
 var postProps ;
 
 initMap(-79.4512, 43.6568);
@@ -69,7 +70,6 @@ function initMap(lng, lat) {
             center: [lng, lat],
             zoom: 13
         });
-        console.log(map)
     })
 }
 
