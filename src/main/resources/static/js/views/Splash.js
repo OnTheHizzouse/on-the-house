@@ -158,7 +158,7 @@ function checkIfEmailExists(checkEmail, options, newPassword, address) {
 }
 
 //function that checks if newPassword is at least 8 characters long
-function checkPasswordLength(newEmail, newPassword, address) {
+function checkPasswordLength(newEmail, newPassword, coordinates) {
     if (newPassword.length >= 8) {
 
         const reqBody = {
@@ -168,7 +168,7 @@ function checkPasswordLength(newEmail, newPassword, address) {
             email: newEmail,
             password: newPassword,
             phoneNumber: $('#phoneNumber').val(),
-            address: address
+            coordinates: coordinates
         }
 
         const options = {

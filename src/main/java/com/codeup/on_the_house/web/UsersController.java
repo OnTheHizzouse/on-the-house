@@ -31,9 +31,8 @@ public class UsersController {
     }
 
     @GetMapping("/email/{email}")
-    public Optional<User> getByEmail(@PathVariable String email){
-        System.out.println("User with email of " + email + " retrieved.");
-       return Optional.of(userService.getUserByEmail(email).orElseThrow());
+     public User getByEmail(@PathVariable String email){
+        return userService.getUserByEmail(email);
     }
 
 

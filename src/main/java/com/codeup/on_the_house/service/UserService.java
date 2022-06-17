@@ -38,7 +38,7 @@ public class UserService {
     }
 
     //     *******GET USER BY EMAIL************
-    public Optional<User> getUserByEmail(String email) {
+    public User getUserByEmail(String email) {
         return usersRepository.findByEmail(email);
     }
 

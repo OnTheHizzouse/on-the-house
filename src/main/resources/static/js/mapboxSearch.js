@@ -41,7 +41,9 @@
     geocoder.on('result', (e) => {
         console.log(e.result)
         let address = e.result.place_name;
-        $('#result').html(address)
+        let lat = e.result.center[0]
+        let lon = e.result.center[1]
+        $('#result').html(lat+", "+lon)
         $('#result').hide()
     });
 
