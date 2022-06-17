@@ -2,8 +2,11 @@ export default function Navbar(props) {
     //language=HTML
     //todo: change navbar
     return `
-
-        <nav class="navbar navbar-expand-lg bg-light">
+<div style="background-color: #ddfcee">
+  
+<img id="OTH" src="js/views/img/othNavImg.png" alt="Oth logo">
+</div>
+        <nav class="navbar navbar-expand-lg" style="background-color: #64AE8B">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Navbar</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">

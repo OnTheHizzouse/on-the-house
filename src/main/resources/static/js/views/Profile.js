@@ -1,5 +1,6 @@
 import {getHeaders} from "../auth.js";
 import {myPostCards, postCards} from "./partials/postCards.js";
+import {myFooter} from "./partials/footer.js";
 
 const postUrl = "http://localhost:8080/api/posts"
 let postId = "";
@@ -144,13 +145,7 @@ export default function Profile(props) {
             </div>
         </div>
         <!--                ********************************************-->
-
-        <footer class="flex-shrink-0 py-4 text-white-50">
-            <div class="container text-center">
-                <small>Copyright &copy; On The House 2022</small>
-            </div>
-        </footer>
-
+        ${myFooter}
         </body>
     `;
 
