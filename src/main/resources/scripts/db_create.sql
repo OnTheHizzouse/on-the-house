@@ -11,7 +11,7 @@ CREATE TABLE users
     email VARCHAR(200) NOT NULL,
     password VARCHAR(60) NOT NULL,
     phone_number VARCHAR(13) NOT NULL,
-    address VARCHAR(200) NOT NULL,
+    coordinates VARCHAR(40) NOT NULL,
     role VARCHAR(32) NOT NULL
 );
 

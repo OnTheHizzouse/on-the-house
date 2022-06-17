@@ -7,6 +7,7 @@ import com.codeup.on_the_house.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin
 @RestController
@@ -29,8 +30,23 @@ public class UsersController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("{email}")
-    public User getByEmail(@PathVariable String email){
-       return userService.getUserByEmail(email);
+    @GetMapping("/email/{email}")
+    public Optional<User> getByEmail(@PathVariable String email){
+        System.out.println("User with email of " + email + " retrieved.");
+       return Optional.of(userService.getUserByEmail(email).orElseThrow());
+    }
+
+
+    @GetMapping("location/{id}")
+    public String getUserLocation(@PathVariable Long id){
+        System.out.println("Coordinates for user with an ID of " + id + " retrieved.");
+        return userService.getUserId(id).getCoordinates();
+
+    }
+
+    @GetMapping("{id}")
+    public User getUserById(@PathVariable Long id){
+        System.out.println("User with an ID of " + id + " retrieved.");
+        return userService.getUserId(id);
     }
 }

@@ -22,7 +22,7 @@ public class PostController {
     //******** GET BY ID *************
     @GetMapping("{id}")
     public Post getById(@PathVariable Long id) {
-        System.out.println("Post with an ID of: " + id + "has been retrieved");
+        System.out.println("Post with an ID of " + id + " has been retrieved");
         return postService.getPostById(id);
 
     }
@@ -53,5 +53,7 @@ public class PostController {
     @DeleteMapping("{id}")
     public void deletePost(@PathVariable Long id) {
         postService.deletePostById(id);
+        System.out.println("Post with an ID of " + id + " has been deleted");
     }
+
 }
