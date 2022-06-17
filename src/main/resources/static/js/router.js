@@ -1,7 +1,7 @@
 import Splash, {SplashEvents} from "./views/Splash.js";
 import Error404 from "./views/Error404.js";
 import Loading from "./views/Loading.js";
-import Home from "./views/Home.js";
+import Home, {homepageEvent} from "./views/Home.js";
 import Profile, {userPostEvents} from "./views/Profile.js";
 
 
@@ -37,8 +37,9 @@ export default function router(URI) {
                 user:'/api/users/test1@email.com',
                 posts:'/api/posts'
             },
-            uri: location.pathname,
+            uri: '/home',
             title: 'Home',
+            viewEvent: homepageEvent
         },
         '/profile': {
             returnView: Profile,

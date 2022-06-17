@@ -27,6 +27,11 @@ public class PostController {
 
     }
 
+    @GetMapping("searchItems/{itemName}")
+    public List<Post> getAllPostsWithItemName(@PathVariable String itemName) {
+        return postService.getPostsByItemName(itemName);
+    }
+
     @GetMapping
     public List<Post> getAllPost(){
         return postService.getAllPost();

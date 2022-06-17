@@ -42,6 +42,7 @@ public class UserService {
         return usersRepository.findByEmail(email);
     }
 
+
 //    ******** GET USER COORDINATES/LOCATION **********
     public User getUserCoordinates(String coordinates){
         return usersRepository.findByCoordinates(coordinates);
@@ -51,4 +52,5 @@ public class UserService {
     public User getUserId(Long id){
         return usersRepository.findById(id).orElseThrow();
     }
+
 }

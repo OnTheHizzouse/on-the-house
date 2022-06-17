@@ -1,7 +1,10 @@
-* {
-    box-sizing: border-box;
-    margin: 1px;
-    padding: 0;
+/** {*/
+/*    box-sizing: border-box;*/
+/*    margin: 1px;*/
+/*    padding: 0;*/
+/*}*/
+.mapboxgl-ctrl-geocoder--button{
+    width: 50%;
 }
 
 body {

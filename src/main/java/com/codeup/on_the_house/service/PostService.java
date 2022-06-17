@@ -70,5 +70,10 @@ public class PostService {
     public Post getPostById(Long id) {
         return postsRepository.findById(id).orElseThrow();
     }
+
+    //*********GET A LIST OF POSTS BY ITEM NAME**************
+    public List<Post> getPostsByItemName(String itemName) {
+        return postsRepository.findAllByItemNameContains(itemName);
+    }
 }
 

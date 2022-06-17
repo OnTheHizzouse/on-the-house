@@ -13,3 +13,4 @@ VALUES (3, 'Asparagus', 'Totally not rotten', 'test', '22:06:30', 15),
        (2, 'Red Energy Drink', 'Amazon bootleg energy that tastes like red.', 'Photo of Red', '25:08:19', 4),
        (1, 'KFC Chicken', 'It''s finger linkin'' good.', 'photo of chicken(dead and cooked/ready to eat)', '22:12:25', 8),
        (2, 'Apples', 'Bag of apples, real apples not computer apple.', 'photo of apples', '22:01:05', 5);
+
