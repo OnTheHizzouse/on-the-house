@@ -32,18 +32,21 @@ public class UsersController {
 
     @GetMapping("/email/{email}")
     public Optional<User> getByEmail(@PathVariable String email){
+        System.out.println("User with email of " + email + " retrieved.");
        return Optional.of(userService.getUserByEmail(email).orElseThrow());
     }
 
 
     @GetMapping("location/{id}")
     public String getUserLocation(@PathVariable Long id){
+        System.out.println("Coordinates for user with an ID of " + id + " retrieved.");
         return userService.getUserId(id).getCoordinates();
 
     }
 
     @GetMapping("{id}")
     public User getUserById(@PathVariable Long id){
+        System.out.println("User with an ID of " + id + " retrieved.");
         return userService.getUserId(id);
     }
 }
