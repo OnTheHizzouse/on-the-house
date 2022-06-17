@@ -30,8 +30,8 @@ ${createPostModal(props.user.username)}
 </div>
 <div class="containers">
     
-</div>
-<div id="cards">
+</div >
+<div id="cards" class="row justify-content-center g-2">
 </div>
     <footer id="homeFooter" class="footer">
         <div>

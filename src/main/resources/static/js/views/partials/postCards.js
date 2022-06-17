@@ -6,8 +6,8 @@ export function postCards(posts) {
     let htmlCard = ``
     for (let i = 0; i < posts.length; i++) {
         htmlCard += `
-        <div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
+        <div class="card mb-3 col-4 mx-2" style="max-width: 540px;">
+  <div class="row g-2">
     <div class="col-md-4">
       <img src='${posts[i].itemPhoto}' class="img-fluid rounded-start" alt="...">
     </div>
