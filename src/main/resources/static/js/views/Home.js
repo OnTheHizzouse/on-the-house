@@ -15,7 +15,7 @@ export default function Home(props) {
             #map {
                 width: 170vh;
                 height: 50vh;
-                border: 1rem solid red;
+                border: .5rem solid #6a9f5a;
             }
         </style>
 
