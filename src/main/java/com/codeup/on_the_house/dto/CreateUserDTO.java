@@ -1,5 +1,6 @@
 package com.codeup.on_the_house.dto;
 
+
 public class CreateUserDTO {
 
     private String firstName;
@@ -8,16 +9,16 @@ public class CreateUserDTO {
     private String email;
     private String password;
     private String phoneNumber;
-    private String address;
+    private String coordinates;
 
-    public CreateUserDTO(String firstName, String lastName, String username, String email, String password, String phoneNumber, String address) {
+    public CreateUserDTO(String firstName, String lastName, String username, String email, String password, String phoneNumber, String coordinates) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
-        this.address = address;
+        this.coordinates = coordinates;
     }
 
     public CreateUserDTO() {
@@ -71,11 +72,11 @@ public class CreateUserDTO {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getAddress() {
-        return address;
+    public String getCoordinates() {
+        return coordinates;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setCoordinates(String coordinates) {
+        this.coordinates = coordinates;
     }
 }

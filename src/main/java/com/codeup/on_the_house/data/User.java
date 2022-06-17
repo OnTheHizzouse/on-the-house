@@ -1,11 +1,10 @@
 package com.codeup.on_the_house.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.management.relation.Role;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Entity
 @Table(name = "users")
@@ -21,7 +20,7 @@ public class User {
     private String email;
     private String password;
     private String phoneNumber;
-    private String address;
+    private String coordinates;
     //    @EMUN ENFORCES THAT THE EMUN VALUE IS A STRING, NOT AN INT.
     @Enumerated(EnumType.STRING)
     private Role role = Role.USER;
@@ -33,7 +32,7 @@ public class User {
     private List<Post> posts = new ArrayList<>();
 
 //    ******** constructors ********
-    public User(Long id, String firstName, String lastName, String username, String email, String password, String phoneNumber, String address) {
+    public User(Long id, String firstName, String lastName, String username, String email, String password, String phoneNumber, String coordinates) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -41,17 +40,17 @@ public class User {
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
-        this.address = address;
+        this.coordinates = coordinates;
     }
 
-    public User(String firstName, String lastName, String username, String email, String password, String phoneNumber, String address) {
+    public User(String firstName, String lastName, String username, String email, String password, String phoneNumber, String coordinates) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
-        this.address = address;
+        this.coordinates = coordinates;
     }
 
     public User() {
@@ -133,12 +132,12 @@ public List<Post> getPosts() {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getAddress() {
-        return address;
+    public String getCoordinates() {
+        return coordinates;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setCoordinates(String coordinates) {
+        this.coordinates = coordinates;
     }
 
 //    ********* to String ***********
@@ -152,7 +151,7 @@ public List<Post> getPosts() {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", address='" + address + '\'' +
+                ", coordinates='" + coordinates + '\'' +
                 ", role=" + role +
                 '}';
     }

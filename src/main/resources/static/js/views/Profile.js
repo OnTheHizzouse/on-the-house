@@ -13,7 +13,7 @@ export default function Profile(props) {
         <div class="container">
             <div class="main-body">
                 <div class="row gutters-sm">
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-8 mb-3">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex flex-column align-items-center text-center">
@@ -83,7 +83,7 @@ export default function Profile(props) {
                         </div>
                     </div>
                     <!-- ************************************************************************************* PROFILE LINKS END -->
-                    
+
                     <!-- ************************************************************************************* PROFILE INFO START -->
                     <div class="col-md-8">
                         <div class="card mb-3">
@@ -132,7 +132,7 @@ export default function Profile(props) {
                             ${props.posts.map(post => `
  <!--                   vvvv Used to identify post by ID. (Will be removed later)-->
                         ${post.id}
-                        <div class="card mb-3" style="max-width: 540px;">
+                        <div class="card mb-8">
                             <div class="row g-0">
                                 <div class="col-md-4">
                             
