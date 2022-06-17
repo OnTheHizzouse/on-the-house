@@ -27,6 +27,7 @@ export default function Home(props) {
         <div class="d-flex justify-content-center mb-3">
             <div id="map"></div>
         </div>
+<!--      todo  this add some white space on the right problem is the margin-->
         <div class="row justify-content-center mb-3">
             <div class="col-4 my-auto">
                 <input class="inputFields" placeholder="Search items..." name="search-by-item-name"
@@ -40,6 +41,7 @@ export default function Home(props) {
                 ${createPostModal(props.user.username)}
             </div>
         </div>
+        <!--      todo  this add some white space on the right problem is the margin-->
 
         <div id="cards" class="row justify-content-center g-2">
         </div>
