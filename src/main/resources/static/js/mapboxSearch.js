@@ -39,6 +39,7 @@
 
     // Add geocoder result to container.
     geocoder.on('result', (e) => {
+        console.log(e.result)
         let address = e.result.place_name;
         $('#result').html(address)
         $('#result').hide()
