@@ -28,7 +28,7 @@ export default function Profile(props) {
                             </div>
                         </div>
                         <!-- ************************************************************************************* PROFILE PHOTO STOP -->
-                        
+
                         <!-- ************************************************************************************* PROFILE LINKS START -->
                         <div class="card mt-3">
                             <ul class="list-group list-group-flush">
@@ -127,7 +127,7 @@ export default function Profile(props) {
                             </div>
                         </div>
                         <!-- ************************************************************************************* PROFILE INFO END -->
-                        
+
                         <div>
                             ${props.posts.map(post => `
  <!--                   vvvv Used to identify post by ID. (Will be removed later)-->
@@ -171,8 +171,10 @@ export default function Profile(props) {
                                                   <br>
                                             <!--      todo change this to take in a photo-->
                                                    <label for="photo"><b>Edit Photo:</b></label>
+                        
                                                  <!--  vvvv Will eventually need to be changed to Post img. Maybe inside a div with these props (id="photo-post.id">post.photo<) Using Jquery-->
-                                                  <input class="inputFields" placeholder="this will be change later" name="photo" id="photo-${post.id}"  required>
+                                                  <input type="file" class="inputFields" accept="image/png, image/jpg" placeholder="this will be change later" name="photo" id="photo-${post.id}"  required>
+
                                                   <br>
                                             <!--     todo possible calender integration -->
                                                    <label for="date"><b>Edit Expiration Date:</b></label>
@@ -183,25 +185,23 @@ export default function Profile(props) {
                                                   <br>
                                                   </div>
                                                   <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">CANCEL</button>
                                             <!--          todo make sure the inputfields are not null-->
-                                                    <button type="button" class="btn btn-primary" id="save-edit-post-btn" data-bs-dismiss="modal" data-id="${post.id}">Save Edits</button>
-
+                                                    <button onclick="showAlert()" type="button" class="btn btn-success" id="save-edit-post-btn" data-bs-dismiss="modal" data-id="${post.id}">SAVE</button>
                                                   </div>
                                                 </div>
                                               </div>
                                             </div>
-<!--*****************************************************************************-->
+
                                         <button id="deleteBtn" type="button" class="btn btn-danger" onclick="confirmAction()" data-id="${post.id}">Delete</button>
-<!--                                        <button id="saveBtn" type="button" class="btn btn-success">Save</button>-->
 
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <br>`)
-        .join('')}
-    
+                                    .join('')}
+
 
                         </div>
 
@@ -235,7 +235,8 @@ function saveEditsPostListener() {
         console.log("save button has been clicked")
 
         postId = $(this).data("id");
-
+        showAlert();
+        location.reload();
 
         const postTitle = $(`#itemName-${postId}`).val();
         const postDescription = $(`#description-${postId}`).val();
@@ -251,7 +252,7 @@ function saveEditsPostListener() {
         const request = {
             method: "PUT",
             headers: getHeaders(),
-            body: JSON.stringify( {
+            body: JSON.stringify({
                 id: postId,
                 itemName: postTitle,
                 description: postDescription,
@@ -270,10 +271,6 @@ function saveEditsPostListener() {
             .catch(err => console.log(err));
     })
 }
-
-
-
-
 
 //********** DELETE POST FUNCTION *************
 function deletePostListener() {
@@ -302,8 +299,11 @@ function deletePostListener() {
     })
 }
 
-//confirmation (Y/N)
+function showAlert() {
+    alert("You've saved changes!");
+}
 
+//confirmation (Y/N)
 function confirmAction() {
     let confirmAction = confirm("Would you like to delete this post?");
     if (confirmAction) {
@@ -311,6 +311,7 @@ function confirmAction() {
     } else {
         alert("Canceled");
     }
+
 }
 
 
