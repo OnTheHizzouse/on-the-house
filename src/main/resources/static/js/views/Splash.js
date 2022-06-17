@@ -146,7 +146,7 @@ function createUserFetch(options) {
 //function that checks if email is already being used
 function checkIfEmailExists(checkEmail, options, newPassword, address) {
 
-    fetch(`http://localhost:8080/api/users/${checkEmail}`, options)
+    fetch(`http://localhost:8080/api/users/email/${checkEmail}`, options)
         .then(res => res.json())
         .then(data => {
             alert("This Email is already being used plz try a different email")
@@ -209,7 +209,7 @@ function LoginEvent() {
         let checkEmail = $('#email').val();
         console.log(checkPassword)
         console.log(checkEmail)
-        fetch(`http://localhost:8080/api/users/${checkEmail}`, options)
+        fetch(`http://localhost:8080/api/users/email/${checkEmail}`, options)
             .then(res => res.json())
             .then(users => {
                 //todo change refactor to with security when implemented
