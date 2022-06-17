@@ -111,8 +111,9 @@ function searchPostsByItemNameEventListener() {
         }
 
 if (itemNameToSearch != "") {
+    let p = 0
         do {
-            let p = 0
+
         if (postProps[p].itemName.toLowerCase().includes(itemNameToSearch)){
     fetch(`http://localhost:8080/api/posts/searchItems/${itemNameToSearch}`, options)
         .then(res => res.json())
