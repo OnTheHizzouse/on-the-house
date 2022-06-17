@@ -145,7 +145,7 @@ export default function Profile(props) {
             </div>
         </div>
         <!--                ********************************************-->
-        ${myFooter}
+        ${myFooter()}
         </body>
     `;
 

@@ -44,7 +44,7 @@ export default function Home(props) {
         <div id="cards" class="row justify-content-center g-2">
         </div>
         <div>
-            ${console.log(myFooter())}
+            ${myFooter()}
         </div>
         </div>
         </body>
