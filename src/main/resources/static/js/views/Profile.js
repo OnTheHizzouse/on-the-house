@@ -9,10 +9,11 @@ export default function Profile(props) {
 // language=html
     return `
         <body>
+        <!-- ************************************************************************************* PROFILE PHOTO STARTED -->
         <div class="container">
             <div class="main-body">
                 <div class="row gutters-sm">
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-8 mb-3">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex flex-column align-items-center text-center">
@@ -26,6 +27,9 @@ export default function Profile(props) {
                                 </div>
                             </div>
                         </div>
+                        <!-- ************************************************************************************* PROFILE PHOTO STOP -->
+                        
+                        <!-- ************************************************************************************* PROFILE LINKS START -->
                         <div class="card mt-3">
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
@@ -78,6 +82,9 @@ export default function Profile(props) {
                             </ul>
                         </div>
                     </div>
+                    <!-- ************************************************************************************* PROFILE LINKS END -->
+
+                    <!-- ************************************************************************************* PROFILE INFO START -->
                     <div class="col-md-8">
                         <div class="card mb-3">
                             <div class="card-body">
@@ -119,11 +126,13 @@ export default function Profile(props) {
                                 <hr>
                             </div>
                         </div>
+                        <!-- ************************************************************************************* PROFILE INFO END -->
+                        
                         <div>
-                                  ${props.posts.map(post => `
+                            ${props.posts.map(post => `
  <!--                   vvvv Used to identify post by ID. (Will be removed later)-->
                         ${post.id}
-                        <div class="card mb-3" style="max-width: 540px;">
+                        <div class="card mb-8">
                             <div class="row g-0">
                                 <div class="col-md-4">
                             

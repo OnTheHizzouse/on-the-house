@@ -6,6 +6,7 @@ import com.codeup.on_the_house.dto.CreateUserDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -24,7 +25,7 @@ public class UserService {
                 createUserDTO.getEmail(),
                 createUserDTO.getPassword(),
                 createUserDTO.getPhoneNumber(),
-                createUserDTO.getAddress()));
+                createUserDTO.getCoordinates()));
     }
 
     public List<User> getAllUsers(){
@@ -37,7 +38,17 @@ public class UserService {
     }
 
     //     *******GET USER BY EMAIL************
-    public User getUserByEmail(String email) {
+    public Optional<User> getUserByEmail(String email) {
         return usersRepository.findByEmail(email);
+    }
+
+//    ******** GET USER COORDINATES/LOCATION **********
+    public User getUserCoordinates(String coordinates){
+        return usersRepository.findByCoordinates(coordinates);
+    }
+
+//    ******* GET USER BY ID ************
+    public User getUserId(Long id){
+        return usersRepository.findById(id).orElseThrow();
     }
 }
