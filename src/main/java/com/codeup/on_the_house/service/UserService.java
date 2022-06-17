@@ -44,6 +44,7 @@ public class UserService {
 
 
 //    ******** GET USER COORDINATES/LOCATION **********
+//    MAYBE USEFUL IN FUTURE.......
     public User getUserCoordinates(String coordinates){
         return usersRepository.findByCoordinates(coordinates);
     }
