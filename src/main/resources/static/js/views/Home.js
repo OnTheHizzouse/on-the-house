@@ -114,7 +114,7 @@ if (itemNameToSearch != "") {
     let p = 0
         do {
 
-        if (postProps[p].itemName.toLowerCase().includes(itemNameToSearch)){
+        if (postProps[p].itemName.toLowerCase().includes(itemNameToSearch.toLowerCase())){
     fetch(`http://localhost:8080/api/posts/searchItems/${itemNameToSearch}`, options)
         .then(res => res.json())
         .then(data => {
