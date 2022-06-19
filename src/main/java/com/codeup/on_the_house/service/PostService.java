@@ -8,6 +8,7 @@ import com.sun.xml.bind.v2.TODO;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -74,6 +75,10 @@ public class PostService {
     //*********GET A LIST OF POSTS BY ITEM NAME**************
     public List<Post> getPostsByItemName(String itemName) {
         return postsRepository.findAllByItemNameContains(itemName);
+    }
+
+    public List<Post> getPostsByUserId(Long id) {
+        return postsRepository.findAllByUserId(id);
     }
 }
 

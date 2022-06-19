@@ -37,6 +37,11 @@ public class PostController {
         return postService.getAllPost();
     }
 
+    @GetMapping("searchItemsById/{id}")
+    public List<Post> getAllPostsByUserId(@PathVariable Long id) {
+        return postService.getPostsByUserId(id);
+    }
+
     @PostMapping("{username}")
     private void addNewPost(@RequestBody CreatePostDTO createPostDTO, @PathVariable String username){
         Post newPost = new Post();
