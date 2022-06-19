@@ -37,7 +37,7 @@ public class PostController {
         return postService.getAllPost();
     }
 
-    @GetMapping("searchItemsById/{id}")
+    @GetMapping("searchItemsByUserId/{id}")
     public List<Post> getAllPostsByUserId(@PathVariable Long id) {
         return postService.getPostsByUserId(id);
     }

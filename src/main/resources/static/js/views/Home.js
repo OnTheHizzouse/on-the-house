@@ -60,7 +60,7 @@ var postProps;
 var userProps;
 
 
-// [-79.4512, 43.6568]
+// 32.778732986171384, -96.80576824306469
 function initMap(lng, lat) {
     waitForElm('#map').then((elm) => {
         console.log('hello')
@@ -79,7 +79,16 @@ waitForElm('#OTH').then((elm) => {
     // $('#OTH').attr("src", "../views/img/othNavImg.png")
 })
 
+
+
+//Returns a List<User> that exist within 5 miles of the active user
+
 waitForElm('#map').then((elm) => {
+    findUsersWithinRange();
+    getPostsOfUsersWithin5Miles(findUsersWithinRange());
+})
+
+function findUsersWithinRange() {
     let usersWithin5Miles = [];
     let users = [];
     let currentUserLng = userProps.coordinates.split(',')[1];
@@ -91,7 +100,7 @@ waitForElm('#map').then((elm) => {
     console.log("************");
     console.log(postProps);
     for (let i = 0; i < postProps.length; i++) {
-        if(userProps.id !== postProps[i].user.id){
+        if (userProps.id !== postProps[i].user.id) {
             users.push(postProps[i].user);
         }
     }
@@ -100,19 +109,19 @@ waitForElm('#map').then((elm) => {
     console.log(users);
     console.log("Filtered Users");
     console.log(filteredArrayOfUsers);
-        for (let i = 0; i < filteredArrayOfUsers.length; i++) {
+    for (let i = 0; i < filteredArrayOfUsers.length; i++) {
         console.log("User ID: " + filteredArrayOfUsers[i].id);
         console.log("Latitude: " + filteredArrayOfUsers[i].coordinates.split(',')[0]);
         console.log("Longitude: " + filteredArrayOfUsers[i].coordinates.split(',')[1]);
         let distance = distanceInMiBetweenEarthCoordinates(currentUserLat, currentUserLng, filteredArrayOfUsers[i].coordinates.split(',')[0], filteredArrayOfUsers[i].coordinates.split(',')[1]);
         console.log("Distance in miles from current user: " + distance);
-        if(distance <= 5) {
+        if (distance <= 5) {
             usersWithin5Miles.push(filteredArrayOfUsers[i]);
         }
     }
     console.log(usersWithin5Miles);
-        return usersWithin5Miles
-})
+    return usersWithin5Miles
+}
 
 function removeDuplicates(originalArray, prop) {
     var newArray = [];
@@ -185,6 +194,32 @@ function distanceInMiBetweenEarthCoordinates(lat1, lon1, lat2, lon2) {
     return earthRadiusMi * c;
 }
 
+function getPostsOfUsersWithin5Miles(arrayOfUsers) {
+    let postsOfUsersWithin5Miles = [];
+    const options = {
+        headers: {
+            "Content-Type": "application/json"
+        },
+        method: 'GET'
+    }
+
+    for (let i = 0; i < arrayOfUsers.length; i++) {
+        let id = arrayOfUsers[i].id;
+        fetch(`http://localhost:8080/api/posts/searchItemsByUserId/${id}`, options)
+            .then(res =>res.json())
+            .then(data => {
+                console.log(data)
+                for (let j = 0; j < data.length; j++) {
+                    postsOfUsersWithin5Miles.push(data[j]);
+                }
+            })
+            .catch(err => console.log(err))
+    }
+    console.log(postsOfUsersWithin5Miles);
+    console.log(postsOfUsersWithin5Miles.length);
+    return postsOfUsersWithin5Miles;
+}
+
 function getUserProps(props) {
     userProps = props;
     return `<span></span>`
@@ -206,7 +241,7 @@ export function homepageEvent() {
     cancelBtnEventListener();
     searchPostsByItemNameEventListener();
     startCards(postProps)
-    initMap(-79.4512, 43.6568);
+    initMap(-96.80576824306469, 32.778732986171384);
 }
 
 function clearModalFields() {
@@ -232,7 +267,7 @@ function searchPostsByItemNameEventListener() {
             let p = 0
             do {
 
-                if (postProps[p].itemName.toLowerCase().includes(itemNameToSearch.toLowerCase())) {
+                if (users[p].itemName.toLowerCase().includes(itemNameToSearch.toLowerCase())) {
                     fetch(`http://localhost:8080/api/posts/searchItems/${itemNameToSearch}`, options)
                         .then(res => res.json())
                         .then(data => {
