@@ -3,8 +3,10 @@ export default function Navbar(props) {
     //todo: change navbar
     return `
 <div style="background-color: #ddfcee">
-  
-<img id="OTH" src="js/views/img/othNavImg.png" alt="Oth logo">
+  <div id="navImg">
+  <img id="OTH" src="js/views/img/othNavImg.png" alt="Oth logo">
+</div>
+
 </div>
         <nav class="navbar navbar-expand-lg" style="background-color: #64AE8B">
             <div class="container-fluid">
