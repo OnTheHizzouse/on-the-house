@@ -19,7 +19,7 @@ VALUES (3, 'Asparagus', 'Totally not rotten', 'test', '22:06:30', 15, 'open'),
        (2, 'Apples', 'Bag of apples, real apples not computer apple.', 'photo of apples', '22:01:05', 5, 'open');
 
 
-USE oth_db;
-INSERT INTO events(requestor_id, requestee_id, item_id, item_name, meetup_date, meetup_time, meetup_location, status)
-    VALUE (1,2,3,'Macaroni and Cheese', '22:06:28', '15:24:00', '123 fake st, city, state, 95662', 'open' ),
-    (3,1,6,'Red Energy Drink', '22:06:30', '11:24:00', '485 faker st, city, state, 84574', 'closed' );
+# USE oth_db;
+# INSERT INTO events(requestor_id, requestee_id, item_id, item_name, meetup_date, meetup_time, meetup_location, status)
+#     VALUE (1,2,3,'Macaroni and Cheese', '22:06:28', '15:24:00', '123 fake st, city, state, 95662', 'open' ),
+#     (3,1,6,'Red Energy Drink', '22:06:30', '11:24:00', '485 faker st, city, state, 84574', 'closed' );
