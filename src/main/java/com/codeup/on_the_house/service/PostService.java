@@ -75,5 +75,10 @@ public class PostService {
     public List<Post> getPostsByItemName(String itemName) {
         return postsRepository.findAllByItemNameContains(itemName);
     }
+
+    public List<Post> getPostsByUserId(Long id) {
+        return postsRepository.findAllByUserId(id);
+    }
+
 }
 
