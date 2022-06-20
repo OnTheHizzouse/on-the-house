@@ -16,18 +16,6 @@ CREATE TABLE users
     role VARCHAR(32) NOT NULL
 );
 
-CREATE TABLE posts
-(
-    id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    user_id BIGINT NOT NULL,
-    item_name VARCHAR(70) NOT NULL,
-    description TEXT NOT NULL,
-    item_photo VARCHAR(150) NOT NULL,
-    expiry_date DATE NOT NULL,
-    quantity INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id)
-);
-
 CREATE TABLE events
 (
     id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -42,6 +30,20 @@ CREATE TABLE events
     FOREIGN KEY (requestor_id) REFERENCES users(id),
     FOREIGN KEY (requestee_id) REFERENCES users(id),
     FOREIGN KEY (item_id) REFERENCES posts(id)
+);
 
+CREATE TABLE posts
+(
+    id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    event_id BIGINT NOT NULL,
+    item_name VARCHAR(70) NOT NULL,
+    description TEXT NOT NULL,
+    item_photo VARCHAR(150) NOT NULL,
+    expiry_date DATE NOT NULL,
+    quantity INT NOT NULL,
+    status ENUM ('open','closed') NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (event_id) REFERENCES events(id)
 );
 
