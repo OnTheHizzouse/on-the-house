@@ -15,9 +15,9 @@ export default function Profile(props) {
         <body>
         <!-- ************************************************************************************* PROFILE PHOTO STARTED -->
 
-        <div class="card">
+        <div class="card mx-auto mt-2 col-6 justify-content-center" >
             <div class="card-body">
-                <div class="d-flex flex-column align-items-center text-center">
+                <div class="d-flex flex-column mx-auto align-items-center text-center">
                     <img src="pieguy2.png" alt="Admin"
                          class="rounded-circle" width="150">
                     <div class="mt-3">
@@ -31,7 +31,7 @@ export default function Profile(props) {
         <!-- ************************************************************************************* PROFILE PHOTO STOP -->
 
         <!-- ************************************************************************************* PROFILE LINKS START -->
-        <div class="card mt-3">
+        <div class="card mx-auto mb-2 mt-2 col-10 justify-content-center"> 
             <ul class="list-group list-group-flush">
                 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 class="mb-0">
@@ -81,6 +81,7 @@ export default function Profile(props) {
                     <span class="text-secondary">@PieGuy</span>
                 </li>
             </ul>
+
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-3">
@@ -118,15 +119,15 @@ export default function Profile(props) {
                     </div>
                 </div>
             </div>
-
-            <!-- ************************************************************************************* PROFILE INFO END -->
+        </div>
+        <!-- ************************************************************************************* PROFILE INFO END -->
+        <div>
             <div>
-                <div>
-                    ${myPostCards(props.posts)}
-                </div>
+                ${myPostCards(props.posts)}
             </div>
-            <!--                ********************************************-->
-            ${myFooter()}
+        </div>
+        <!--                ********************************************-->
+        ${myFooter()}
         </body>
     `;
 
