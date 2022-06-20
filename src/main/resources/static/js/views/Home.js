@@ -138,44 +138,6 @@ function removeDuplicates(originalArray, prop) {
     return newArray;
 }
 
-// waitForElm('#map').then((elm) => {
-//     let postsThatAreNotTheCurrentUser = [];
-//     let usersWithin5Miles = [];
-//     let usersWithin5MilesFiltered = [];
-//     let currentUserLng = userProps.coordinates.split(',')[1];
-//     let currentUserLat = userProps.coordinates.split(',')[0];
-//     console.log("HERE ARE THE CURRENT USER PROPS VVV");
-//     console.log(userProps);
-//     console.log("Lat: " + currentUserLat);
-//     console.log("Lng: " + currentUserLng);
-//     console.log("***********************************");
-//     console.log("HERE ARE THE POST PROPS VVV");
-//     console.log(postProps);
-//     for (let i = 0; i < postProps.length; i++) {
-//         if (userProps.id !== postProps[i].user.id) {
-//             postsThatAreNotTheCurrentUser.push(postProps[i]);
-//         }
-//     }
-//     for (let i = 0; i < postsThatAreNotTheCurrentUser.length; i++) {
-//         console.log("User ID: " + postsThatAreNotTheCurrentUser[i].user.id);
-//         console.log("Latitude: " + postsThatAreNotTheCurrentUser[i].user.coordinates.split(',')[0]);
-//         console.log("Longitude: " + postsThatAreNotTheCurrentUser[i].user.coordinates.split(',')[1]);
-//         let distance = distanceInMiBetweenEarthCoordinates(currentUserLat, currentUserLng, postsThatAreNotTheCurrentUser[i].user.coordinates.split(',')[0], postsThatAreNotTheCurrentUser[i].user.coordinates.split(',')[1]);
-//         console.log("Distance in miles from current user: " + distance);
-//         if(distance <= 5 && usersWithin5Miles.includes(usersWithin5Miles.id)) {
-//             usersWithin5Miles.push(postsThatAreNotTheCurrentUser[i].user);
-//         }
-//     }
-//     for (let i = 0; i < usersWithin5Miles.length; i++) {
-//         if(!usersWithin5MilesFiltered.includes(usersWithin5Miles[i].id)){
-//             usersWithin5MilesFiltered.push(usersWithin5Miles[i]);
-//         }
-//     }
-//     console.log(usersWithin5Miles);
-//     console.log(usersWithin5MilesFiltered);
-//     return usersWithin5MilesFiltered;
-// })
-
 function degreesToRadians(degrees) {
     return degrees * Math.PI / 180;
 }
