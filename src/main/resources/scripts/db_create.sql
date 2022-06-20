@@ -11,6 +11,7 @@ CREATE TABLE users
     email VARCHAR(200) NOT NULL,
     password VARCHAR(60) NOT NULL,
     phone_number VARCHAR(13) NOT NULL,
+    address VARCHAR(200) NOT NULL,
     coordinates VARCHAR(40) NOT NULL,
     role VARCHAR(32) NOT NULL
 );
@@ -25,5 +26,22 @@ CREATE TABLE posts
     expiry_date DATE NOT NULL,
     quantity INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE events
+(
+    id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    requestor_id BIGINT NOT NULL,
+    requestee_id BIGINT NOT NULL,
+    item_id BIGINT NOT NULL,
+    item_name VARCHAR(70) NOT NULL,
+    meetup_date DATE NOT NULL,
+    meetup_time TIME NOT NULL,
+    meetup_location VARCHAR(200),
+    status ENUM('open', 'closed') NOT NULL,
+    FOREIGN KEY (requestor_id) REFERENCES users(id),
+    FOREIGN KEY (requestee_id) REFERENCES users(id),
+    FOREIGN KEY (item_id) REFERENCES posts(id)
+
 );
 
