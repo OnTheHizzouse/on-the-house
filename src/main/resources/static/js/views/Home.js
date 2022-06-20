@@ -74,6 +74,7 @@ var userProps;
 var usersWithin5Miles = [];
 var geoJson;
 var currentUserGeoJson = [];
+var postsOfUsersWithin5Miles = [];
 
 // [-79.4512, 43.6568]
 function initMap(lng, lat) {
@@ -83,11 +84,17 @@ function initMap(lng, lat) {
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [lng, lat],
-            zoom: 13
+            zoom: 12.1
         });
         map.scrollZoom.disable();
+        map.doubleClickZoom.disable();
+        map.dragPan.disable();
         addUserMarkersToMap(geoJson, map);
         addActiveUserMarkersToMap(currentUserGeoJson, map);
+        $(".marker").click(function (){
+
+            getAllUserPost(this.id)
+        })
     })
 }
 
@@ -112,14 +119,15 @@ function startCards(props) {
 }
 
 export function homepageEvent() {
+    emptyTheArray()
     savePostEventListener();
     cancelBtnEventListener();
     searchPostsByItemNameEventListener();
-    startCards(postProps)
     initMap(userProps.coordinates.split(',')[1], userProps.coordinates.split(',')[0]);
     findUsersWithinRange();
     createGeoJsonForMarkers(usersWithin5Miles);
     createGeoJsonForActiveUser();
+    getPostsOfUsersWithin5Miles(usersWithin5Miles)
 }
 
 function clearModalFields() {
@@ -145,7 +153,7 @@ function searchPostsByItemNameEventListener() {
             let p = 0
             do {
 
-                if (postProps[p].itemName.toLowerCase().includes(itemNameToSearch.toLowerCase())) {
+                if (postsOfUsersWithin5Miles[p].itemName.toLowerCase().includes(itemNameToSearch.toLowerCase())) {
                     fetch(`http://localhost:8080/api/posts/searchItems/${itemNameToSearch}`, options)
                         .then(res => res.json())
                         .then(data => {
@@ -155,11 +163,11 @@ function searchPostsByItemNameEventListener() {
                             console.log(err)
                         })
                 }
-                startCards(postProps)
+                startCards(postsOfUsersWithin5Miles)
                 p++
-            } while (p < postProps.length)
+            } while (p < postsOfUsersWithin5Miles.length)
         } else {
-            startCards(postProps)
+            startCards(postsOfUsersWithin5Miles)
         }
 
     })
@@ -269,6 +277,7 @@ function createGeoJsonForMarkers(arrayOfUsers) {
         let lon = parseFloat(arrayOfUsers[i].coordinates.split(',')[0]);
         let lat = parseFloat(arrayOfUsers[i].coordinates.split(',')[1]);
         let username = arrayOfUsers[i].username;
+        let userId = arrayOfUsers[i].id
         geoJson.features.push({
             type: "Feature",
             geometry: {
@@ -276,6 +285,7 @@ function createGeoJsonForMarkers(arrayOfUsers) {
                 coordinates: [lat, lon]
             },
             properties: {
+                id: userId,
                 title: username
             }
         })
@@ -284,10 +294,14 @@ function createGeoJsonForMarkers(arrayOfUsers) {
 }
 
 function addUserMarkersToMap(geoJsonData, map) {
+    console.log(geoJsonData)
     for (const feature of geoJsonData.features) {
 // create a HTML element for each feature
         const el = document.createElement('div');
-        el.className = 'marker';
+        el.setAttribute("id",`${feature.properties.id}`)
+        el.className = 'marker ';
+        el.setAttribute('id', `${feature.properties.id}`)
+
 
 // make a marker for each feature and add it to the map
         new mapboxgl.Marker(el)
@@ -295,7 +309,7 @@ function addUserMarkersToMap(geoJsonData, map) {
             .setPopup(
                 new mapboxgl.Popup({offset: 25}) // add popups
                     .setHTML(
-                        `<h3>${feature.properties.title}</h3>`
+                        `<div>${feature.properties.title}</div>`
                     )
             )
             .addTo(map);
@@ -310,6 +324,7 @@ function createGeoJsonForActiveUser() {
     let username = userProps.username;
     let lon = parseFloat(userProps.coordinates.split(',')[0]);
     let lat = parseFloat(userProps.coordinates.split(',')[1]);
+    let currentUserId = userProps.id
     currentUserGeoJson.features.push({
         type: "Feature",
         geometry: {
@@ -317,7 +332,8 @@ function createGeoJsonForActiveUser() {
             coordinates: [lat, lon]
         },
         properties: {
-            title: "THIS IS YOU " + username
+            id: currentUserId,
+            title:  username
         }
     })
     return currentUserGeoJson
@@ -327,7 +343,9 @@ function addActiveUserMarkersToMap(geoJsonData, map) {
     for (const feature of geoJsonData.features) {
 // create a HTML element for each feature
         const el = document.createElement('div');
-        el.className = 'current-user-marker';
+        el.className = 'current-user-marker ';
+
+        el.setAttribute('id', `${feature.properties.id}`)
 
 // make a marker for each feature and add it to the map
         new mapboxgl.Marker(el)
@@ -335,9 +353,55 @@ function addActiveUserMarkersToMap(geoJsonData, map) {
             .setPopup(
                 new mapboxgl.Popup({offset: 25}) // add popups
                     .setHTML(
-                        `<h3>${feature.properties.title}</h3>`
+                        `<div>This is you<br>
+${feature.properties.title}</div>`
                     )
             )
             .addTo(map);
     }
 }
+
+function getAllUserPost(userId) {
+    const options = {
+        headers: {
+            "Content-Type": "application/json"
+        },
+        method: 'GET'
+    }
+    fetch(`http://localhost:8080/api/users/${userId}`, options)
+        .then(res => res.json())
+        .then(data => {
+            startCards(data.posts)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+
+function getPostsOfUsersWithin5Miles(arrayOfUsers) {
+    const options = {
+        headers: {
+            "Content-Type": "application/json"
+        },
+        method: 'GET'
+    }
+
+    for (let i = 0; i < arrayOfUsers.length; i++) {
+        let id = arrayOfUsers[i].id;
+        fetch(`http://localhost:8080/api/posts/searchItemsByUserId/${id}`, options)
+            .then(res =>res.json())
+            .then(data => {
+                for (let j = 0; j < data.length; j++) {
+                    postsOfUsersWithin5Miles.push(data[j]);
+                }
+                console.log(postsOfUsersWithin5Miles)
+                startCards(postsOfUsersWithin5Miles)
+            })
+            .catch(err => console.log(err))
+    }
+}
+ function emptyTheArray(){
+    usersWithin5Miles =[]
+     currentUserGeoJson=[]
+     postsOfUsersWithin5Miles =[]
+ }

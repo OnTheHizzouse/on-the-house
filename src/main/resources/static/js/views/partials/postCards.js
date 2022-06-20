@@ -9,7 +9,8 @@ export function postCards(posts) {
         <div class="card mb-3 col-4 mx-2" style="max-width: 540px;">
   <div class="row g-2">
     <div class="col-md-4">
-      <img src='${posts[i].itemPhoto}' class="img-fluid rounded-start" alt="...">
+<!--    todo: change imagesource backto $posts[i].itemPhoto}-->
+      <img src='https://images.pexels.com/photos/235294/pexels-photo-235294.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' class="img-fluid rounded-start" alt="...">
     </div>
     <div class="col-md-8">
       <div class="card-body">

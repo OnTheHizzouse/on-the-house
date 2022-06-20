@@ -9,6 +9,8 @@ import java.util.List;
 public interface PostsRepository extends JpaRepository <Post, Long> {
     @Query("from Post a where a.itemName like %:itemName%")
     List<Post> findAllByItemNameContains(@Param("itemName") String itemName);
+
+    List<Post> findAllByUserId(Long id);
 }
 
 
