@@ -1,8 +1,8 @@
 USE oth_db;
 INSERT INTO users(first_name, last_name, username, email, password, phone_number, coordinates, role)
 VALUES ('test1FirstName', 'test1LastName', 'test_user_one', 'test1@email.com', 'password1', 1111111111,'32.778732986171384, -96.80576824306469','USER'),
-       ('test2FirstName','test2LastName','test_user_two', 'test2@email.com', 'password2', 2222222222, '30.29441989934175, -97.73147677171973','USER'),
-       ('test3FirstName','test3LastName','test_user_three', 'test3@email.com', 'password3', 3333333333,'29.349327064462532, -98.44587073443981','USER');
+       ('test2FirstName','test2LastName','test_user_two', 'test2@email.com', 'password2', 2222222222, '32.8000000001, -96.80390596389769','USER'),
+       ('test3FirstName','test3LastName','test_user_three', 'test3@email.com', 'password3', 3333333333,'32.78001345914907, -96.80390596389769','USER');
 
 INSERT INTO posts(user_id, item_name, description, item_photo, expiry_date, quantity)
 VALUES (3, 'Asparagus', 'Totally not rotten', 'test', '22:06:30', 15),

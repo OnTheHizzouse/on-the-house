@@ -18,7 +18,15 @@ export default function Home(props) {
                 border: .5rem solid #6a9f5a;
             }
             .marker {
-                background-image: url('js/views/img/recycleLogo.png');
+                background-image: url('js/views/img/postmarker.png');
+                background-size: cover;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+            .current-user-marker {
+                background-image: url('js/views/img/usermarker.png');
                 background-size: cover;
                 width: 50px;
                 height: 50px;
@@ -61,11 +69,11 @@ export default function Home(props) {
         </body>
     `;
 }
-
 var postProps;
 var userProps;
 var usersWithin5Miles = [];
 var geoJson;
+var currentUserGeoJson = [];
 
 // [-79.4512, 43.6568]
 function initMap(lng, lat) {
@@ -79,6 +87,7 @@ function initMap(lng, lat) {
         });
         map.scrollZoom.disable();
         addUserMarkersToMap(geoJson, map);
+        addUserMarkersToMap(currentUserGeoJson, map);
     })
 }
 
@@ -110,6 +119,7 @@ export function homepageEvent() {
     initMap(userProps.coordinates.split(',')[1], userProps.coordinates.split(',')[0]);
     findUsersWithinRange();
     createGeoJsonForMarkers(usersWithin5Miles);
+    createGeoJsonForActiveUser();
 }
 
 function clearModalFields() {
@@ -290,4 +300,25 @@ function addUserMarkersToMap(geoJsonData, map) {
             )
             .addTo(map);
     }
+}
+
+function createGeoJsonForActiveUser() {
+    currentUserGeoJson = {
+        type: "FeatureCollection",
+        features: []
+    };
+    let username = userProps.username;
+    let lon = parseFloat(userProps.coordinates.split(',')[0]);
+    let lat = parseFloat(userProps.coordinates.split(',')[1]);
+    currentUserGeoJson.features.push({
+        type: "Feature",
+        geometry: {
+            type: "Point",
+            coordinates: [lat, lon]
+        },
+        properties: {
+            title: "THIS IS YOU " + username
+        }
+    })
+    return currentUserGeoJson
 }
