@@ -8,7 +8,15 @@ export default function Splash(props) {
         </header>
         <main>
             <form id="box" action="action_page.php" method="post">
-                <div class="container">
+                <div><img id="OTH" src="js/views/img/OTHLogo.png" alt="Oth logo"></div>
+                </div>
+                <div class="container row-2">
+                    <div>
+                        <h1>Our Mission</h1>
+                        <p>As a community sharing application we foster the exchange of goods with the goal of reducing
+                            food waste and food insecurity within local communities. We strive to create a comfortable and 
+                            welcoming environment for all users to facilitate and encourage community interaction and cooperation.</p>
+                    </div>
 
                     <style>
                         #geocoder {
@@ -19,29 +27,26 @@ export default function Splash(props) {
                             min-width: 90%;
                         }
                     </style>
-
-                    <label for="email"><b>E-mail</b></label>
-                    <input class="inputFields" placeholder="Enter E-mail" name="email" id="email" required>
-                    <br>
-                    <label for="psw"><b>Password</b></label>
-                    <input class="inputFields" placeholder="Enter Password" name="psw" id="password" type="password" required>
-
-                    <span id="registration-remove-area">
+                    <div>
+                        <label for="email"><b>E-mail</b></label>
+                        <input class="inputFields" placeholder="Enter E-mail" name="email" id="email" required>
+                        <label for="psw"><b>Password</b></label>
+                        <input class="inputFields" placeholder="Enter Password" name="psw" id="password" type="password"
+                               required>
+                        <span id="registration-remove-area">
                         <button type="submit" id="login-btn">Login</button>
                     <button type="submit" class="btn btn-danger" id="register-btn">Register</button>
                     <label>
                         <input type="checkbox" checked="checked" name="remember"> Remember me
                     </label>
+                    </div>
+                    <div id="register-fields" class="container"></div>
 
+                    <div class="container" style="background-color:#f1f1f1">
+                        <button type="button" class="cancel-btn">Cancel</button>
+                        <span class="psw">Forgot <a href="#">password?</a></span>
+                    </div>
                 </div>
-
-                <div id="register-fields" class="container"></div>
-
-                <div class="container" style="background-color:#f1f1f1">
-                    <button type="button" class="cancel-btn">Cancel</button>
-                    <span class="psw">Forgot <a href="#">password?</a></span>
-                </div>
-                </span>
             </form>
         </main>
     `;
@@ -53,7 +58,8 @@ export function SplashEvents() {
     RegisterEvent();
     CancelButtonPressed();
     LoginEvent();
-    $('nav').hide()
+    $('nav').hide();
+    $('#navImg').hide();
 }
 
 //function that collapse the Registration form
@@ -139,8 +145,8 @@ function createUserFetch(options) {
         .then(alert("You have created a user 🌚"))//todo: get rid of this alert
         .catch(err => console.log(err))
         .finally(
-    location.reload()
-)
+            location.reload()
+        )
 }
 
 //function that checks if email is already being used
