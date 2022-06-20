@@ -57,7 +57,7 @@ export function editPostModal(post){
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Edit a Post</h5>
-                    <!--                                                 vvvv Used to identify modal by post ID. (Will be removed later)-->
+                    <!--vvvv Used to identify modal by post ID. (Will be removed later)-->
                     ${post.id}
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>

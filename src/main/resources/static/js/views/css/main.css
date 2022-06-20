@@ -85,9 +85,8 @@ span.psw {
 /*************************************************** HOMEPAGE.CSS*/
 
 #OTH{
-    display: block;
-    height: 200px;
-    border-radius: 10px;
+    display: flex;
+    height: 235px;
     justify-content: center;
     margin-left: auto;
     margin-right: auto;

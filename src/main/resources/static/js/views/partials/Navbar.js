@@ -2,9 +2,10 @@ export default function Navbar(props) {
     //language=HTML
     //todo: change navbar
     return `
-<div>
-  
-<img id="OTH" src="js/views/img/othNavImg.png" alt="Oth logo">
+
+<div style="background-color: #ddfcee">
+  <div id="navImg">
+  <img id="OTH" src="js/views/img/othNavImg.png" alt="Oth logo">
 </div>
         <nav class="navbar navbar-expand-lg" style="background-color: #64AE8B">
             <div class="container-fluid d-flex flex-column mx-auto align-items-center text-center">
@@ -16,6 +17,7 @@ export default function Navbar(props) {
                         <a class="nav-link" href="/home" data-link>HOME</a>
                         <a class="nav-link" href="/profile" data-link>PROFILE</a>
                         <a class="nav-link" href="#">ABOUT</a>
+                        <a class="nav-link" href="/events"data-link>EVENTS</a>
                     </div>
                 </div>
             </div>
