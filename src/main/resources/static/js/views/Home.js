@@ -87,7 +87,7 @@ function initMap(lng, lat) {
         });
         map.scrollZoom.disable();
         addUserMarkersToMap(geoJson, map);
-        addUserMarkersToMap(currentUserGeoJson, map);
+        addActiveUserMarkersToMap(currentUserGeoJson, map);
     })
 }
 
@@ -321,4 +321,23 @@ function createGeoJsonForActiveUser() {
         }
     })
     return currentUserGeoJson
+}
+
+function addActiveUserMarkersToMap(geoJsonData, map) {
+    for (const feature of geoJsonData.features) {
+// create a HTML element for each feature
+        const el = document.createElement('div');
+        el.className = 'current-user-marker';
+
+// make a marker for each feature and add it to the map
+        new mapboxgl.Marker(el)
+            .setLngLat(feature.geometry.coordinates)
+            .setPopup(
+                new mapboxgl.Popup({offset: 25}) // add popups
+                    .setHTML(
+                        `<h3>${feature.properties.title}</h3>`
+                    )
+            )
+            .addTo(map);
+    }
 }
