@@ -28,7 +28,7 @@ export default function Splash(props) {
 
                     <span id="registration-remove-area">
                         <button type="submit" id="login-btn">Login</button>
-                    <button type="submit" class="btn btn-danger" id="register-btn">Register</button>
+                    <button type="submit" class="btn btn-primary" id="register-btn">Register</button>
                     <label>
                         <input type="checkbox" checked="checked" name="remember"> Remember me
                     </label>
@@ -102,7 +102,7 @@ function RegisterFields() {
             <div id="geocoder"></div>
             <div id="result"></div>
             <br>
-            <button type="submit" class="btn btn-danger" id="register-btn-two">Register</button>
+            <button type="submit" class="btn btn-primary" id="register-btn-two">Register</button>
 
         `)
 
