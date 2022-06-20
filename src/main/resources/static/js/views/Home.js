@@ -82,6 +82,7 @@ waitForElm('#OTH').then((elm) => {
 
 
 //Returns a List<User> that exist within 5 miles of the active user
+// TODO: Check the Latitude/Longitude of Users. It's stored backwards coming from the registration page compared to seeder
 
 waitForElm('#map').then((elm) => {
     findUsersWithinRange();

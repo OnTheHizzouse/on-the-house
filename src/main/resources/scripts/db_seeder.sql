@@ -16,5 +16,7 @@ VALUES (3, 'Asparagus', 'Totally not rotten', 'test', '22:06:30', 15),
        (1, 'KFC Chicken', 'It''s finger linkin'' good.', 'photo of chicken(dead and cooked/ready to eat)', '22:12:25', 8),
        (2, 'Apples', 'Bag of apples, real apples not computer apple.', 'photo of apples', '22:01:05', 5),
        (4, 'Oatmeal', 'It''s oatmeal, man', 'PORRIDGE', '23:01:01', 5),
-       (4, 'Fruit Roll Ups', 'They''re only 15 years old, still good', 'FRUITY', '23:01:01', 50);
+       (4, 'Fruit Roll Ups', 'They''re only 15 years old, still good', 'FRUITY', '23:01:01', 50),
+       (5, 'Kale', 'KALEY', 'Kale', '23:01:01', 1)
+
 
