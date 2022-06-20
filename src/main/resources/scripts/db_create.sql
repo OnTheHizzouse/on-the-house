@@ -1,3 +1,4 @@
+
 DROP DATABASE IF EXISTS oth_db;
 CREATE DATABASE IF NOT EXISTS oth_db;
 
@@ -16,6 +17,7 @@ CREATE TABLE users
     role VARCHAR(32) NOT NULL
 );
 
+DROP TABLE IF EXISTS posts;
 CREATE TABLE posts
 (
     id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -25,8 +27,11 @@ CREATE TABLE posts
     item_photo VARCHAR(150) NOT NULL,
     expiry_date DATE NOT NULL,
     quantity INT NOT NULL,
+    status ENUM('open', 'closed') NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id)
+
 );
+
 
 CREATE TABLE events
 (
@@ -45,3 +50,10 @@ CREATE TABLE events
 
 );
 
+# CREATES event_id COLUMN IN POSTS TABLE AND ADDS FOREIGN KEY
+ALTER TABLE posts
+    ADD COLUMN event_id BIGINT NOT NULL
+    AFTER user_id;
+
+ALTER TABLE posts
+    ADD FOREIGN KEY (event_id) REFERENCES events(id);
