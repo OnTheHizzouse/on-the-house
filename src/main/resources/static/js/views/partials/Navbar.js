@@ -3,7 +3,7 @@ export default function Navbar(props) {
     //todo: change navbar
     return `
 
-<div style="background-color: #ddfcee">
+<div>
   <div id="navImg">
   <img id="OTH" src="js/views/img/othNavImg.png" alt="Oth logo">
 </div>
@@ -16,8 +16,8 @@ export default function Navbar(props) {
                     <div class="navbar-nav">
                         <a class="nav-link" href="/home" data-link>HOME</a>
                         <a class="nav-link" href="/profile" data-link>PROFILE</a>
-                        <a class="nav-link" href="#">ABOUT</a>
                         <a class="nav-link" href="/events"data-link>EVENTS</a>
+                        <a class="nav-link" href="#">ABOUT</a>
                     </div>
                 </div>
             </div>
