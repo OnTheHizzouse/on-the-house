@@ -50,9 +50,7 @@ export default function Home(props) {
                 <input class="inputFields" placeholder="Search items..." name="search-by-item-name"
                        id="search-by-item-name-input" required>
             </div>
-            <div class="col-3">
-                <button type="button" class="btn btn-success" id="search-by-item-name-submit-btn">Search</button>
-            </div>
+          
 
             <div class="col-3 my-auto">
                 ${createPostModal(props.user.username)}
@@ -139,9 +137,9 @@ function clearModalFields() {
 }
 
 function searchPostsByItemNameEventListener() {
-    $(document).on('click', '#search-by-item-name-submit-btn', function (e) {
+    $(document).keyup( '#search-by-item-name-submit-input', function (e) {
         let itemNameToSearch = $('#search-by-item-name-input').val();
-
+        console.log(itemNameToSearch)
         const options = {
             headers: {
                 "Content-Type": "application/json"

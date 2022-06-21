@@ -45,6 +45,8 @@
         let lon = e.result.center[1]
         $('#result').html(lon+", "+lat)
         $('#result').hide()
+        $('#address').html(address)
+        $('#address').hide()
     });
 
     // Clear results container when search is cleared.

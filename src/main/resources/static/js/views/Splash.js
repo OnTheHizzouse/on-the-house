@@ -104,6 +104,7 @@ function RegisterFields() {
             <!--            <input type="address" placeholder="Enter Valid Address" name="address" id="address" required>-->
             <div id="geocoder"></div>
             <div id="result"></div>
+            <div id="address"></div>
             <br>
             <button type="submit" class="btn btn-primary" id="register-btn-two">Register</button>
 
@@ -119,7 +120,9 @@ function RegisterEvent() {
     $(document).on('click', '#register-btn-two', function (e) {
         let newPassword = $('#password').val();
         let newEmail = $('#email').val();
-        let geoCoderAddress = $('#result').text();
+        let geoCoderCoordinates = $('#result').text();
+        let geoCoderAddress = $('#address').text();
+        let coordinates = geoCoderCoordinates.replace('"',"")
         let address = geoCoderAddress.replace('"', "")
         address = address.replace('"', "")
         console.log(address);
@@ -131,7 +134,7 @@ function RegisterEvent() {
             method: 'GET'
         }
         //checks if email is already being used
-        checkIfEmailExists(newEmail, optionEmailCheck, newPassword, address)
+        checkIfEmailExists(newEmail, optionEmailCheck, newPassword, coordinates,address)
 
     })
 }
@@ -147,7 +150,7 @@ function createUserFetch(options) {
 }
 
 //function that checks if email is already being used
-function checkIfEmailExists(checkEmail, options, newPassword, address) {
+function checkIfEmailExists(checkEmail, options, newPassword,coordinates ,address) {
 
     fetch(`http://localhost:8080/api/users/email/${checkEmail}`, options)
         .then(res => res.json())
@@ -156,12 +159,12 @@ function checkIfEmailExists(checkEmail, options, newPassword, address) {
         })
         .catch(err => {
             //check if newPassword is at least 8 characters long
-            checkPasswordLength(checkEmail, newPassword, address)
+            checkPasswordLength(checkEmail, newPassword, coordinates,address)
         })
 }
 
 //function that checks if newPassword is at least 8 characters long
-function checkPasswordLength(newEmail, newPassword, coordinates) {
+function checkPasswordLength(newEmail, newPassword, coordinates, address) {
     if (newPassword.length >= 8) {
 
         const reqBody = {
@@ -171,7 +174,8 @@ function checkPasswordLength(newEmail, newPassword, coordinates) {
             email: newEmail,
             password: newPassword,
             phoneNumber: $('#phoneNumber').val(),
-            coordinates: coordinates
+            coordinates: coordinates,
+            address: address
         }
 
         const options = {
