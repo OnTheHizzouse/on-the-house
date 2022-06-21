@@ -7,27 +7,34 @@ export default function Splash(props) {
             <h1></h1>
         </header>
         <main>
-            <form id="box" action="action_page.php" method="post">
-                <div><img id="OTH" src="js/views/img/OTHLogo.png" alt="Oth logo"></div>
-                </div>
-                <div class="container row-2">
-                    <div>
-                        <h1>Our Mission</h1>
-                        <p>As a community sharing application we foster the exchange of goods with the goal of reducing
-                            food waste and food insecurity within local communities. We strive to create a comfortable and 
-                            welcoming environment for all users to facilitate and encourage community interaction and cooperation.</p>
+
+            <style>
+                #geocoder {
+                    z-index: 1;
+                }
+
+                .mapboxgl-ctrl-geocoder {
+                    min-width: 90%;
+                }
+            </style>
+
+
+            <form id="box">
+                <div class="container row-2 align-content-center ">
+                    <div class="container m-2 ">
+                        <div><img id="OTH" src="js/views/img/OTHLogo.png" alt="Oth logo"></div>
+                        <div>
+                            <h1>Join Us!</h1>
+                            <p>As a community sharing application we foster the exchange of goods with the goal of
+                                reducing
+                                food waste and food insecurity within local communities. We strive to create a
+                                comfortable and
+                                welcoming environment for all users to facilitate and encourage community interaction
+                                and cooperation.</p>
+                        </div>
                     </div>
-
-                    <style>
-                        #geocoder {
-                            z-index: 1;
-                        }
-
-                        .mapboxgl-ctrl-geocoder {
-                            min-width: 90%;
-                        }
-                    </style>
-                    <div>
+                    
+                    <div class="container m-2">
                         <label for="email"><b>E-mail</b></label>
                         <input class="inputFields" placeholder="Enter E-mail" name="email" id="email" required>
                         <label for="psw"><b>Password</b></label>
@@ -36,15 +43,11 @@ export default function Splash(props) {
                         <span id="registration-remove-area">
                         <button type="submit" id="login-btn">Login</button>
                     <button type="submit" class="btn btn-primary" id="register-btn">Register</button>
-                    <label>
-                        <input type="checkbox" checked="checked" name="remember"> Remember me
-                    </label>
                     </div>
-                    <div id="register-fields" class="container"></div>
+                    <div id="register-fields" class="container m-2"></div>
 
-                    <div class="container" style="background-color:#f1f1f1">
+                    <div class="container m-2 pb-3">
                         <button type="button" class="cancel-btn">Cancel</button>
-                        <span class="psw">Forgot <a href="#">password?</a></span>
                     </div>
                 </div>
             </form>
@@ -68,12 +71,6 @@ function collapseRegis() {
     $('#registration-remove-area').html(`
         <button type="submit">Login</button>
                     <button type="submit" class="btn btn-danger" id="register-btn">Register</button>
-                    <label>
-                        <input type="checkbox" checked="checked" name="remember"> Remember me
-                    </label>
-
-                </div>
-
                 <div id="register-fields"></div>
         `)
 }
