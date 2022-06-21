@@ -32,22 +32,22 @@ CREATE TABLE posts
 );
 
 
-# CREATE TABLE events
-# (
-#     id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-#     requestor_id BIGINT NOT NULL,
-#     requestee_id BIGINT NOT NULL,
-#     item_id BIGINT NOT NULL,
-#     item_name VARCHAR(70) NOT NULL,
-#     meetup_date DATE NOT NULL,
-#     meetup_time TIME NOT NULL,
-#     meetup_location VARCHAR(200),
-#     status ENUM('open', 'closed') NOT NULL,
-#     FOREIGN KEY (requestor_id) REFERENCES users(id),
-#     FOREIGN KEY (requestee_id) REFERENCES users(id),
-#     FOREIGN KEY (item_id) REFERENCES posts(id)
-#
-# );
+CREATE TABLE events
+(
+    id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    requestor_id BIGINT NOT NULL,
+    requestee_id BIGINT NOT NULL,
+    item_id BIGINT NOT NULL,
+    item_name VARCHAR(70) NOT NULL,
+    meetup_date DATE NOT NULL,
+    meetup_time TIME NOT NULL,
+    meetup_location VARCHAR(200),
+    status ENUM('open', 'closed') NOT NULL,
+    FOREIGN KEY (requestor_id) REFERENCES users(id),
+    FOREIGN KEY (requestee_id) REFERENCES users(id),
+    FOREIGN KEY (item_id) REFERENCES posts(id)
+
+);
 #
 # # CREATES event_id COLUMN IN POSTS TABLE AND ADDS FOREIGN KEY
 # ALTER TABLE posts
@@ -56,3 +56,4 @@ CREATE TABLE posts
 #
 # ALTER TABLE posts
 #     ADD FOREIGN KEY (event_id) REFERENCES events(id);
+
