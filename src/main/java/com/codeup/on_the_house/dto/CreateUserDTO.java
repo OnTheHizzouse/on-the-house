@@ -10,8 +10,9 @@ public class CreateUserDTO {
     private String password;
     private String phoneNumber;
     private String coordinates;
+    private String address;
 
-    public CreateUserDTO(String firstName, String lastName, String username, String email, String password, String phoneNumber, String coordinates) {
+    public CreateUserDTO(String firstName, String lastName, String username, String email, String password, String phoneNumber, String coordinates, String address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -19,6 +20,7 @@ public class CreateUserDTO {
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.coordinates = coordinates;
+        this.address = address;
     }
 
     public CreateUserDTO() {
@@ -78,5 +80,13 @@ public class CreateUserDTO {
 
     public void setCoordinates(String coordinates) {
         this.coordinates = coordinates;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

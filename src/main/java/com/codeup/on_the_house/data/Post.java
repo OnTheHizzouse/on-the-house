@@ -20,6 +20,10 @@ public class Post {
     private String itemName;
     private String description;
     private String itemPhoto;
+//    @Enumerated(EnumType.STRING)
+//    private Status status = Status.OPEN;
+//
+//    public enum Status {OPEN, CLOSED}
 
 
     private LocalDate expiryDate;
