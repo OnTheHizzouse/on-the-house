@@ -148,7 +148,7 @@ function createUserFetch(options) {
         .then(alert("You have created a user 🌚"))//todo: get rid of this alert
         .catch(err => console.log(err))
         .finally(
-            // location.reload()
+            location.reload()
         )
 }
 

@@ -26,7 +26,7 @@ CREATE TABLE posts
     item_photo VARCHAR(150) NOT NULL,
     expiry_date DATE NOT NULL,
     quantity INT NOT NULL,
-    status ENUM('open', 'closed') NOT NULL,
+    status varchar(20) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id)
 
 );
