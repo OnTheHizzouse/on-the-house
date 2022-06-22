@@ -37,7 +37,7 @@ CREATE TABLE events
     requestor_id BIGINT NOT NULL,
     post_id BIGINT NOT NULL,
     meetup_date DATE NOT NULL,
-    meetup_time TIME NOT NULL,
+    meetup_time VARCHAR(8) NOT NULL,
     meetup_location VARCHAR(200),
     status VARCHAR(20) NOT NULL,
     FOREIGN KEY (requestor_id) REFERENCES users(id),
