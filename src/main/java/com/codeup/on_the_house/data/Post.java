@@ -32,10 +32,14 @@ public class Post {
     private LocalDate expiryDate;
     private int quantity;
 
-//    TODO Add nested user object.
+//    ***** USER OBJECT *******
     @ManyToOne
     @JsonIgnoreProperties({"posts", "password"})
     private User user;
+
+//    ***** EVENT OBJECT *******
+    @OneToOne
+    private Event event;
 
 //    ***** constructor *******
 
@@ -61,7 +65,7 @@ public class Post {
     }
 
 //    ******** getters and setters *******
-//    ******* User *********
+//    ******* User and Event*********
 
 
     public User getUser() {
@@ -71,7 +75,16 @@ public class Post {
     public void setUser(User user) {
         this.user = user;
     }
-//    ***********************
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+    //    ***********************
 
     public Long getId() {
         return id;

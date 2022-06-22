@@ -32,6 +32,10 @@ public class User {
     @JsonIgnoreProperties("user")// we want to ignore the post.user field to prevent a StackOverflowError
     private List<Post> posts = new ArrayList<>();
 
+    @OneToMany
+    @JsonIgnoreProperties("user")
+    private List<Event> events = new ArrayList<>();
+
     //    ******** constructors ********
     public User(Long id, String firstName, String lastName, String username, String email, String password, String phoneNumber, String coordinates,String address) {
         this.id = id;
@@ -60,7 +64,7 @@ public class User {
     }
 
     //    ********** getters and setters ***********
-//    **********POST GETTERS AND SETTERS *******
+//    **********POST AND EVENT GETTERS AND SETTERS *******
     public List<Post> getPosts() {
         return posts;
     }
@@ -68,7 +72,16 @@ public class User {
     public void setPosts(List<Post> posts) {
         this.posts = posts;
     }
-//****************************************
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
+
+    //****************************************
 
 
     public Role getRole() {
