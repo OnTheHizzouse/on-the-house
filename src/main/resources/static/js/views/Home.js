@@ -15,8 +15,9 @@ export default function Home(props) {
             #map {
                 width: 170vh;
                 height: 50vh;
-                border: .5rem solid #6a9f5a;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             }
+
             .marker {
                 background-image: url('js/views/img/postmarker.png');
                 background-size: cover;
@@ -25,6 +26,7 @@ export default function Home(props) {
                 border-radius: 50%;
                 cursor: pointer;
             }
+
             .current-user-marker {
                 background-image: url('js/views/img/usermarker.png');
                 background-size: cover;
@@ -39,9 +41,10 @@ export default function Home(props) {
         ${getUserProps(props.user)}
 
         <!--TODO: MOVE INPUT FIELD/SEARCHBAR TO WHERE IT NEEDS TO BE-->
-
-        <h4>Hello, ${props.user.username}</h4>
-        <div class="d-flex justify-content-center mb-3">
+        <div class="d-flex justify-content-center">
+            <p class="mt-2">Click a <img src="js/views/img/postmarker.png" id="postmarker"> on the map to see what your neighbors are sharing!</p>
+        </div>
+        <div class="d-flex justify-content-center mb-5">
             <div id="map"></div>
         </div>
         <!--      todo  this add some white space on the right problem is the margin-->
@@ -50,7 +53,7 @@ export default function Home(props) {
                 <input class="inputFields" placeholder="Search items..." name="search-by-item-name"
                        id="search-by-item-name-input" required>
             </div>
-          
+
 
             <div class="col-3 my-auto">
                 ${createPostModal(props.user.username)}
@@ -60,9 +63,7 @@ export default function Home(props) {
 
         <div id="cards" class="row justify-content-center g-2">
         </div>
-        <div>
-            ${myFooter()}
-        </div>
+
         </div>
         </body>
     `;
@@ -89,7 +90,7 @@ function initMap(lng, lat) {
         map.dragPan.disable();
         addUserMarkersToMap(geoJson, map);
         addActiveUserMarkersToMap(currentUserGeoJson, map);
-        $(".marker").click(function (){
+        $(".marker").click(function () {
 
             getAllUserPost(this.id)
         })
@@ -117,6 +118,8 @@ function startCards(props) {
 }
 
 export function homepageEvent() {
+    $('body').css("background", "none");
+    $('body').css("background-color", "#FBFAF2")
     emptyTheArray()
     savePostEventListener();
     cancelBtnEventListener();
@@ -137,7 +140,7 @@ function clearModalFields() {
 }
 
 function searchPostsByItemNameEventListener() {
-    $(document).keyup( '#search-by-item-name-submit-input', function (e) {
+    $('#search-by-item-name-input').keyup(function (e) {
         let itemNameToSearch = $('#search-by-item-name-input').val();
         console.log(itemNameToSearch)
         const options = {
@@ -296,7 +299,7 @@ function addUserMarkersToMap(geoJsonData, map) {
     for (const feature of geoJsonData.features) {
 // create a HTML element for each feature
         const el = document.createElement('div');
-        el.setAttribute("id",`${feature.properties.id}`)
+        el.setAttribute("id", `${feature.properties.id}`)
         el.className = 'marker ';
         el.setAttribute('id', `${feature.properties.id}`)
 
@@ -306,9 +309,9 @@ function addUserMarkersToMap(geoJsonData, map) {
             .setLngLat(feature.geometry.coordinates)
             .setPopup(
                 new mapboxgl.Popup({offset: 25}) // add popups
-                    .setHTML(
-                        `<div>${feature.properties.title}</div>`
-                    )
+                    // .setHTML(
+                    //     `<div>${feature.properties.title}</div>`
+                    // )
             )
             .addTo(map);
     }
@@ -331,7 +334,7 @@ function createGeoJsonForActiveUser() {
         },
         properties: {
             id: currentUserId,
-            title:  username
+            title: username
         }
     })
     return currentUserGeoJson
@@ -351,8 +354,7 @@ function addActiveUserMarkersToMap(geoJsonData, map) {
             .setPopup(
                 new mapboxgl.Popup({offset: 25}) // add popups
                     .setHTML(
-                        `<div>This is you<br>
-${feature.properties.title}</div>`
+                        `<div>You are here</div>`
                     )
             )
             .addTo(map);
@@ -387,7 +389,7 @@ function getPostsOfUsersWithin5Miles(arrayOfUsers) {
     for (let i = 0; i < arrayOfUsers.length; i++) {
         let id = arrayOfUsers[i].id;
         fetch(`http://localhost:8080/api/posts/searchItemsByUserId/${id}`, options)
-            .then(res =>res.json())
+            .then(res => res.json())
             .then(data => {
                 for (let j = 0; j < data.length; j++) {
                     postsOfUsersWithin5Miles.push(data[j]);
@@ -398,8 +400,9 @@ function getPostsOfUsersWithin5Miles(arrayOfUsers) {
             .catch(err => console.log(err))
     }
 }
- function emptyTheArray(){
-    usersWithin5Miles =[]
-     currentUserGeoJson=[]
-     postsOfUsersWithin5Miles =[]
- }
+
+function emptyTheArray() {
+    usersWithin5Miles = []
+    currentUserGeoJson = []
+    postsOfUsersWithin5Miles = []
+}
