@@ -168,34 +168,20 @@ span.psw {
     width: 30px;
 }
 
-@media only screen and (max-width: 550px) {
-    .container {
-        grid-template-columns: 1fr;
-        grid-template-rows: 0.4fr 0.4fr 2.2fr 1.2fr 1.2fr 1.2fr 1fr;
-        grid-template-areas:
-      "nav"
-      "sidebar"
-      "main"
-      "content1"
-      "content2"
-      "content3"
-      "footer";
-    }
-}
-
 /***************************************************** Profile2.css*/
 
 .main-body {
     padding: 15px;
 }
 
-footer {
-    background-color: transparent;
+#fimg{
+border-radius: 7px;
 }
+
 
 .card {
     position: relative;
-    /*display: flex;*/
+    display: flex;
     flex-direction: column;
     min-width: 80px;
     word-wrap: break-word;

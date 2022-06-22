@@ -147,7 +147,6 @@ function saveEditsPostListener() {
 
         postId = $(this).data("id");
         showAlert();
-        location.reload();
 
         const postTitle = $(`#itemName-${postId}`).val();
         const postDescription = $(`#description-${postId}`).val();
@@ -178,6 +177,7 @@ function saveEditsPostListener() {
 
         fetch(`${postUrl}/${postId}`, request)
             .then(res => {
+                location.reload();
             })
             .catch(err => console.log(err));
     })
