@@ -6,15 +6,18 @@ export function postCards(posts) {
     let htmlCard = ``
     for (let i = 0; i < posts.length; i++) {
         htmlCard += `
-        <div class="card mb-3 col-3 mx-2" style="max-width: 450px;">
+        <div class="card mb-3 col-3 mx-2" style="max-width: 450px; height: 475px">
     <div>
       <div class="card-body">
-        <h5 class="card-title">${posts[i].itemName}</h5>
-        <img src='https://images.pexels.com/photos/235294/pexels-photo-235294.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' class="img-fluid rounded-start" alt="...">
-        <p class="card-text">${posts[i].description}</p>
+        <div class="d-flex justify-content-between align-items-center">
+            <h5 class="card-title">${posts[i].itemName}</h5>
+            <button type="button" class="btn request-home-card-btn">Request</button>
+        </div>
+        <img src='https://images.pexels.com/photos/235294/pexels-photo-235294.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' class="img-fluid rounded-start mt-2" alt="...">
+        <p class="card-text" style="height: 40px">${posts[i].description}</p>
         <p class="card-text"><small>Quantity: ${posts[i].quantity}</small></p>
         <p class="card-text"><small>Expiry Date: ${posts[i].expiryDate}</small></p>
-        <button type="button" class="btn request-home-card-btn pt-auto">Request</button>
+        <p class="card-text"><small>Shared by: ${posts[i].user.username}</small></p>
       </div>
     </div>
 </div>

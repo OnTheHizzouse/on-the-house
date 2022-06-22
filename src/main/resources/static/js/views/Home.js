@@ -140,7 +140,7 @@ function clearModalFields() {
 }
 
 function searchPostsByItemNameEventListener() {
-    $(document).keyup('#search-by-item-name-submit-input', function (e) {
+    $('#search-by-item-name-input').keyup(function (e) {
         let itemNameToSearch = $('#search-by-item-name-input').val();
         console.log(itemNameToSearch)
         const options = {
