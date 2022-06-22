@@ -37,7 +37,7 @@ body {
 }
 
 button {
-    width: 100%;
+
     padding: 6px 12px;
     margin: 3px 0;
     display: inline-block;
@@ -204,6 +204,7 @@ span.psw {
     width: 30px;
 }
 
+
 #createPostBtn{
     background-color: #2788bb;
     color: #FBFAF2;
@@ -237,9 +238,10 @@ span.psw {
     padding: 15px;
 }
 
-footer {
-    background-color: transparent;
+#fimg{
+border-radius: 7px;
 }
+
 
 .card {
     position: relative;
@@ -263,6 +265,13 @@ img {
     object-fit: cover;
 }
 
+.card-title {
+    margin-right: 0 !important;
+}
+
+.card-body {
+    margin-right: 0 !important;
+}
 /***************************************BREAK POINTS**************/
 
 /*@media (max-width: 575px) {*/

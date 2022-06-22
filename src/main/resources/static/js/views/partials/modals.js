@@ -57,7 +57,7 @@ export function editPostModal(post) {
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Edit a Post</h5>
-                    <!--vvvv Used to identify modal by post ID. (Will be removed later)-->
+
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -74,7 +74,7 @@ export function editPostModal(post) {
 
                                 <!--  vvvv Will eventually need to be changed to Post img. Maybe inside a div with these props (id="photo-post.id">post.photo<) Using Jquery-->
                                 <input type="file" class="inputFields" accept="image/png, image/jpg"
-                                       placeholder="this will be change later" name="photo" id="photo-${post.id}"
+                                       placeholder="Photo upload here.." name="photo" id="photo-${post.id}"
                                        required>
 
                                     <br>
@@ -89,6 +89,7 @@ export function editPostModal(post) {
                                                     <br>
                 </div>
                 <div class="modal-footer">
+
                     <!--          todo make sure the inputfields are not null-->
                     <button onClick="showAlert()" type="button" class="btn btn-success" id="save-edit-post-btn"
                             data-bs-dismiss="modal" data-id="${post.id}">SAVE
