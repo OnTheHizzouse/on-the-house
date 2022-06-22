@@ -1,38 +1,96 @@
 package com.codeup.on_the_house.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
 @Table(name = "users")
 public class User {
 
+    //********* properties *******
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String firstName;
+    private String lastName;
     private String username;
     private String email;
     private String password;
     private String phoneNumber;
+    private String coordinates;
     private String address;
+    //    @EMUN ENFORCES THAT THE EMUN VALUE IS A STRING, NOT AN INT.
+    @Enumerated(EnumType.STRING)
+    private Role role = Role.USER;
 
-    public User(Long id, String username, String email, String password, String phoneNumber, String address) {
+    public enum Role {USER, ADMIN}
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties("user")// we want to ignore the post.user field to prevent a StackOverflowError
+    private List<Post> posts = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties("user")
+    private List<Event> events = new ArrayList<>();
+
+    //    ******** constructors ********
+    public User(Long id, String firstName, String lastName, String username, String email, String password, String phoneNumber, String coordinates,String address) {
         this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.username = username;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
+        this.coordinates = coordinates;
         this.address = address;
     }
 
-    public User(String username, String email, String password, String phoneNumber, String address) {
+    public User(String firstName, String lastName, String username, String email, String password, String phoneNumber, String coordinates, String address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.username = username;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
+        this.coordinates = coordinates;
         this.address = address;
     }
 
-    public User() {}
+    public User() {
+    }
+
+    //    ********** getters and setters ***********
+//    **********POST AND EVENT GETTERS AND SETTERS *******
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
+
+    //****************************************
+
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
     public Long getId() {
         return id;
@@ -40,6 +98,22 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getUsername() {
@@ -82,15 +156,31 @@ public class User {
         this.address = address;
     }
 
+    public String getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(String coordinates) {
+        this.coordinates = coordinates;
+    }
+
+//    ********* to String ***********
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", coordinates='" + coordinates + '\'' +
                 ", address='" + address + '\'' +
+                ", role=" + role +
+                ", posts=" + posts +
+                ", events=" + events +
                 '}';
     }
 }
