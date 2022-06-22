@@ -39,6 +39,7 @@ public class Post {
 
 //    ***** EVENT OBJECT *******
     @OneToOne
+    @JsonIgnoreProperties({"posts"})
     private Event event;
 
 //    ***** constructor *******
@@ -141,9 +142,9 @@ public class Post {
     public void setStatus(Status status) {
         this.status = status;
     }
+
+
     //    **** to String *******
-
-
     @Override
     public String toString() {
         return "Post{" +

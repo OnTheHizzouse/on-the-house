@@ -32,7 +32,7 @@ public class User {
     @JsonIgnoreProperties("user")// we want to ignore the post.user field to prevent a StackOverflowError
     private List<Post> posts = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     @JsonIgnoreProperties("user")
     private List<Event> events = new ArrayList<>();
 

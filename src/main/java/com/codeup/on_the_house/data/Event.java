@@ -26,7 +26,7 @@ public class Event {
         OPEN, CLOSED
     }
 
-    @OneToOne
+    @ManyToOne
     @JsonIgnoreProperties({"events"})
     private User user;
 
