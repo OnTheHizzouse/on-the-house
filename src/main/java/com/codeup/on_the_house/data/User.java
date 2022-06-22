@@ -176,10 +176,11 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", address='" + address + '\'' +
                 ", coordinates='" + coordinates + '\'' +
+                ", address='" + address + '\'' +
                 ", role=" + role +
                 ", posts=" + posts +
+                ", events=" + events +
                 '}';
     }
 }
