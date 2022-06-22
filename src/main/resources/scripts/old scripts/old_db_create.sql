@@ -1,4 +1,3 @@
-
 DROP DATABASE IF EXISTS oth_db;
 CREATE DATABASE IF NOT EXISTS oth_db;
 
@@ -12,7 +11,6 @@ CREATE TABLE users
     email VARCHAR(200) NOT NULL,
     password VARCHAR(60) NOT NULL,
     phone_number VARCHAR(13) NOT NULL,
-    address VARCHAR(200) NOT NULL,
     coordinates VARCHAR(40) NOT NULL,
     role VARCHAR(32) NOT NULL
 );
@@ -26,21 +24,5 @@ CREATE TABLE posts
     item_photo VARCHAR(150) NOT NULL,
     expiry_date DATE NOT NULL,
     quantity INT NOT NULL,
-    status varchar(20) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
-
-
-CREATE TABLE events
-(
-    id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    requestor_id BIGINT NOT NULL,
-    post_id BIGINT NOT NULL,
-    meetup_date DATE NOT NULL,
-    meetup_time TIME NOT NULL,
-    meetup_location VARCHAR(200),
-    status VARCHAR(20) NOT NULL,
-    FOREIGN KEY (requestor_id) REFERENCES users(id),
-    FOREIGN KEY (post_id) REFERENCES posts(id)
-);
-

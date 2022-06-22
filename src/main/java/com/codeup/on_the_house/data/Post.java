@@ -21,6 +21,13 @@ public class Post {
     private String description;
     private String itemPhoto;
 
+    @Enumerated(EnumType.STRING)
+    private Status status = Status.OPEN;
+
+    public enum Status {
+        OPEN, CLOSED
+    }
+
 
     private LocalDate expiryDate;
     private int quantity;
@@ -114,7 +121,14 @@ public class Post {
         this.quantity = quantity;
     }
 
-//    **** to String *******
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+    //    **** to String *******
 
 
     @Override

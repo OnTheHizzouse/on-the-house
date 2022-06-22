@@ -20,6 +20,7 @@ public class UsersController {
         this.userService = userService;
     }
 
+
     @PostMapping("createUser")
     private void addNewUser(@RequestBody CreateUserDTO createUserDTO) {
         userService.createUser(createUserDTO);

@@ -25,7 +25,8 @@ public class UserService {
                 createUserDTO.getEmail(),
                 createUserDTO.getPassword(),
                 createUserDTO.getPhoneNumber(),
-                createUserDTO.getCoordinates()));
+                createUserDTO.getCoordinates(),
+        createUserDTO.getAddress()));
     }
 
     public List<User> getAllUsers(){

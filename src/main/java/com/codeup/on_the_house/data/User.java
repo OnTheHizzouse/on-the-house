@@ -10,7 +10,7 @@ import java.util.List;
 @Table(name = "users")
 public class User {
 
-//********* properties *******
+    //********* properties *******
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,6 +21,7 @@ public class User {
     private String password;
     private String phoneNumber;
     private String coordinates;
+    private String address;
     //    @EMUN ENFORCES THAT THE EMUN VALUE IS A STRING, NOT AN INT.
     @Enumerated(EnumType.STRING)
     private Role role = Role.USER;
@@ -31,8 +32,8 @@ public class User {
     @JsonIgnoreProperties("user")// we want to ignore the post.user field to prevent a StackOverflowError
     private List<Post> posts = new ArrayList<>();
 
-//    ******** constructors ********
-    public User(Long id, String firstName, String lastName, String username, String email, String password, String phoneNumber, String coordinates) {
+    //    ******** constructors ********
+    public User(Long id, String firstName, String lastName, String username, String email, String password, String phoneNumber, String coordinates,String address) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -41,9 +42,10 @@ public class User {
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.coordinates = coordinates;
+        this.address = address;
     }
 
-    public User(String firstName, String lastName, String username, String email, String password, String phoneNumber, String coordinates) {
+    public User(String firstName, String lastName, String username, String email, String password, String phoneNumber, String coordinates, String address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -51,16 +53,17 @@ public class User {
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.coordinates = coordinates;
+        this.address = address;
     }
 
     public User() {
     }
 
-//    ********** getters and setters ***********
+    //    ********** getters and setters ***********
 //    **********POST GETTERS AND SETTERS *******
-public List<Post> getPosts() {
-    return posts;
-}
+    public List<Post> getPosts() {
+        return posts;
+    }
 
     public void setPosts(List<Post> posts) {
         this.posts = posts;
@@ -132,6 +135,14 @@ public List<Post> getPosts() {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public String getCoordinates() {
         return coordinates;
     }
@@ -141,6 +152,7 @@ public List<Post> getPosts() {
     }
 
 //    ********* to String ***********
+
     @Override
     public String toString() {
         return "User{" +
@@ -151,8 +163,10 @@ public List<Post> getPosts() {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
                 ", coordinates='" + coordinates + '\'' +
                 ", role=" + role +
+                ", posts=" + posts +
                 '}';
     }
 }
