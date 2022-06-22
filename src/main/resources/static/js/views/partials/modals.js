@@ -21,8 +21,8 @@ Create Post
       <textarea class="inputFields " placeholder="Description of Item" name="description" id="create-description" required></textarea>
       <br>
 <!--      todo change this to take in a photo-->
-       <label for="photo"><b>photo:</b></label>
-      <input class="inputFields" placeholder="this will be change later" name="photo" id="create-photo"  required>
+       <label for="photo"><b>Photo:</b></label>
+      <input class="inputFields"  name="photo" id="create-photo"  required>
       <br>
 <!--     todo possible calender integration -->
        <label for="date"><b>Post Expiration Date:</b></label>
@@ -33,7 +33,6 @@ Create Post
       <br>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancel-btn">Cancel</button> 
 <!--          todo make sure the inputfields are not null-->
         <button type="button" class="btn btn-primary"  data-id="${username}" id="create-post-btn" data-bs-dismiss="modal" >Save Post</button>
       </div>
@@ -44,10 +43,11 @@ Create Post
     return htmlModal;
 }
 
-export function editPostModal(post){
+export function editPostModal(post) {
+    console.log(post)
     //language=HTML
-    let html =``;
-    html +=`
+    let html = ``;
+    html += `
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit-${post.id}">
         Edit Post
     </button>
@@ -58,17 +58,16 @@ export function editPostModal(post){
                 <div class="modal-header">
                     <h5 class="modal-title">Edit a Post</h5>
                     <!--vvvv Used to identify modal by post ID. (Will be removed later)-->
-                    ${post.id}
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <!--      todo: get better name-->
                     <label For="item-name"><b>Edit Item Name:</b></label>
-                    <input class="inputFields" placeholder="" name="item-name" id="itemName-${post.id}" required>
+                    <input class="inputFields" value="${post.itemName}" name="item-name" id="itemName-${post.id}" required>
                         <br>
                             <label For="description"><b>Edit Description:</b></label>
                             <textarea class="inputFields " placeholder="" name="description"
-                                      id="description-${post.id}" required></textarea>
+                                      id="description-${post.id}" required>${post.description}</textarea>
                             <br>
                                 <!--      todo change this to take in a photo-->
                                 <label For="photo"><b>Edit Photo:</b></label>
@@ -81,16 +80,15 @@ export function editPostModal(post){
                                     <br>
                                         <!--     todo possible calender integration -->
                                         <label For="date"><b>Edit Expiration Date:</b></label>
-                                        <input class="inputFields" placeholder="yyyy-mm-dd" name="date"
+                                        <input class="inputFields" placeholder="yyyy-mm-dd" name="date" value="${post.expiryDate}"
                                                id="expiryDate-${post.id}" required>
                                             <br>
                                                 <label For="quantity"><b>Edit Quantity:</b></label>
-                                                <input class="inputFields" placeholder="Enter the number available"
+                                                <input class="inputFields" placeholder="Enter the number available" value="${post.quantity}"
                                                        name="quantity" id="quantity-${post.id}" required>
                                                     <br>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">CANCEL</button>
                     <!--          todo make sure the inputfields are not null-->
                     <button onClick="showAlert()" type="button" class="btn btn-success" id="save-edit-post-btn"
                             data-bs-dismiss="modal" data-id="${post.id}">SAVE
@@ -99,5 +97,45 @@ export function editPostModal(post){
             </div>
         </div>
     </div>`
-return html
+    return html
+}
+
+
+export function createEventModal(post) {
+    //language=HTML
+    let postId = post.id
+    let htmlModal = ``
+     htmlModal += `
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#event${postId}">
+Create Event
+</button>
+<div class="modal" tabindex="-1"  data-backdrop="static" id="event${postId}">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Create an Event with ${post.user.username}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <label for="meet-date"><b>Meet up date::</b></label>
+      <input class="inputFields" placeholder="yyyy-mm-dd" name="meet-date" id="meet-date">
+      <br>
+
+       <label for="meet-time"><b>Meet up time:</b></label>
+      <input class="inputFields" placeholder="hh:tt" name="meet-time" id="meet-time"  required>
+      <br>
+        <label ><b>Meet up location:</b></label>
+       <textarea class="inputFields"  rows="4" cols="50" placeholder="Put the location that you would like to meet up" id="meetUp"></textarea>
+       
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-primary"  data-id="${postId}" id="create-post-btn" data-bs-dismiss="modal" >Save Post</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+    `
+
+    return htmlModal
 }
