@@ -37,7 +37,7 @@ body {
 }
 
 button {
-    width: 100%;
+
     padding: 6px 12px;
     margin: 3px 0;
     display: inline-block;
@@ -195,7 +195,7 @@ footer {
 
 .card {
     position: relative;
-    display: flex;
+    /*display: flex;*/
     flex-direction: column;
     min-width: 80px;
     word-wrap: break-word;
@@ -215,6 +215,13 @@ img {
     object-fit: cover;
 }
 
+.card-title {
+    margin-right: 0 !important;
+}
+
+.card-body {
+    margin-right: 0 !important;
+}
 /***************************************BREAK POINTS**************/
 
 /*@media (max-width: 575px) {*/

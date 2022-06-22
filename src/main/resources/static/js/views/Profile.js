@@ -122,12 +122,12 @@ export default function Profile(props) {
         </div>
         <!-- ************************************************************************************* PROFILE INFO END -->
         <div>
-            <div>
+            <div class="row">
                 ${myPostCards(props.posts)}
             </div>
         </div>
         <!--                ********************************************-->
-        ${myFooter()}
+       
         </body>
     `;
 
