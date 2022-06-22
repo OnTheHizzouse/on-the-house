@@ -13,9 +13,9 @@ export default function Navbar(props) {
                         <div id="navImg">
                             <img id="OTH" src="js/views/img/OTHLogo(final).png" alt="Oth logo">
                         </div>
-                        <a class="nav-link mx-5" href="/home" data-link>HOME</a>
-                        <a class="nav-link mx-5" href="/profile" data-link>PROFILE</a>
-                        <a class="nav-link mx-5" href="/events"data-link>EVENTS</a>
+                        <a class="nav-link mx-5" href="/home" data-link>HOME</a>|
+                        <a class="nav-link mx-5" href="/profile" data-link>PROFILE</a>|
+                        <a class="nav-link mx-5" href="/events"data-link>EVENTS</a>|
                         <a class="nav-link mx-5" href="#">ABOUT</a>
                     </div>
                 </div>

@@ -2,7 +2,7 @@ export function createPostModal(username) {
     //language=HTML
     let htmlModal = ``
     htmlModal += `
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#postModal">
+<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#postModal" id="createPostBtn">
 Create Post
 </button>
 <div class="modal" tabindex="-1" id="postModal">

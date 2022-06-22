@@ -6,39 +6,31 @@ export function postCards(posts) {
     let htmlCard = ``
     for (let i = 0; i < posts.length; i++) {
         htmlCard += `
-        <div class="card mb-3 col-4 mx-2" style="max-width: 540px;">
-  <div class="row g-2">
-    <div class="col-md-4">
-<!--    todo: change imagesource backto $posts[i].itemPhoto}-->
-      <img src='https://images.pexels.com/photos/235294/pexels-photo-235294.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
+        <div class="card mb-3 col-3 mx-2" style="max-width: 450px;">
+    <div>
       <div class="card-body">
         <h5 class="card-title">${posts[i].itemName}</h5>
-        <p class="card-text"><small class="text-muted">Quantity: ${posts[i].quantity}</small></p>
-        <p class="card-text"><small class="text-muted">Expiry Date: ${posts[i].expiryDate}</small></p>
+        <img src='https://images.pexels.com/photos/235294/pexels-photo-235294.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' class="img-fluid rounded-start" alt="...">
         <p class="card-text">${posts[i].description}</p>
-        
-        <button type="button" class="btn btn-primary">Request</button>
-        <button type="button" class="btn btn-success">Message</button>
-       
+        <p class="card-text"><small>Quantity: ${posts[i].quantity}</small></p>
+        <p class="card-text"><small>Expiry Date: ${posts[i].expiryDate}</small></p>
+        <button type="button" class="btn request-home-card-btn pt-auto">Request</button>
       </div>
     </div>
-  </div>
 </div>
 `
     }
     return htmlCard
 }
 
-export function myPostCards(post){
+export function myPostCards(post) {
     //language=HTML
     console.log(post)
 
-     let html =``
+    let html = ``
 
     for (let i = 0; i < post.length; i++) {
- html+=` 
+        html += ` 
           <div class="card mb-8">
                             <div class="row g-0">
                                 <div class="col-md-4">
@@ -61,6 +53,7 @@ export function myPostCards(post){
 </div>
 </div>
 <br>
-`}
-return html
+`
+    }
+    return html
 }
