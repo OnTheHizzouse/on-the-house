@@ -1,5 +1,6 @@
 package com.codeup.on_the_house.data;
 
+import com.codeup.on_the_house.service.PostService;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.*;
@@ -15,6 +16,7 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long postId;
     private LocalDate meetupDate;
     private String meetupTime;
     private String meetupLocation;
@@ -27,29 +29,37 @@ public class Event {
     }
 
     @ManyToOne
-    @JsonIgnoreProperties({"events"})
+    @JsonIgnoreProperties({"events", "password"})
     private User user;
 
     @ManyToOne
-    @JsonIgnoreProperties({"events"})
-    private Post post;
+    @JsonIgnoreProperties({"events", "posts", "password"})
+    private User requester;
+
+//    @ManyToOne
+//    @JsonIgnoreProperties({"events"})
+//    private Post post;
 
 
 
 
 //    *********** CONSTRUCTOR *************
 
-    public Event(Long id, LocalDate meetupDate, String meetupTime, String meetupLocation, Status status) {
+    public Event(Long id, Long postId, LocalDate meetupDate, String meetupTime, String meetupLocation, Status status) {
         this.id = id;
+        this.postId = postId;
         this.meetupDate = meetupDate;
         this.meetupTime = meetupTime;
         this.meetupLocation = meetupLocation;
         this.status = status;
     }
 
+
+
 //    CONSTRUCTOR WITH NO ID PROP
 
-    public Event(LocalDate meetupDate, String meetupTime, String meetupLocation, Status status) {
+    public Event(Long postId, LocalDate meetupDate, String meetupTime, String meetupLocation, Status status) {
+        this.postId = postId;
         this.meetupDate = meetupDate;
         this.meetupTime = meetupTime;
         this.meetupLocation = meetupLocation;
@@ -73,15 +83,33 @@ public class Event {
         this.user = user;
     }
 
-    public Post getPost() {
-        return post;
+//    public Post getPost() {
+//        return post;
+//    }
+//
+//    public void setPost(Post post) {
+//        this.post = post;
+//    }
+
+    public User getRequester() {
+        return requester;
     }
 
-    public void setPost(Post post) {
-        this.post = post;
+    public void setRequester(User requester) {
+        this.requester = requester;
     }
+
 
 //    *******************
+
+
+    public Long getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Long postId) {
+        this.postId = postId;
+    }
 
     public Long getId() {
         return id;

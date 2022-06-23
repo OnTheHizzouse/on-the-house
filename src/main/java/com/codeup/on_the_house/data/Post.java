@@ -38,9 +38,9 @@ public class Post {
     private User user;
 
 //    ***** EVENT OBJECT *******
-    @OneToOne
-    @JsonIgnoreProperties({"posts"})
-    private Event event;
+//    @OneToOne
+//    @JsonIgnoreProperties({"posts"})
+//    private Event event;
 
 //    ***** constructor *******
 
@@ -77,13 +77,13 @@ public class Post {
         this.user = user;
     }
 
-    public Event getEvent() {
-        return event;
-    }
-
-    public void setEvent(Event event) {
-        this.event = event;
-    }
+//    public Event getEvent() {
+//        return event;
+//    }
+//
+//    public void setEvent(Event event) {
+//        this.event = event;
+//    }
 
     //    ***********************
 
