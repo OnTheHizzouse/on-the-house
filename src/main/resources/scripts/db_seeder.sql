@@ -20,7 +20,7 @@ VALUES (3, 'Asparagus', 'Totally not rotten', 'test', '22:06:30', 15, 'OPEN'),
 
 
 USE oth_db;
-INSERT INTO events(requester_id, post_id, meetup_date, meetup_time, meetup_location, status)
-    VALUE (1,2, '22:06:28', '15:24:00', '123 fake st, city, state, 95662', 'OPEN' ),
-    (3,1, '22:06:30', '11:24:00', '485 faker st, city, state, 84574', 'CLOSED' );
+INSERT INTO events(requester_id, user_id, post_id, meetup_date, meetup_time, meetup_location, status)
+    VALUE (1,2,2, '22:06:28', '15:24:00', '123 fake st, city, state, 95662', 'OPEN' ),
+    (3,1,7, '22:06:30', '11:24:00', '485 faker st, city, state, 84574', 'CLOSED' );
 

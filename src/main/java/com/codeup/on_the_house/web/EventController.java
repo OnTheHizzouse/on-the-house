@@ -44,7 +44,7 @@ public class EventController {
                              @PathVariable String requesterName, @PathVariable Long postId){
         Event newEvent = new Event();
         eventService.createEvent(createEventDTO, newEvent, username, requesterName, postId);
-        System.out.println("New event created by: " + requesterName + "for post with ID of: " + postId + "for user: " + username);
+        System.out.println("New event created by: " + requesterName + " for post with ID of: " + postId + " for user: " + username);
     }
 
 
