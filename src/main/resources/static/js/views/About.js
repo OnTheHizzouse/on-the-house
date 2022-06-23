@@ -3,76 +3,44 @@ export default function About() {
     //language=HTML
     return `
         <title>On the house</title>
-        </head>
         <body>
-            <!-- About US card -->
-            <div id="about-me-card" class="row">
-                <div class="card mb-3"
-                ">
-                <img src="images/produce-cropped.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">About Us</h5>
-                    <p class="card-text">As a community sharing application we will foster the exchange of goods with
-                        the
-                        goal
-                        of reducing food waste and food insecurity within local communities. We hope to create a
-                        comfortable
-                        and welcoming environment for all users that will facilitate and encourage community interaction
-                        and
-                        cooperation.</p>
-                </div>
+        <div id="about-me-card" class="row justify-content-center">
+            <div class="card mb-3">
+                <img src="js/views/img/produce-cropped.jpg" class="card-img" alt="...">
             </div>
-        </div>
-        
-            
-        <!-- Team Member Info -->
-        <div class="row row-cols-4" id="team-member-cards"
-            <div class="row">
-                <div class="card" style="width: 18rem;">
-                    <img src="images/johnny.jpeg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">Johnny</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="card" style="width: 18rem;">
-                        <img src="images/james.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">James</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="card" style="width: 18rem;">
-                        <img src="images/ryan.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Ryan</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="card" style="width: 18rem;">
-                        <img src="images/tyreik.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Tyreik</p>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="card" style="width: 18rem;">
-                        <img src="images/becca.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <p class="card-text">Rebecca</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <h5 class="card-title">About Us</h5>
+            <p class="card-text">As a community sharing application we will foster the exchange of goods with the goal
+                of reducing food waste and food insecurity within local communities. We hope to create a comfortable
+                and welcoming environment for all users that will facilitate and encourage community interaction and
+                cooperation.</p>
         </div>
 
+        <div id="photo-cards" class="row justify-content-center g-4">
+            <div class="card col-6" style="width: 15rem;">
+                <img src="js/views/img/johnny.jpeg" class="card-img-top" alt="...">
+                <p>Juan "Johnny" Martinez</p>
+            </div>
+
+            <div class="card col-6" style="width: 15rem;">
+                <img src="js/views/img/james.jpeg" class="card-img-top" alt="...">
+                <p>James Woodward</p>
+            </div>
+
+            <div class="card col-4" style="width: 15rem;">
+                <img src="js/views/img/ryan.jpg" class="card-img-top" alt="...">
+                <p>Ryan Mendoza</p>
+            </div>
+
+            <div class="card col-4" style="width: 15rem;">
+                <img src="js/views/img/tyreik.jpeg" class="card-img-top" alt="...">
+                <p>Tyreik Williams</p>
+            </div>
+
+            <div class="card col-4" style="width: 15rem;">
+                <img src="js/views/img/becca.png" class="card-img-top" alt="...">
+                <p>Rebecca Martinez</p>
+            </div>
+        </div>
+        </body>
     `;
 }

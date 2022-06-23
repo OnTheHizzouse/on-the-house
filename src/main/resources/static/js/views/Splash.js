@@ -57,6 +57,8 @@ export default function Splash(props) {
 
 //Event listener
 export function SplashEvents() {
+    $('body').css("background-color", "none")
+    $('body').css("background-image", "url('js/views/partials/pexels-photo-6462424.jpeg')")
     RegisterFields();
     RegisterEvent();
     CancelButtonPressed();
