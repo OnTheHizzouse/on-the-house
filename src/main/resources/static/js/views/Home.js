@@ -1,5 +1,5 @@
 import {waitForElm} from "../mapboxSearch.js";
-import {postCards} from "./partials/postCards.js";
+import {markerPostCards, postCards} from "./partials/postCards.js";
 import {createPostModal} from "./partials/modals.js";
 import {myFooter} from "./partials/footer.js";
 
@@ -90,8 +90,8 @@ function initMap(lng, lat) {
         map.dragPan.disable();
         addUserMarkersToMap(geoJson, map);
         addActiveUserMarkersToMap(currentUserGeoJson, map);
-        $(".marker").click(function () {
-
+        $(".marker").click(function (){
+            console.log(this.id)
             getAllUserPost(this.id)
         })
     })
@@ -114,6 +114,12 @@ function getprops(props) {
 function startCards(props) {
     waitForElm('#cards').then((elm) => {
         $('#cards').html(postCards(props))
+    })
+}
+
+function currentMarkerPostCards(user){
+    waitForElm("#cards").then((elm)=>{
+        $('#cards').html(markerPostCards(user))
     })
 }
 
@@ -371,7 +377,8 @@ function getAllUserPost(userId) {
     fetch(`http://localhost:8080/api/users/${userId}`, options)
         .then(res => res.json())
         .then(data => {
-            startCards(data.posts)
+
+            currentMarkerPostCards(data)
         })
         .catch(err => {
             console.log(err)

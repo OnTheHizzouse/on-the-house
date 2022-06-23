@@ -102,19 +102,19 @@ export function editPostModal(post) {
 }
 
 
-export function createEventModal(post) {
+export function createEventModal(post, username) {
     //language=HTML
     let postId = post.id
     let htmlModal = ``
      htmlModal += `
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#event${postId}">
-Create Event
+<button type="button" class="btn  request-home-card-btn" data-bs-toggle="modal" data-bs-target="#event${postId}">
+Request
 </button>
 <div class="modal" tabindex="-1"  data-backdrop="static" id="event${postId}">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Create an Event with ${post.user.username}</h5>
+        <h5 class="modal-title">Create an Event with ${username}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

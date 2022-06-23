@@ -1,8 +1,8 @@
-import {editPostModal} from "./modals.js";
+import {createEventModal, editPostModal} from "./modals.js";
 
 export function postCards(posts) {
     //language=HTML
-    console.log(posts)
+    console.log(posts)git
     let htmlCard = ``
     for (let i = 0; i < posts.length; i++) {
         htmlCard += `
@@ -11,13 +11,40 @@ export function postCards(posts) {
       <div class="card-body">
         <div class="d-flex justify-content-between align-items-center">
             <h5 class="card-title">${posts[i].itemName}</h5>
-            <button type="button" class="btn request-home-card-btn">Request</button>
+            ${createEventModal(posts[i], posts[i].user.username)}
         </div>
         <img src='https://images.pexels.com/photos/235294/pexels-photo-235294.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' class="img-fluid rounded-start my-2" alt="..." id="card-img-home">
         <p class="card-text" style="height: 40px">${posts[i].description}</p>
         <p class="card-text"><small>Quantity: ${posts[i].quantity}</small></p>
         <p class="card-text"><small>Expiry Date: ${posts[i].expiryDate}</small></p>
         <p class="card-text"><small>Shared by: ${posts[i].user.username}</small></p>
+      </div>
+    </div>
+</div>
+`
+    }
+    return htmlCard
+}
+
+
+export function markerPostCards(user) {
+    //language=HTML
+    console.log(user)
+    let htmlCard = ``
+    for (let i = 0; i < user.posts.length; i++) {
+        htmlCard += `
+        <div class="card mb-3 col-3 mx-2" style="max-width: 550px; height: 475px border-radius: 2%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    <div>
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+            <h5 class="card-title">${user.posts[i].itemName}</h5>
+            ${createEventModal(user.posts[i], user.username)}
+        </div>
+        <img src='https://images.pexels.com/photos/235294/pexels-photo-235294.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' class="img-fluid rounded-start my-2" alt="..." id="card-img-home">
+        <p class="card-text" style="height: 40px">${user.posts[i].description}</p>
+        <p class="card-text"><small>Quantity: ${user.posts[i].quantity}</small></p>
+        <p class="card-text"><small>Expiry Date: ${user.posts.expiryDate}</small></p>
+        <p class="card-text"><small>Shared by: ${user.username}</small></p>
       </div>
     </div>
 </div>
