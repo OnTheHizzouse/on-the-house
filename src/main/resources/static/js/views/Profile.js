@@ -15,7 +15,7 @@ export default function Profile(props) {
         <body>
         <!-- ************************************************************************************* PROFILE PHOTO STARTED -->
 
-        <div class="card mx-auto mt-2 col-6 justify-content-center" >
+        <div class="card mx-auto mt-2 col-6 justify-content-center">
             <div class="card-body">
                 <div class="d-flex flex-column mx-auto align-items-center text-center">
                     <img src="pieguy2.png" alt="Admin"
@@ -31,7 +31,7 @@ export default function Profile(props) {
         <!-- ************************************************************************************* PROFILE PHOTO STOP -->
 
         <!-- ************************************************************************************* PROFILE LINKS START -->
-        <div class="card mx-auto mb-2 mt-2 col-10 justify-content-center"> 
+        <div class="card mx-auto mb-2 mt-2 col-10 justify-content-center">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 class="mb-0">
@@ -122,12 +122,14 @@ export default function Profile(props) {
         </div>
         <!-- ************************************************************************************* PROFILE INFO END -->
         <div>
-            <div class="row">
+
+            <div class="row justify-content-center">
                 ${myPostCards(props.posts)}
             </div>
+            
         </div>
         <!--                ********************************************-->
-       
+
         </body>
     `;
 
