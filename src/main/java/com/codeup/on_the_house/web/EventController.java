@@ -26,7 +26,7 @@ public class EventController {
     }
 
 //    ******** GET ALL EVENTS *******
-    @GetMapping("/getall")
+    @GetMapping
     public List<Event>getAll(){
         System.out.println("All events retrieved.");
         return eventService.getAllEvents();

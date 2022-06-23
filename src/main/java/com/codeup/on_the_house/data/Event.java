@@ -30,7 +30,7 @@ public class Event {
     @JsonIgnoreProperties({"events"})
     private User user;
 
-    @OneToOne
+    @ManyToOne
     @JsonIgnoreProperties({"events"})
     private Post post;
 
