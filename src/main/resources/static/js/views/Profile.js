@@ -10,6 +10,7 @@ export default function Profile(props) {
     console.log("This is the Profile page");
     console.log(props)
     console.log(props.posts)
+    profileProps = props;
 // language=html
     return `
         <body>
@@ -123,8 +124,8 @@ export default function Profile(props) {
         <!-- ************************************************************************************* PROFILE INFO END -->
         <div>
 
-            <div class="row justify-content-center">
-                ${myPostCards(props.posts)}
+            <div id="profileCards" class="row justify-content-center">
+                ${myPostCards(profileProps.posts)}
             </div>
             
         </div>
@@ -136,6 +137,8 @@ export default function Profile(props) {
 }
 
 export function userPostEvents() {
+    $('body').css("background", "none");
+    $('body').css("background-color", "#FBFAF2")
     deletePostListener();
     saveEditsPostListener();
 }
@@ -179,11 +182,19 @@ function saveEditsPostListener() {
 
         fetch(`${postUrl}/${postId}`, request)
             .then(res => {
-                location.reload();
+                // location.reload();
+                $('#profileCards').html('');
+                // myPostCards(profileProps.posts);
+            })
+            .then(res => {
+                $('#profileCards').html(`${myPostCards(profileProps.posts)}`);
             })
             .catch(err => console.log(err));
     })
 }
+
+var userContinue = 0;
+var profileProps;
 
 //********** DELETE POST FUNCTION *************
 function deletePostListener() {
@@ -193,18 +204,22 @@ function deletePostListener() {
         confirmAction();
         const id = $(this).data("id");
 
-        const request = {
-            method: "DELETE"
-        }
+        if (userContinue === 0) {
+            const request = {
+                method: "DELETE"
+            }
 
-        fetch(`${postUrl}/${id}`, request)
-            .then(res => {
-                console.log(res.status);
-            }).catch(error => {
-            console.log(error);
-        }).finally(() => {
-            location.reload()
-        })
+            fetch(`${postUrl}/${id}`, request)
+                .then(res => {
+                    console.log(res.status);
+                }).catch(error => {
+                console.log(error);
+            }).finally(() => {
+                location.reload()
+            })
+        } else {
+            return null;
+        }
         //CAUSING ERRORS WHEN UNCOMMENTED...FOR NOW JUST IMPLEMENTING PAGE RELOAD
         //     .finally(() => {
         //     createView("/profile")
@@ -220,8 +235,10 @@ function showAlert() {
 function confirmAction() {
     let confirmAction = confirm("Would you like to delete this post?");
     if (confirmAction) {
+        userContinue = 0;
         alert("Post deleted");
     } else {
+        userContinue = 1;
         alert("Canceled");
     }
 
