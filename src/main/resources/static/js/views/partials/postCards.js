@@ -2,7 +2,7 @@ import {createEventModal, editPostModal} from "./modals.js";
 
 export function postCards(posts) {
     //language=HTML
-    console.log(posts)git
+    console.log(posts)
     let htmlCard = ``
     for (let i = 0; i < posts.length; i++) {
         htmlCard += `
