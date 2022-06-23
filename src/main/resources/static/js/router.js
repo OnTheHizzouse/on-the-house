@@ -4,6 +4,7 @@ import Loading from "./views/Loading.js";
 import Home, {homepageEvent} from "./views/Home.js";
 import Profile, {userPostEvents} from "./views/Profile.js";
 import Events from "./views/Events.js";
+import About from "./views/About.js";
 
 
 /**
@@ -12,6 +13,7 @@ import Events from "./views/Events.js";
  * @returns {*}
  */
 export default function router(URI) {
+
     const routes = {
         '/': {
             returnView: Splash,
@@ -59,6 +61,13 @@ export default function router(URI) {
                 },
             uri: '/events',
             title: "Events"
+        },
+        '/about':{
+            returnView: About,
+            state: {
+            },
+            uri: '/about',
+            title: "About",
         }
     };
 
