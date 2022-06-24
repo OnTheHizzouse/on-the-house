@@ -13,9 +13,3 @@ VALUES (3, 'Asparagus', 'Totally not rotten', 'https://images.pexels.com/photos/
        (2, 'Red Energy Drink', 'Amazon bootleg energy that tastes like red.', 'https://images.pexels.com/photos/235294/pexels-photo-235294.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', '25:08:19', 4),
        (1, 'KFC Chicken', 'It''s finger linkin'' good.', 'https://images.pexels.com/photos/235294/pexels-photo-235294.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', '22:12:25', 8),
        (2, 'Apples', 'Bag of apples, real apples not computer apple.', 'https://images.pexels.com/photos/235294/pexels-photo-235294.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', '22:01:05', 5);
-
-
-use oth_db;
-select *
-from posts
-where status='OPEN';

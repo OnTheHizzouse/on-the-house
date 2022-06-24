@@ -76,6 +76,11 @@ var currentUserGeoJson = [];
 var postsOfUsersWithin5Miles = [];
 
 // [-79.4512, 43.6568]
+
+
+//Waits for the div with the id of map then add the map from mapbox to it. Then it calls the function that creates the marker
+//and places those markers in the correct location. Finally, if one of the marker are clicked it will call get allAllUserPost to
+//get all the clicked user posts.
 function initMap(lng, lat) {
     waitForElm('#map').then((elm) => {
         mapboxgl.accessToken = KEY_mapbox;
@@ -101,33 +106,39 @@ waitForElm('#OTH').then((elm) => {
     // $('#OTH').attr("src", "../views/img/othNavImg.png")
 })
 
+//sets the user of props to a var to be used in other functions
 function getUserProps(props) {
     userProps = props;
     return `<span></span>`
 }
 
+//sets the post of props to a var to be used in  other functions
 function getprops(props) {
     postProps = props;
     return `<span></span>`
 }
 
+//waits for the tag with the id of cards then create all the cards of post
 function startCards(props) {
     waitForElm('#cards').then((elm) => {
         $('#cards').html(postCards(props))
     })
 }
 
+//updates the cards when the marker is clicked on
 function currentMarkerPostCards(user){
     waitForElm("#cards").then((elm)=>{
         $('#cards').html(markerPostCards(user))
     })
 }
 
+//events that run when the page is loaded
 export function homepageEvent() {
     $('body').css("background", "none");
     $('body').css("background-color", "#FBFAF2")
     emptyTheArray()
     savePostEventListener();
+    saveEventInfo()
     cancelBtnEventListener();
     searchPostsByItemNameEventListener();
     initMap(userProps.coordinates.split(',')[1], userProps.coordinates.split(',')[0]);
@@ -137,6 +148,7 @@ export function homepageEvent() {
     getPostsOfUsersWithin5Miles(usersWithin5Miles)
 }
 
+//clears the fields of the post modal will eventually clear the event modal too
 function clearModalFields() {
     $('#create-item-name').val("")
     $('#create-description').val("")
@@ -145,6 +157,7 @@ function clearModalFields() {
     $('#create-quantity').val("")
 }
 
+//check what value of the searchbar is as the user types and updates the cards based on the results
 function searchPostsByItemNameEventListener() {
     $('#search-by-item-name-input').keyup(function (e) {
         let itemNameToSearch = $('#search-by-item-name-input').val();
@@ -180,12 +193,14 @@ function searchPostsByItemNameEventListener() {
     })
 }
 
+//calls the clearModalFields when the cancel-btn of the post modal is clicked
 function cancelBtnEventListener() {
     $(document).on('click', '#cancel-btn', function (e) {
         clearModalFields();
     })
 }
 
+//gets the values in the modal and calls the function that saves the post then clear out the fields
 function savePostEventListener() {
     $(document).on('click', '#create-post-btn', function (e) {
         let currentUser = $('#create-post-btn').data('id');
@@ -206,6 +221,7 @@ function savePostEventListener() {
     })
 }
 
+//saves the info to the backend
 function savePostFetch(username, reqBody) {
     console.log(username)
     console.log(reqBody)
@@ -222,6 +238,7 @@ function savePostFetch(username, reqBody) {
         .catch(err => console.log(err))
 }
 
+//check to see if there are users in  a set range of the current user
 function findUsersWithinRange() {
     let users = [];
     let currentUserLng = userProps.coordinates.split(',')[1];
@@ -241,6 +258,7 @@ function findUsersWithinRange() {
     return usersWithin5Miles
 }
 
+//remove any duplicate user
 function removeDuplicates(originalArray, prop) {
     var newArray = [];
     var lookupObject = {};
@@ -274,6 +292,7 @@ function distanceInMiBetweenEarthCoordinates(lat1, lon1, lat2, lon2) {
     return earthRadiusMi * c;
 }
 
+//creates the geoJson of the users within 5 miles for the marker to user
 function createGeoJsonForMarkers(arrayOfUsers) {
     geoJson = {
         type: "FeatureCollection",
@@ -300,6 +319,7 @@ function createGeoJsonForMarkers(arrayOfUsers) {
     return geoJson;
 }
 
+//uses the geoJson of the user within 5 miles to create the markers at theses location
 function addUserMarkersToMap(geoJsonData, map) {
     console.log(geoJsonData)
     for (const feature of geoJsonData.features) {
@@ -323,6 +343,7 @@ function addUserMarkersToMap(geoJsonData, map) {
     }
 }
 
+//creates the geoJson of the current users location
 function createGeoJsonForActiveUser() {
     currentUserGeoJson = {
         type: "FeatureCollection",
@@ -346,6 +367,7 @@ function createGeoJsonForActiveUser() {
     return currentUserGeoJson
 }
 
+//uses the geoJson of the current user to create a marker at that location
 function addActiveUserMarkersToMap(geoJsonData, map) {
     for (const feature of geoJsonData.features) {
 // create a HTML element for each feature
@@ -367,6 +389,7 @@ function addActiveUserMarkersToMap(geoJsonData, map) {
     }
 }
 
+// gets all post of a specific user
 function getAllUserPost(userId) {
     const options = {
         headers: {
@@ -385,6 +408,7 @@ function getAllUserPost(userId) {
         })
 }
 
+//gets all the post of the user within 5 miles
 function getPostsOfUsersWithin5Miles(arrayOfUsers) {
     const options = {
         headers: {
@@ -408,8 +432,28 @@ function getPostsOfUsersWithin5Miles(arrayOfUsers) {
     }
 }
 
+//empty's the global  arrays
 function emptyTheArray() {
     usersWithin5Miles = []
     currentUserGeoJson = []
     postsOfUsersWithin5Miles = []
+}
+
+function saveEventInfo(){
+    $(document).on("click", "#create-event-btn", function (e){
+        e.preventDefault();
+        console.log("this button has been click")
+        let postId = $(this).data("id")
+        let postOwner = $(this).data("name")
+        let currentUser = userProps.username
+        const eventReqBody={
+            meetupDate: $(`#meet-date${postId}`).val(),
+            meetupTime:$(`#meet-time${postId}`).val(),
+            meetupLocation:$(`#meetUp${postId}`).val()
+        }
+        console.log(currentUser)
+        console.log(postId)
+        console.log(postOwner)
+        console.log(eventReqBody)
+    })
 }

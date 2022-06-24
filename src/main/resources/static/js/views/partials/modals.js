@@ -119,18 +119,18 @@ Request
       </div>
       <div class="modal-body">
        <label for="meet-date"><b>Meet up date::</b></label>
-      <input class="inputFields" placeholder="yyyy-mm-dd" name="meet-date" id="meet-date">
+      <input class="inputFields" placeholder="yyyy-mm-dd" name="meet-date" id="meet-date${postId}">
       <br>
 
        <label for="meet-time"><b>Meet up time:</b></label>
-      <input class="inputFields" placeholder="hh:tt" name="meet-time" id="meet-time"  required>
+      <input class="inputFields" placeholder="hh:tt" name="meet-time" id="meet-time${postId}"  required>
       <br>
         <label ><b>Meet up location:</b></label>
-       <textarea class="inputFields"  rows="4" cols="50" placeholder="Put the location that you would like to meet up" id="meetUp"></textarea>
+       <textarea class="inputFields"  rows="4" cols="50" placeholder="Put the location that you would like to meet up" id="meetUp${postId}"></textarea>
        
       <div class="modal-footer">
 
-        <button type="button" class="btn btn-primary"  data-id="${postId}" id="create-post-btn" data-bs-dismiss="modal" >Save Post</button>
+        <button type="button" class="btn btn-primary"  data-id="${postId}" data-name="${username}" id="create-event-btn" data-bs-dismiss="modal" >Save Post</button>
       </div>
     </div>
   </div>
