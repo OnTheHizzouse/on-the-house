@@ -1,6 +1,5 @@
 package com.codeup.on_the_house.data;
 
-import com.codeup.on_the_house.service.PostService;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.*;
@@ -9,7 +8,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name="donor_events")
 @DynamicUpdate
-public class Event {
+public class DonorEvent {
 
 
 //    ********* EVENT PROPERTIES *********
@@ -32,9 +31,9 @@ public class Event {
     @JsonIgnoreProperties({"donor_events", "password"})
     private User user;
 
-    @ManyToOne
-    @JsonIgnoreProperties({"donor_events", "posts", "password"})
-    private User requester;
+//    @ManyToOne
+//    @JsonIgnoreProperties({"donor_events", "posts", "password"})
+//    private User requester;
 
 //    @ManyToOne
 //    @JsonIgnoreProperties({"events"})
@@ -45,7 +44,7 @@ public class Event {
 
 //    *********** CONSTRUCTOR *************
 
-    public Event(Long id, Long postId, LocalDate meetupDate, String meetupTime, String meetupLocation, Status status) {
+    public DonorEvent(Long id, Long postId, LocalDate meetupDate, String meetupTime, String meetupLocation, Status status) {
         this.id = id;
         this.postId = postId;
         this.meetupDate = meetupDate;
@@ -58,7 +57,7 @@ public class Event {
 
 //    CONSTRUCTOR WITH NO ID PROP
 
-    public Event(Long postId, LocalDate meetupDate, String meetupTime, String meetupLocation, Status status) {
+    public DonorEvent(Long postId, LocalDate meetupDate, String meetupTime, String meetupLocation, Status status) {
         this.postId = postId;
         this.meetupDate = meetupDate;
         this.meetupTime = meetupTime;
@@ -68,7 +67,7 @@ public class Event {
 
 //    EMPTY CONSTRUCTOR
 
-    public Event() {
+    public DonorEvent() {
     }
 
 
@@ -83,13 +82,13 @@ public class Event {
         this.user = user;
     }
 
-    public User getRequester() {
-        return requester;
-    }
-
-    public void setRequester(User requester) {
-        this.requester = requester;
-    }
+//    public User getRequester() {
+//        return requester;
+//    }
+//
+//    public void setRequester(User requester) {
+//        this.requester = requester;
+//    }
 
     public Long getPostId() {
         return postId;
@@ -148,7 +147,7 @@ public class Event {
 
     @Override
     public String toString() {
-        return "Event{" +
+        return "DonorEvent{" +
                 "id=" + id +
                 ", meetupDate=" + meetupDate +
                 ", meetupTime='" + meetupTime + '\'' +

@@ -40,7 +40,7 @@ public class Post {
 //    ***** EVENT OBJECT *******
 //    @OneToOne
 //    @JsonIgnoreProperties({"posts"})
-//    private Event event;
+//    private DonorEvent event;
 
 //    ***** constructor *******
 
@@ -66,7 +66,7 @@ public class Post {
     }
 
 //    ******** getters and setters *******
-//    ******* User and Event*********
+//    ******* User and DonorEvent*********
 
 
     public User getUser() {
@@ -77,11 +77,11 @@ public class Post {
         this.user = user;
     }
 
-//    public Event getEvent() {
+//    public DonorEvent getEvent() {
 //        return event;
 //    }
 //
-//    public void setEvent(Event event) {
+//    public void setEvent(DonorEvent event) {
 //        this.event = event;
 //    }
 
