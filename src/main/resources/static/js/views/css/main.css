@@ -104,6 +104,8 @@ span.psw {
     border-radius: 5%;
 }
 
+
+
 /*Marker for use in homepage text*/
 #postmarker {
     height: 40px;
@@ -217,13 +219,35 @@ span.psw {
     border-radius: 10px;
 }
 
-.card-img-produce{
-    width: 170vh;
-    height: 50vh;
+.card-img-mission{
+    /*width: 150vh;*/
+    /*height: 50vh;*/
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.github-btn{
+    width: 25px;
+    height: 25px
+}
 
+.linkedin-btn{
+    width: 25px;
+    height: 25px
+}
+
+.card-img-top{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.nav-dividers{
+    font-size: xx-large;
+    font-weight: lighter;
+}
+
+.about-me-mini-bios{
+    justify-content: center;
+    align-content: center;
+}
 @media only screen and (max-width: 550px) {
     .container {
         grid-template-columns: 1fr;
