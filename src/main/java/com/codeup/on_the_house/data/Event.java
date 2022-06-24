@@ -83,14 +83,6 @@ public class Event {
         this.user = user;
     }
 
-//    public Post getPost() {
-//        return post;
-//    }
-//
-//    public void setPost(Post post) {
-//        this.post = post;
-//    }
-
     public User getRequester() {
         return requester;
     }
@@ -99,10 +91,6 @@ public class Event {
         this.requester = requester;
     }
 
-
-//    *******************
-
-
     public Long getPostId() {
         return postId;
     }
@@ -110,6 +98,9 @@ public class Event {
     public void setPostId(Long postId) {
         this.postId = postId;
     }
+
+    //    *******************
+
 
     public Long getId() {
         return id;

@@ -32,13 +32,15 @@ public class EventController {
         System.out.println("All events retrieved.");
         return eventService.getAllEvents();
     }
-
+//    ******* GET EVENT BY ID *********
     @GetMapping("{id}")
     public Event getById(@PathVariable Long id){
         System.out.println("Event with ID of: " + id + " retrieved.");
         return eventService.getEventById(id);
     }
 
+//    ******* CREATE AND EVENT *********
+//    EVENT IS CREATED BY REQUESTER, POST ID IS ASSOCIATED WITH POST OWNER BY USERNAME
     @PostMapping("{username}/{requesterName}/{postId}")
     private void addNewEvent(@RequestBody CreateEventDTO createEventDTO, @PathVariable String username,
                              @PathVariable String requesterName, @PathVariable Long postId){

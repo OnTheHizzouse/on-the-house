@@ -22,6 +22,7 @@ public class EventService {
     }
 
 //    ******* USER EVENT ASSOCIATION *******
+//    EVENT IS CREATED BY REQUESTER, POST ID IS ASSOCIATED WITH POST OWNER BY USERNAME
     public void createEvent (CreateEventDTO dto, Event newEvent, String username, String requesterName, Long postId) {
         User user = userService.getUserByUsername(username);
         User requester = userService.getUserByUsername(requesterName);
