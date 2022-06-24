@@ -34,11 +34,13 @@ CREATE TABLE posts
 CREATE TABLE events
 (
     id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    requester_id BIGINT NOT NULL REFERENCES users(id),
-    user_id BIGINT NOT NULL REFERENCES users(id),
+    requester_id BIGINT NOT NULL,
+    user_id BIGINT NOT NULL,
     post_id BIGINT NOT NULL,
     meetup_date DATE NOT NULL,
     meetup_time VARCHAR(8) NOT NULL,
     meetup_location VARCHAR(200),
-    status VARCHAR(20) NOT NULL
+    status VARCHAR(20) NOT NULL,
+    FOREIGN KEY (requester_id) REFERENCES users(id),
+    FOREIGN KEY (user_id)  REFERENCES users(id)
 );

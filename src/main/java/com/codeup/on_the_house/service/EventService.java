@@ -32,8 +32,8 @@ public class EventService {
         newEvent.setMeetupTime(dto.getMeetupTime());
         newEvent.setMeetupLocation(dto.getMeetupLocation());
 
-        user.getEvents().add(newEvent);
         requester.getEvents().add(newEvent);
+        user.getEvents().add(newEvent);
 
         newEvent.setUser(user);
         newEvent.setRequester(requester);
