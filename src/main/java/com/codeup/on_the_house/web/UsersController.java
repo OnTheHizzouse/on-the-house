@@ -49,4 +49,10 @@ public class UsersController {
         System.out.println("User with an ID of " + id + " retrieved.");
         return userService.getUserId(id);
     }
+
+    @PutMapping("{id}")
+    public void editUserInfo(@PathVariable Long id, @RequestBody User editedUser) {
+        System.out.println("User with an ID of " + id + " has been modified");
+        userService.editUser(id, editedUser);
+    }
 }

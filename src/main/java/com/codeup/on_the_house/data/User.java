@@ -60,6 +60,16 @@ public class User {
         this.address = address;
     }
 
+    public User(String firstName, String lastName, String username, String email, String phoneNumber, String address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+    }
+
+
     public User() {
     }
 

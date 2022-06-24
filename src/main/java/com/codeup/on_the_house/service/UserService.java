@@ -26,7 +26,7 @@ public class UserService {
                 createUserDTO.getPassword(),
                 createUserDTO.getPhoneNumber(),
                 createUserDTO.getCoordinates(),
-        createUserDTO.getAddress()));
+                createUserDTO.getAddress()));
     }
 
     public List<User> getAllUsers(){
@@ -55,4 +55,36 @@ public class UserService {
         return usersRepository.findById(id).orElseThrow();
     }
 
+    public void editUser (Long userId, User user) {
+        User userToEdit = usersRepository.findById(userId).orElseThrow();
+
+        if(user.getFirstName() != null && !user.getFirstName().isEmpty()){
+            userToEdit.setFirstName(user.getFirstName());
+        }
+        if(user.getLastName() != null && !user.getLastName().isEmpty()) {
+            userToEdit.setLastName(user.getLastName());
+        }
+        if(user.getUsername() != null && !user.getUsername().isEmpty()) {
+            userToEdit.setUsername(user.getUsername());
+        }
+        if(user.getEmail() != null && !user.getEmail().isEmpty()) {
+            userToEdit.setEmail(user.getEmail());
+        }
+        if(user.getPhoneNumber() != null && !user.getPhoneNumber().isEmpty()) {
+            userToEdit.setPhoneNumber(user.getPhoneNumber());
+        }
+        if(user.getAddress() != null && !user.getAddress().isEmpty()) {
+            userToEdit.setAddress(user.getAddress());
+        }
+
+        usersRepository.save(userToEdit);
+    }
+
+    public void editUserCoordinates(Long userId, User user) {
+        User userToEdit = usersRepository.findById(userId).orElseThrow();
+
+        userToEdit.setCoordinates(user.getCoordinates());
+
+        usersRepository.save(user);
+    }
 }
