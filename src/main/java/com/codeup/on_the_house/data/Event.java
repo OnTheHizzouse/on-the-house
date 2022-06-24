@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name="events")
+@Table(name="donor_events")
 @DynamicUpdate
 public class Event {
 
@@ -29,11 +29,11 @@ public class Event {
     }
 
     @ManyToOne
-    @JsonIgnoreProperties({"events", "password"})
+    @JsonIgnoreProperties({"donor_events", "password"})
     private User user;
 
     @ManyToOne
-    @JsonIgnoreProperties({"events", "posts", "password"})
+    @JsonIgnoreProperties({"donor_events", "posts", "password"})
     private User requester;
 
 //    @ManyToOne
