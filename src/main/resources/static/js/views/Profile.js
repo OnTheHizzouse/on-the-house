@@ -1,7 +1,9 @@
 import {getHeaders} from "../auth.js";
 import {myPostCards, postCards} from "./partials/postCards.js";
+import {editUserProfileModal} from "./partials/modals.js";
 
 const postUrl = "http://localhost:8080/api/posts"
+const profileEditURL = "http://localhost:8080/api/users"
 let postId = "";
 
 
@@ -17,10 +19,19 @@ export default function Profile(props) {
             <div style="width: 80%">
                 <div class="row">
                     <div class="col-sm-3">
+                            <h5 class="mb-0">Username</h5>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        ${profileProps.user.username}
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
                         <h5 class="mb-0">Full Name</h5>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        <p>${profileProps.user.firstName} ${profileProps.user.lastName}</p>
+                        <p class="mb-0">${profileProps.user.firstName} ${profileProps.user.lastName}</p>
                     </div>
                 </div>
                 <hr>
@@ -50,6 +61,9 @@ export default function Profile(props) {
                         ${profileProps.user.address}
                     </div>
                 </div>
+                <div class="my-3 d-flex justify-content-end">
+                    ${editUserProfileModal(profileProps.user)}
+                </div>
             </div>
         </div>
 
@@ -62,11 +76,15 @@ export default function Profile(props) {
 
 }
 
+var userContinue = 0;
+var profileProps;
+
 export function userPostEvents() {
     $('body').css("background", "none");
     $('body').css("background-color", "#FBFAF2")
     deletePostListener();
     saveEditsPostListener();
+    saveProfileEventListener();
 }
 
 
@@ -85,6 +103,7 @@ function saveEditsPostListener() {
         const postExpiryDate = $(`#expiryDate-${postId}`).val();
         const postQuantity = $(`#quantity-${postId}`).val();
 
+
         // let editedPost{
         //
         // }
@@ -99,8 +118,7 @@ function saveEditsPostListener() {
                 description: postDescription,
                 itemPhoto: postPhoto,
                 expiryDate: postExpiryDate,
-                quantity: postQuantity
-
+                quantity: postQuantity,
             })
         };
         console.log(request);
@@ -108,19 +126,11 @@ function saveEditsPostListener() {
 
         fetch(`${postUrl}/${postId}`, request)
             .then(res => {
-                // location.reload();
-                $('#profileCards').html('');
-                // myPostCards(profileProps.posts);
-            })
-            .then(res => {
-                $('#profileCards').html(`${myPostCards(profileProps.posts)}`);
+                location.reload();
             })
             .catch(err => console.log(err));
     })
 }
-
-var userContinue = 0;
-var profileProps;
 
 //********** DELETE POST FUNCTION *************
 function deletePostListener() {
@@ -150,6 +160,62 @@ function deletePostListener() {
         //     .finally(() => {
         //     createView("/profile")
         // })
+    })
+}
+
+//*******************EDIT POSTS FUNCTION**********************
+function saveProfileEventListener() {
+    $(document).on("click", "#save-edit-profile-btn", function (e) {
+        e.preventDefault();
+        console.log("Save Profile Button has been clicked");
+
+
+        let userId = $(this).data("id");
+
+
+        const profileUsername = $(`#username-${userId}`).val();
+        const profileFirstName = $(`#first-name-${userId}`).val();
+        const profileLastName = $(`#last-name-${userId}`).val();
+        const profileEmail = $(`#email-${userId}`).val();
+        const profilePhoneNumber = $(`#phone-number-${userId}`).val();
+        const geoCoderCoordinates = $('#result').text();
+        const geoCoderAddress = $('#address').text();
+        let coordinates = geoCoderCoordinates.replace('"',"")
+        let address = geoCoderAddress.replace('"', "")
+
+        console.log($(this).data("coordinates"));
+
+        if(address === "" || address === null || coordinates === null) {
+            address = $(this).data("address");
+            coordinates = $(this).data("coordinates");
+        }
+
+        console.log(address);
+
+        const reqBody = {
+            username: profileUsername,
+            firstName: profileFirstName,
+            lastName: profileLastName,
+            email: profileEmail,
+            phoneNumber: profilePhoneNumber,
+            address: address,
+            coordinates: coordinates
+        }
+
+        console.log("REQUEST BODY")
+        console.log(reqBody)
+
+        const request = {
+            method: "PUT",
+            headers: getHeaders(),
+            body: JSON.stringify(reqBody)
+        }
+        console.log("REQUEST HERE")
+        console.log(request);
+
+        fetch(`${profileEditURL}/${userId}`, request)
+            .then(location.reload)
+            .catch(err => console.log(err));
     })
 }
 

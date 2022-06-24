@@ -77,14 +77,8 @@ public class UserService {
             userToEdit.setAddress(user.getAddress());
         }
 
-        usersRepository.save(userToEdit);
-    }
-
-    public void editUserCoordinates(Long userId, User user) {
-        User userToEdit = usersRepository.findById(userId).orElseThrow();
-
         userToEdit.setCoordinates(user.getCoordinates());
 
-        usersRepository.save(user);
+        usersRepository.save(userToEdit);
     }
 }
