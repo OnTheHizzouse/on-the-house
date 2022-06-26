@@ -2,7 +2,7 @@ export function createPostModal(username) {
     //language=HTML
     let htmlModal = ``
     htmlModal += `
-<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#postModal" id="createPostBtn">
+<button type="button" class="btn blue-btn" data-bs-toggle="modal" data-bs-target="#postModal" id="createPostBtn">
 Create Post
 </button>
 <div class="modal" tabindex="-1" id="postModal">
@@ -48,7 +48,7 @@ export function editPostModal(post) {
     //language=HTML
     let html = ``;
     html += `
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit-${post.id}">
+    <button type="button" class="btn blue-btn" data-bs-toggle="modal" data-bs-target="#edit-${post.id}">
         Edit Post
     </button>
 
@@ -146,7 +146,7 @@ export function editUserProfileModal(user) {
     //language=HTML
     let html = ``;
     html += `
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit-${user.id}">
+    <button type="button" class="btn blue-btn" data-bs-toggle="modal" data-bs-target="#edit-${user.id}">
         Edit Profile
     </button>
 
