@@ -76,7 +76,6 @@ export function landingCards(posts) {
         <p class="card-text" style="height: 60px">${posts[i].description}</p>
         <p class="card-text"><small>Quantity: ${posts[i].quantity}</small></p>
         <p class="card-text"><small>Expiry Date: ${posts[i].expiryDate}</small></p>
-        <p class="card-text"><small>Shared by: ${posts[i].user.username}</small></p>
       </div>
     </div>
 </div>
@@ -84,3 +83,6 @@ export function landingCards(posts) {
     }
     return htmlCard
 }
+
+// <p className="card-text"><small>Shared by: ${posts[i].user.username}</small></p>
+

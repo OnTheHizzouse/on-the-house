@@ -94,9 +94,9 @@ function initMap(lng, lat) {
         map.dragPan.disable();
         addUserMarkersToMap(geoJson, map);
         // addActiveUserMarkersToMap(currentUserGeoJson, map);
-        // $(".marker").click(function () {
-        //     getAllUserPost(this.id)
-        // })
+        $(".marker").click(function () {
+            getAllUserPost(this.id)
+        })
     })
 }
 
@@ -198,7 +198,7 @@ function changeNavbarLanding() {
     $('#nav-home').attr('href', '/landing');
     $('#nav-profile').attr('href', '/');
     $('#nav-events').attr('href', '/');
-    $('#nav-about').attr('href', '/');
+    $('#nav-about').html(`<a class="nav-link mr-5" href="/" id="nav-about" data-link>LOGIN/REGISTER</a>`);
 }
 
 function searchPostsByItemNameEventListener() {
@@ -234,4 +234,21 @@ function searchPostsByItemNameEventListener() {
         }
 
     })
+}
+
+function getAllUserPost(userId) {
+    const options = {
+        headers: {
+            "Content-Type": "application/json"
+        },
+        method: 'GET'
+    }
+    fetch(`http://localhost:8080/api/users/${userId}`, options)
+        .then(res => res.json())
+        .then(data => {
+            startCards(data.posts)
+        })
+        .catch(err => {
+            console.log(err)
+        })
 }
