@@ -303,6 +303,15 @@ img {
 .card-body {
     margin-right: 0 !important;
 }
+
+.the-great-assist{
+    font-family: 'Oswald', sans-serif;
+
+}
+
+.meet-the-team{
+    font-family: 'Oswald', sans-serif;
+}
 /***************************************BREAK POINTS**************/
 
 /*@media (max-width: 575px) {*/
