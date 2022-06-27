@@ -452,13 +452,22 @@ function saveEventInfo(){
         let postOwner = $(this).data("name")
         let currentUser = userProps.username
         const eventReqBody={
-            meetupDate: $(`#meet-date${postId}`).val(),
+            meetupDate: $(`#meet-date${postId}`).val().split("-").reverse().join("-"),
             meetupTime:$(`#meet-time${postId}`).val(),
             meetupLocation:$(`#meetUp${postId}`).val()
         }
-        console.log(currentUser)
-        console.log(postId)
-        console.log(postOwner)
-        console.log(eventReqBody)
+        const options = {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: 'POST',
+            body: JSON.stringify(eventReqBody)
+        }
+        fetch(`http://localhost:8080/api/requester/events/createDonorEvent/${postOwner}/${currentUser}/${postId}`,options)
+            .then(fetch(`http://localhost:8080/api/requester/events/createRequesterEvent/${postOwner}/${currentUser}/${postId}`,options))
+            .catch(err=> console . log(err))
+            .catch(err => console.log(err))
+            .finally(setTimeout(location.reload(), 5000))
+
     })
 }
