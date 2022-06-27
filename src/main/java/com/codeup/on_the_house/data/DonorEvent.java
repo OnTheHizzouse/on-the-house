@@ -28,12 +28,12 @@ public class DonorEvent {
     }
 
     @ManyToOne
-    @JsonIgnoreProperties({"donor_events", "password"})
+    @JsonIgnoreProperties({"user", "donorEvent", "password", "requesterEvents"})
     private User user;
 
-//    @ManyToOne
-//    @JsonIgnoreProperties({"donor_events", "posts", "password"})
-//    private User requester;
+    @ManyToOne
+    @JsonIgnoreProperties({"requester", "donorEvents", "posts", "password", "requesterEvents"})
+    private User requester;
 
 //    @ManyToOne
 //    @JsonIgnoreProperties({"events"})
@@ -82,13 +82,13 @@ public class DonorEvent {
         this.user = user;
     }
 
-//    public User getRequester() {
-//        return requester;
-//    }
-//
-//    public void setRequester(User requester) {
-//        this.requester = requester;
-//    }
+    public User getRequester() {
+        return requester;
+    }
+
+    public void setRequester(User requester) {
+        this.requester = requester;
+    }
 
     public Long getPostId() {
         return postId;

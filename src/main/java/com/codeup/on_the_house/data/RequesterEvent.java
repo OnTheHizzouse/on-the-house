@@ -30,11 +30,11 @@ public class RequesterEvent {
     }
 
     @ManyToOne
-    @JsonIgnoreProperties({"requester_events", "password"})
+    @JsonIgnoreProperties({"requesterEvents", "password", "donorEvent"})
     private User user;
 
     @ManyToOne
-    @JsonIgnoreProperties({"requester_events", "posts", "password"})
+    @JsonIgnoreProperties({"requesterEvents", "posts", "password"})
     private User donor;
 
 
