@@ -3,7 +3,7 @@ import Error404 from "./views/Error404.js";
 import Loading from "./views/Loading.js";
 import Home, {homepageEvent} from "./views/Home.js";
 import Profile, {userPostEvents} from "./views/Profile.js";
-import Events from "./views/Events.js";
+import Events, {eventsEvents} from "./views/Events.js";
 import Landing, {LandingEvents} from "./views/Landing.js";
 
 import About from "./views/About.js";
@@ -63,8 +63,8 @@ export default function router(URI) {
             state: {
                 },
             uri: '/events',
-
             title: "Events",
+            viewEvent: eventsEvents
         },
         '/':{
             returnView: Landing,

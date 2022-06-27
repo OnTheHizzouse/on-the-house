@@ -1,5 +1,5 @@
 import {getHeaders} from "../auth.js";
-import {myPostCards, postCards} from "./partials/postCards.js";
+import {myPostCards} from "./partials/postCards.js";
 import {editUserProfileModal} from "./partials/modals.js";
 
 const postUrl = "http://localhost:8080/api/posts"
