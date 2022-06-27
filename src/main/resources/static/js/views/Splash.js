@@ -22,7 +22,7 @@ export default function Splash(props) {
             <form id="box">
                 <div class="container row-2 align-content-center ">
                     <div class="container m-2 ">
-                        <div><img id="OTH" src="js/views/img/OTHLogo.png" alt="Oth logo"></div>
+                        <div><img id="OTH" src="js/views/img/OTHLogo(final).png" alt="Oth logo" ></div>
                         <div>
                             <h1>Join Us!</h1>
                             <p>As a community sharing application we foster the exchange of goods with the goal of
@@ -33,7 +33,7 @@ export default function Splash(props) {
                                 and cooperation.</p>
                         </div>
                     </div>
-                    
+
                     <div class="container m-2">
                         <label for="email"><b>E-mail</b></label>
                         <input class="inputFields" placeholder="Enter E-mail" name="email" id="email" required>
@@ -41,14 +41,18 @@ export default function Splash(props) {
                         <input class="inputFields" placeholder="Enter Password" name="psw" id="password" type="password"
                                required>
                         <span id="registration-remove-area">
+                            
+                                      <div class="container row justify-content-center mx-auto">
                         <button type="submit" id="login-btn">Login</button>
                     <button type="submit" class="btn btn-primary" id="register-btn">Register</button>
+                                            </div>
+                            
                     </div>
                     <div id="register-fields" class="container m-2"></div>
 
-                    <div class="container m-2 pb-3">
-                        <button type="button" class="cancel-btn">Cancel</button>
-                    </div>
+                    <!--                    <div class="container m-2 pb-3">-->
+                    <!--                        <button type="button" class="cancel-btn">Cancel</button>-->
+                    <!--                    </div>-->
                 </div>
             </form>
         </main>
@@ -110,7 +114,12 @@ function RegisterFields() {
             <div id="result"></div>
             <div id="address"></div>
             <br>
-            <button type="submit" class="btn btn-primary" id="register-btn-two">Register</button>
+            <!--            <button type="submit" class="btn btn-primary" id="register-btn-two">Register</button>-->
+            <div class="container row justify-content-center mx-auto">
+                <button type="submit" class="btn btn-primary" id="register-btn-two">Register</button>
+
+                <button type="button" class="cancel-btn">Cancel</button>
+            </div>
 
         `)
 
@@ -126,7 +135,7 @@ function RegisterEvent() {
         let newEmail = $('#email').val();
         let geoCoderCoordinates = $('#result').text();
         let geoCoderAddress = $('#address').text();
-        let coordinates = geoCoderCoordinates.replace('"',"")
+        let coordinates = geoCoderCoordinates.replace('"', "")
         let address = geoCoderAddress.replace('"', "")
         address = address.replace('"', "")
         console.log(address);
@@ -138,7 +147,7 @@ function RegisterEvent() {
             method: 'GET'
         }
         //checks if email is already being used
-        checkIfEmailExists(newEmail, optionEmailCheck, newPassword, coordinates,address)
+        checkIfEmailExists(newEmail, optionEmailCheck, newPassword, coordinates, address)
 
     })
 }
@@ -154,7 +163,7 @@ function createUserFetch(options) {
 }
 
 //function that checks if email is already being used
-function checkIfEmailExists(checkEmail, options, newPassword,coordinates ,address) {
+function checkIfEmailExists(checkEmail, options, newPassword, coordinates, address) {
 
     fetch(`http://localhost:8080/api/users/email/${checkEmail}`, options)
         .then(res => res.json())
@@ -163,7 +172,7 @@ function checkIfEmailExists(checkEmail, options, newPassword,coordinates ,addres
         })
         .catch(err => {
             //check if newPassword is at least 8 characters long
-            checkPasswordLength(checkEmail, newPassword, coordinates,address)
+            checkPasswordLength(checkEmail, newPassword, coordinates, address)
         })
 }
 
@@ -238,7 +247,7 @@ function removeNavbarSpace() {
     $('#navbarSpace').css("height", "0px")
 }
 
-function splashBackground(){
+function splashBackground() {
     $('body').css('background-color', '')
     $('body').css('background-image', '')
 }
