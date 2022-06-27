@@ -1,15 +1,15 @@
 package com.codeup.on_the_house.web;
 
 
+import com.codeup.on_the_house.data.DonorEvent;
 import com.codeup.on_the_house.data.RequesterEvent;
+import com.codeup.on_the_house.dto.CreateDonorEventDTO;
+import com.codeup.on_the_house.dto.CreateRequesterEventDTO;
 import com.codeup.on_the_house.service.DonorEventService;
 import com.codeup.on_the_house.service.PostService;
 import com.codeup.on_the_house.service.RequesterEventService;
 import com.codeup.on_the_house.service.UserService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,5 +38,17 @@ public class RequesterEventController {
         System.out.println("All requester events retrieved");
         return requesterEventService.getAllRequesterEvents();
     }
+
+    //    ******* CREATE AND EVENT *********
+//    EVENT IS CREATED BY REQUESTER, POST ID IS ASSOCIATED WITH POST OWNER BY USERNAME
+    @PostMapping("{username}/{requesterName}/{postId}")
+    private void addNewEvent(@RequestBody CreateRequesterEventDTO createRequesterEventDTO, @RequestBody CreateDonorEventDTO createDonorEventDTO, @PathVariable String username,
+                             @PathVariable String requesterName, @PathVariable Long postId){
+        RequesterEvent newRequesterEvent = new RequesterEvent();
+        DonorEvent newDonorEvent = new DonorEvent();
+        requesterEventService.createEvent(createRequesterEventDTO, newRequesterEvent, createDonorEventDTO, newDonorEvent, username, requesterName, postId);
+        System.out.println("New event created by: " + requesterName + " for post with ID of: " + postId + " for user: " + username);
+    }
+
 
 }

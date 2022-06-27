@@ -25,6 +25,9 @@ public class RequesterEvent {
     @Enumerated(EnumType.STRING)
     private DonorEvent.Status status = DonorEvent.Status.OPEN;
 
+
+
+
     public enum Status {
         OPEN, CLOSED
     }
@@ -84,6 +87,10 @@ public class RequesterEvent {
     public void setDonor(User donor) {
         this.donor = donor;
     }
+
+    public void setRequester(User requester) {
+    }
+
     //    *******************
 
 
