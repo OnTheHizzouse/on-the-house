@@ -195,10 +195,10 @@ function emptyTheArray() {
 }
 
 function changeNavbarLanding() {
-    $('#nav-home').attr('href', '/landing');
-    $('#nav-profile').attr('href', '/');
-    $('#nav-events').attr('href', '/');
-    $('#nav-about').html(`<a class="nav-link mr-5" href="/" id="nav-about" data-link>LOGIN/REGISTER</a>`);
+    $('#nav-home').attr('href', '/');
+    $('#nav-profile').attr('href', '/login');
+    $('#nav-events').attr('href', '/login');
+    $('#nav-about').html(`<a class="nav-link mr-5" href="/login" id="nav-about" data-link>LOGIN/REGISTER</a>`);
 }
 
 function searchPostsByItemNameEventListener() {

@@ -18,11 +18,11 @@ import About from "./views/About.js";
 export default function router(URI) {
 
     const routes = {
-        '/': {
+        '/login': {
             returnView: Splash,
             state: {},
-            uri: '/',
-            title: 'Splash',
+            uri: '/login',
+            title: 'Login/Register',
             viewEvent: SplashEvents
         },'/error': {
             returnView: Error404,
@@ -66,13 +66,13 @@ export default function router(URI) {
 
             title: "Events",
         },
-        '/landing':{
+        '/':{
             returnView: Landing,
             state: {
                 users: '/api/users',
                 posts: '/api/posts'
             },
-            uri: '/landing',
+            uri: '/',
             title: "Welcome",
             viewEvent: LandingEvents
         },
