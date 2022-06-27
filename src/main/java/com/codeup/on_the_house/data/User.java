@@ -33,8 +33,12 @@ public class User {
     private List<Post> posts = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
-    @JsonIgnoreProperties("user")
-    private List<Event> events = new ArrayList<>();
+    @JsonIgnoreProperties({"user", "requesterEvents"})
+    private List<DonorEvent> donorEvents = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties({"user", "donorEvents", "requesterEvents"})
+    private List<RequesterEvent> requesterEvents =  new ArrayList<>();
 
     //    ******** constructors ********
     public User(Long id, String firstName, String lastName, String username, String email, String password, String phoneNumber, String coordinates,String address) {
@@ -73,12 +77,20 @@ public class User {
         this.posts = posts;
     }
 
-    public List<Event> getEvents() {
-        return events;
+    public List<DonorEvent> getDonorEvents() {
+        return donorEvents;
     }
 
-    public void setEvents(List<Event> events) {
-        this.events = events;
+    public void setDonorEvents(List<DonorEvent> donorEvents) {
+        this.donorEvents = donorEvents;
+    }
+
+    public List<RequesterEvent> getRequesterEvents() {
+        return requesterEvents;
+    }
+
+    public void setRequesterEvents(List<RequesterEvent> requesterEvents) {
+        this.requesterEvents = requesterEvents;
     }
 
     //****************************************
@@ -180,7 +192,7 @@ public class User {
                 ", address='" + address + '\'' +
                 ", role=" + role +
                 ", posts=" + posts +
-                ", events=" + events +
+                ", donorEvents=" + donorEvents +
                 '}';
     }
 }
