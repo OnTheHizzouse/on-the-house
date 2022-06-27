@@ -80,6 +80,7 @@ var userContinue = 0;
 var profileProps;
 
 export function userPostEvents() {
+
     $('body').css("background", "none");
     $('body').css("background-color", "#FBFAF2")
     deletePostListener();
