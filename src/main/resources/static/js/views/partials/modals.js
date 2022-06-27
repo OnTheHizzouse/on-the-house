@@ -26,7 +26,7 @@ Create Post
       <br>
 <!--     todo possible calender integration -->
        <label for="date"><b>Post Expiration Date:</b></label>
-      <input class="inputFields" placeholder="yyyy-mm-dd" name="date" id="create-expire-date"  required>
+      <input class="inputFields" placeholder="dd-mm-yyyy" name="date" id="create-expire-date"  required>
       <br>
        <label for="quantity"><b>Quantity:</b></label>
       <input class="inputFields" placeholder="Enter the number available" name="quantity" id="create-quantity"  required>
@@ -102,35 +102,35 @@ export function editPostModal(post) {
 }
 
 
-export function createEventModal(post) {
+export function createEventModal(post, username) {
     //language=HTML
     let postId = post.id
     let htmlModal = ``
      htmlModal += `
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#event${postId}">
-Create Event
+<button type="button" class="btn  request-home-card-btn" data-bs-toggle="modal" data-bs-target="#event${postId}">
+Request
 </button>
 <div class="modal" tabindex="-1"  data-backdrop="static" id="event${postId}">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Create an Event with ${post.user.username}</h5>
+        <h5 class="modal-title">Create an Event with ${username}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
        <label for="meet-date"><b>Meet up date::</b></label>
-      <input class="inputFields" placeholder="yyyy-mm-dd" name="meet-date" id="meet-date">
+      <input class="inputFields" placeholder="yyyy-mm-dd" name="meet-date" id="meet-date${postId}">
       <br>
 
        <label for="meet-time"><b>Meet up time:</b></label>
-      <input class="inputFields" placeholder="hh:tt" name="meet-time" id="meet-time"  required>
+      <input class="inputFields" placeholder="hh:tt" name="meet-time" id="meet-time${postId}"  required>
       <br>
         <label ><b>Meet up location:</b></label>
-       <textarea class="inputFields"  rows="4" cols="50" placeholder="Put the location that you would like to meet up" id="meetUp"></textarea>
+       <textarea class="inputFields"  rows="4" cols="50" placeholder="Put the location that you would like to meet up" id="meetUp${postId}"></textarea>
        
       <div class="modal-footer">
 
-        <button type="button" class="btn btn-primary"  data-id="${postId}" id="create-post-btn" data-bs-dismiss="modal" >Save Post</button>
+        <button type="button" class="btn btn-primary"  data-id="${postId}" data-name="${username}" id="create-event-btn" data-bs-dismiss="modal" >Save Post</button>
       </div>
     </div>
   </div>
