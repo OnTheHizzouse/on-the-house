@@ -75,7 +75,6 @@ export default function router(URI) {
             uri: '/landing',
             title: "Welcome",
             viewEvent: LandingEvents
-            title: "Welcome"
         },
         '/about':{
             returnView: About,

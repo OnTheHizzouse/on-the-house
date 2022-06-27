@@ -46,10 +46,6 @@ export default function Home(props) {
         <!--TODO: MOVE INPUT FIELD/SEARCHBAR TO WHERE IT NEEDS TO BE-->
         <div class="d-flex justify-content-center">
             <p class="mt-2">Click a <img src="js/views/img/postmarker.png" id="postmarker"> on the map to see what your neighbors are sharing!</p>
-            <input type="file" name="" id="input_file" hidden>
-            <button id="file">
-                Click to give me a file
-            </button>
         </div>
         <div class="d-flex justify-content-center mb-5">
             <div id="map"></div>
@@ -82,15 +78,6 @@ var currentUserGeoJson = [];
 var postsOfUsersWithin5Miles = [];
 
 // [-79.4512, 43.6568]
-function onClick(){
-    waitForElm('#file').then((elm)=>{
-        $("#file").on('click', function (){
-            console.log('hi')
-            open_file()
-        })
-    })
-
-}
 
 
 //Waits for the div with the id of map then add the map from mapbox to it. Then it calls the function that creates the marker
@@ -151,7 +138,7 @@ function currentMarkerPostCards(user){
 export function homepageEvent() {
     $('body').css("background", "none");
     $('body').css("background-color", "#FBFAF2")
-    onClick()
+
     let today = new Date().toLocaleDateString('en-Us', {timeZone :'UTC'});
     console.log(today)
     emptyTheArray()
