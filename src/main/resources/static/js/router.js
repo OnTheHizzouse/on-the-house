@@ -6,6 +6,9 @@ import Profile, {userPostEvents} from "./views/Profile.js";
 import Events from "./views/Events.js";
 import Landing, {LandingEvents} from "./views/Landing.js";
 
+import About from "./views/About.js";
+
+
 
 /**
  * Returns the route object for a specific route based on the given URI
@@ -13,6 +16,7 @@ import Landing, {LandingEvents} from "./views/Landing.js";
  * @returns {*}
  */
 export default function router(URI) {
+
     const routes = {
         '/': {
             returnView: Splash,
@@ -59,6 +63,7 @@ export default function router(URI) {
             state: {
                 },
             uri: '/events',
+
             title: "Events",
         },
         '/landing':{
@@ -70,6 +75,14 @@ export default function router(URI) {
             uri: '/landing',
             title: "Welcome",
             viewEvent: LandingEvents
+            title: "Welcome"
+        },
+        '/about':{
+            returnView: About,
+            state: {
+            },
+            uri: '/about',
+            title: "About",
         }
     };
 

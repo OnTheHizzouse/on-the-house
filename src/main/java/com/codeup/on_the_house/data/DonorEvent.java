@@ -6,15 +6,16 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name="events")
+@Table(name="donor_events")
 @DynamicUpdate
-public class Event {
+public class DonorEvent {
 
 
 //    ********* EVENT PROPERTIES *********
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long postId;
     private LocalDate meetupDate;
     private String meetupTime;
     private String meetupLocation;
@@ -27,29 +28,37 @@ public class Event {
     }
 
     @ManyToOne
-    @JsonIgnoreProperties({"events"})
+    @JsonIgnoreProperties({"user", "donorEvent", "password", "requesterEvents"})
     private User user;
 
-    @OneToOne
-    @JsonIgnoreProperties({"events"})
-    private Post post;
+    @ManyToOne
+    @JsonIgnoreProperties({"requester", "donorEvents", "posts", "password", "requesterEvents"})
+    private User requester;
+
+//    @ManyToOne
+//    @JsonIgnoreProperties({"events"})
+//    private Post post;
 
 
 
 
 //    *********** CONSTRUCTOR *************
 
-    public Event(Long id, LocalDate meetupDate, String meetupTime, String meetupLocation, Status status) {
+    public DonorEvent(Long id, Long postId, LocalDate meetupDate, String meetupTime, String meetupLocation, Status status) {
         this.id = id;
+        this.postId = postId;
         this.meetupDate = meetupDate;
         this.meetupTime = meetupTime;
         this.meetupLocation = meetupLocation;
         this.status = status;
     }
 
+
+
 //    CONSTRUCTOR WITH NO ID PROP
 
-    public Event(LocalDate meetupDate, String meetupTime, String meetupLocation, Status status) {
+    public DonorEvent(Long postId, LocalDate meetupDate, String meetupTime, String meetupLocation, Status status) {
+        this.postId = postId;
         this.meetupDate = meetupDate;
         this.meetupTime = meetupTime;
         this.meetupLocation = meetupLocation;
@@ -58,7 +67,7 @@ public class Event {
 
 //    EMPTY CONSTRUCTOR
 
-    public Event() {
+    public DonorEvent() {
     }
 
 
@@ -73,15 +82,24 @@ public class Event {
         this.user = user;
     }
 
-    public Post getPost() {
-        return post;
+    public User getRequester() {
+        return requester;
     }
 
-    public void setPost(Post post) {
-        this.post = post;
+    public void setRequester(User requester) {
+        this.requester = requester;
     }
 
-//    *******************
+    public Long getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Long postId) {
+        this.postId = postId;
+    }
+
+    //    *******************
+
 
     public Long getId() {
         return id;
@@ -129,7 +147,7 @@ public class Event {
 
     @Override
     public String toString() {
-        return "Event{" +
+        return "DonorEvent{" +
                 "id=" + id +
                 ", meetupDate=" + meetupDate +
                 ", meetupTime='" + meetupTime + '\'' +

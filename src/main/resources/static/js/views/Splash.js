@@ -59,6 +59,8 @@ export default function Splash(props) {
 export function SplashEvents() {
     splashBackground();
     removeNavbarSpace();
+    $('body').css("background-color", "none")
+    $('body').css("background-image", "url('js/views/partials/pexels-photo-6462424.jpeg')")
     RegisterFields();
     RegisterEvent();
     CancelButtonPressed();
