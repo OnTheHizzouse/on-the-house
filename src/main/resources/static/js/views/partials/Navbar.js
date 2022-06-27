@@ -16,7 +16,7 @@ export default function Navbar(props) {
                         <a class="nav-link mx-5" href="/home" id="nav-home" data-link>HOME</a>|
                         <a class="nav-link mx-5" href="/profile" id="nav-profile" data-link>PROFILE</a>|
                         <a class="nav-link mx-5" href="/events" id="nav-events" data-link>EVENTS</a>|
-                        <a class="nav-link mx-5" href="#" id="nav-about">ABOUT</a>
+                        <a class="nav-link mx-5" href="#" id="nav-about" data-link>ABOUT</a>
                     </div>
                 </div>
             </div>

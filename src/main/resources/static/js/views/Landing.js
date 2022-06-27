@@ -77,6 +77,7 @@ export function LandingEvents() {
     createGeoJsonForMarkers(newArrayOfUsers);
     initMap(-96.80432438850403, 32.780694491314726);
     getAllPostsForLanding(postsProps);
+    searchPostsByItemNameEventListener();
 }
 
 function initMap(lng, lat) {
@@ -198,4 +199,39 @@ function changeNavbarLanding() {
     $('#nav-profile').attr('href', '/');
     $('#nav-events').attr('href', '/');
     $('#nav-about').attr('href', '/');
+}
+
+function searchPostsByItemNameEventListener() {
+    $('#search-by-item-name-input').keyup(function (e) {
+        let itemNameToSearch = $('#search-by-item-name-input').val();
+        console.log(itemNameToSearch)
+        const options = {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: 'GET'
+        }
+
+        if (itemNameToSearch != "") {
+            let p = 0
+            do {
+
+                if (postsProps[p].itemName.toLowerCase().includes(itemNameToSearch.toLowerCase())) {
+                    fetch(`http://localhost:8080/api/posts/searchItems/${itemNameToSearch}`, options)
+                        .then(res => res.json())
+                        .then(data => {
+                            startCards(data)
+                        })
+                        .catch(err => {
+                            console.log(err)
+                        })
+                }
+                startCards(postsProps)
+                p++
+            } while (p < postsProps.length)
+        } else {
+            startCards(postsProps)
+        }
+
+    })
 }
