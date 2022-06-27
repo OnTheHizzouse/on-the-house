@@ -26,7 +26,7 @@ Create Post
       <br>
 <!--     todo possible calender integration -->
        <label for="date"><b>Post Expiration Date:</b></label>
-      <input class="inputFields" placeholder="yyyy-mm-dd" name="date" id="create-expire-date"  required>
+      <input class="inputFields" placeholder="dd-mm-yyyy" name="date" id="create-expire-date"  required>
       <br>
        <label for="quantity"><b>Quantity:</b></label>
       <input class="inputFields" placeholder="Enter the number available" name="quantity" id="create-quantity"  required>

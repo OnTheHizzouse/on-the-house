@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html>
+<script type="text/javascript">
+    function open_file(){
+        document.getElementById('input_file').click();
+    }
+</script>
 <body>
-<input type="file" id="photo">
-<input type="datetime-local" id="time">
+<input type="file" name="" id='input_file' hidden>
+<button onclick="open_file()">
+    click event fire programmatically for input
+    type file element
+</button>
 </body>
 </html>
