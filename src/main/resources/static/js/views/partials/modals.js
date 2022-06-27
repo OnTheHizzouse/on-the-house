@@ -2,7 +2,7 @@ export function createPostModal(username) {
     //language=HTML
     let htmlModal = ``
     htmlModal += `
-<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#postModal" id="createPostBtn">
+<button type="button" class="btn blue-btn" data-bs-toggle="modal" data-bs-target="#postModal" id="createPostBtn">
 Create Post
 </button>
 <div class="modal" tabindex="-1" id="postModal">
@@ -48,7 +48,7 @@ export function editPostModal(post) {
     //language=HTML
     let html = ``;
     html += `
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit-${post.id}">
+    <button type="button" class="btn blue-btn" data-bs-toggle="modal" data-bs-target="#edit-${post.id}">
         Edit Post
     </button>
 
@@ -140,3 +140,60 @@ Request
 
     return htmlModal
 }
+
+export function editUserProfileModal(user) {
+    console.log(user)
+    //language=HTML
+    let html = ``;
+    html += `
+    <button type="button" class="btn blue-btn" data-bs-toggle="modal" data-bs-target="#edit-${user.id}">
+        Edit Profile
+    </button>
+
+    <div class="modal" tabIndex="-1" id="edit-${user.id}">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Profile Information</h5>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label For="username"><b>Edit Username:</b></label>
+                    <input class="inputFields" value="${user.username}" name="username" id="username-${user.id}" required>
+                        <br>
+                            <label For="first-name"><b>Edit First Name:</b></label>
+                            <input class="inputFields" value="${user.firstName}" name="first-name"
+                                      id="first-name-${user.id}" required>
+                            <br>
+                            <label For="last-name"><b>Edit Last Name:</b></label>
+                            <input class="inputFields" value="${user.lastName}" name="last-name"
+                                      id="last-name-${user.id}" required>
+                            <br>
+                            <label For="geocoder"><b>Edit Address:</b></label>
+                            <div id="geocoder"></div>
+                            <div id="result"></div>
+                            <div id="address"></div>
+                            <br>
+                            <label For="email"><b>Edit Email:</b></label>
+                            <input class="inputFields" value="${user.email}" name="email"
+                                      id="email-${user.id}" required>
+                            <br>
+                            <label For="phone-number"><b>Edit Phone Number:</b></label>
+                            <input class="inputFields" name="phone-number" value="${user.phoneNumber}"
+                                      id="phone-number-${user.id}" required>
+                            <br>
+                </div>
+                <div class="modal-footer">
+
+                    <!--          todo make sure the inputfields are not null-->
+                    <button onClick="showAlert()" type="button" class="btn btn-success" id="save-edit-profile-btn"
+                            data-bs-dismiss="modal" data-id="${user.id}" data-address="${user.address}" data-coordinates="${user.coordinates}">SAVE
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>`
+    return html
+}
+
