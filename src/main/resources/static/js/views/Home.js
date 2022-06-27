@@ -48,14 +48,12 @@ export default function Home(props) {
             <div id="map"></div>
         </div>
         <!--      todo  this add some white space on the right problem is the margin-->
-        <div class="row justify-content-center mb-3">
-            <div class="col-4 my-auto">
-                <input class="inputFields" placeholder="Search items..." name="search-by-item-name"
+        <div class="d-flex justify-content-center mb-4">
+            <div class="my-auto mx-5">
+                <input style="width: 120%" class="inputFields" placeholder="Search items..." name="search-by-item-name"
                        id="search-by-item-name-input" required>
             </div>
-
-
-            <div class="col-3 my-auto">
+            <div class="my-auto mx-5">
                 ${createPostModal(props.user.username)}
             </div>
         </div>

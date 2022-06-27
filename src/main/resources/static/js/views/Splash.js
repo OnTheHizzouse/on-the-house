@@ -57,6 +57,8 @@ export default function Splash(props) {
 
 //Event listener
 export function SplashEvents() {
+    splashBackground();
+    removeNavbarSpace();
     $('body').css("background-color", "none")
     $('body').css("background-image", "url('js/views/partials/pexels-photo-6462424.jpeg')")
     RegisterFields();
@@ -230,4 +232,13 @@ function LoginEvent() {
                 console.log(err + " The email is not correct")
             })
     })
+}
+
+function removeNavbarSpace() {
+    $('#navbarSpace').css("height", "0px")
+}
+
+function splashBackground(){
+    $('body').css('background-color', '')
+    $('body').css('background-image', '')
 }

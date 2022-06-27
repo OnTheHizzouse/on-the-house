@@ -4,7 +4,10 @@ import Loading from "./views/Loading.js";
 import Home, {homepageEvent} from "./views/Home.js";
 import Profile, {userPostEvents} from "./views/Profile.js";
 import Events from "./views/Events.js";
+import Landing, {LandingEvents} from "./views/Landing.js";
+
 import About from "./views/About.js";
+
 
 
 /**
@@ -60,7 +63,19 @@ export default function router(URI) {
             state: {
                 },
             uri: '/events',
-            title: "Events"
+
+            title: "Events",
+        },
+        '/landing':{
+            returnView: Landing,
+            state: {
+                users: '/api/users',
+                posts: '/api/posts'
+            },
+            uri: '/landing',
+            title: "Welcome",
+            viewEvent: LandingEvents
+            title: "Welcome"
         },
         '/about':{
             returnView: About,
