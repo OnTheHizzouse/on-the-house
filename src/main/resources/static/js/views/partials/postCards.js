@@ -116,3 +116,66 @@ export function landingCards(posts) {
     return htmlCard
 }
 // <p className="card-text"><small>Shared by: ${user}</small></p>
+
+export function createEventsSentCards(events) {
+    //language=HTML
+    console.log(events)
+    let html = ``;
+
+    // for (let i = 0; i < events.length; i++) {
+    html += ` 
+         <div class="card mb-3 col-3 mx-2" style="max-width: 550px; height: 550px border-radius: 2%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    <div>
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+            <h5 class="card-title">ITEM NAME</h5>
+        </div>
+        <h6 class="card-text mt-1">User to Pickup From: </h6> <p>REPLACE WITH USERNAME</p>
+        <h6 class="card-text"><small>Pickup Time: </small></h6><p>TIME</p>
+        <h6 class="card-text"><small>Pickup Date: </small></h6><p>DD/MM/YYYY</p>
+        <h6 class="card-text"><small>Pickup Location: </small></h6><p style="height: 50px">Down the block, son</p>
+      </div>
+      <div class="d-flex mb-2 justify-content-around">
+            <button id="cancel-request" type="button" class="btn btn-danger">Cancel</button>
+            <button id="received-confirm" type="button" class="btn" style="background-color: #6a9f5a; color: #FFFFFF">Received</button>
+       </div>
+    </div>
+</div>
+ 
+<br>
+`
+
+    return html;
+}
+
+export function createEventsReceivedCards(events) {
+    //language=HTML
+    console.log(events)
+
+    let html = ``;
+
+    // for (let i = 0; i < events.length; i++) {
+        html += ` 
+         <div class="card mb-3 col-3 mx-2" style="max-width: 550px; height: 550px border-radius: 2%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    <div>
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+            <h5 class="card-title">ITEM NAME</h5>
+        </div>
+        <h6 class="card-text">User Requesting Pickup: </h6> <p>REPLACE WITH USERNAME</p>
+        <h6 class="card-text"><small>Pickup Time: </small></h6><p>TIME</p>
+        <h6 class="card-text"><small>Pickup Date: </small></h6><p>DD/MM/YYYY</p>
+        <h6 class="card-text"><small>Pickup Location: </small></h6><p style="height: 50px">Down the block, son</p>
+      </div>
+      <div class="d-flex mb-2 justify-content-around">
+            <button id="decline-request" type="button" class="btn btn-danger">Decline</button>
+            <button id="accept-request" type="button" class="btn" style="background-color: #6a9f5a; color: #FFFFFF">Accept</button>
+       </div>
+    </div>
+</div>
+ 
+<br>
+`
+
+    return html;
+}
