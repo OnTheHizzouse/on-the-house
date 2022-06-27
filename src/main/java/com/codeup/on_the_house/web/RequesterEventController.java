@@ -39,15 +39,22 @@ public class RequesterEventController {
         return requesterEventService.getAllRequesterEvents();
     }
 
-    //    ******* CREATE AND EVENT *********
+//    ******* CREATE AND EVENT *********
 //    EVENT IS CREATED BY REQUESTER, POST ID IS ASSOCIATED WITH POST OWNER BY USERNAME
-    @PostMapping("{username}/{requesterName}/{postId}")
-    private void addNewEvent(@RequestBody CreateRequesterEventDTO createRequesterEventDTO, @RequestBody CreateDonorEventDTO createDonorEventDTO, @PathVariable String username,
+    @PostMapping("createDonorEvent/{requesterName}/{username}/{postId}")
+    private void addNewDonorEvent(@RequestBody CreateDonorEventDTO createDonorEventDTO, @PathVariable String username,
                              @PathVariable String requesterName, @PathVariable Long postId){
-        RequesterEvent newRequesterEvent = new RequesterEvent();
         DonorEvent newDonorEvent = new DonorEvent();
-        requesterEventService.createEvent(createRequesterEventDTO, newRequesterEvent, createDonorEventDTO, newDonorEvent, username, requesterName, postId);
-        System.out.println("New event created by: " + requesterName + " for post with ID of: " + postId + " for user: " + username);
+        requesterEventService.createDonorEvent(createDonorEventDTO, newDonorEvent, username, requesterName, postId);
+        System.out.println("New event created by: " + requesterName + " for post with ID of: " + postId + " for user: " + username + "to populate Donor table");
+    }
+
+    @PostMapping("createRequesterEvent/{username}/{donorName}/{postId}")
+    private void addNewRequestEvent(@RequestBody CreateRequesterEventDTO createRequesterEventDTO, @PathVariable String username,
+                             @PathVariable String donorName, @PathVariable Long postId){
+        RequesterEvent newRequesterEvent = new RequesterEvent();
+        requesterEventService.createRequesterEvent(createRequesterEventDTO, newRequesterEvent, username, donorName, postId);
+        System.out.println("New event created by: " + donorName + " for post with ID of: " + postId + " for user: " + username + "to populate Requester table");
     }
 
 

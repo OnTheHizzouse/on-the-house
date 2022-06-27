@@ -119,7 +119,7 @@ Request
       </div>
       <div class="modal-body">
        <label for="meet-date"><b>Meet up date::</b></label>
-      <input class="inputFields" placeholder="yyyy-mm-dd" name="meet-date" id="meet-date${postId}">
+      <input class="inputFields" placeholder="dd-mm-yyyy" name="meet-date" id="meet-date${postId}">
       <br>
 
        <label for="meet-time"><b>Meet up time:</b></label>
