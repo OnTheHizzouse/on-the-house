@@ -120,9 +120,10 @@ export function landingCards(posts) {
 export function createEventsSentCards(arrayOfEvents, arrayOfPosts) {
     //language=HTML
     console.log(arrayOfPosts)
-    console.log("A");
+
     let html = ``;
     for (let i = 0; i < arrayOfEvents.length; i++) {
+        console.log(arrayOfEvents[i])
         html += `
          <div class="card mb-3 col-3 mx-2" style="max-width: 550px; height: 550px border-radius: 2%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
     <div>
@@ -136,7 +137,7 @@ export function createEventsSentCards(arrayOfEvents, arrayOfPosts) {
         <p class="card-text"><small style="height: 50px">Pickup Location: ${arrayOfEvents[i].meetupLocation}</small></p>
       </div>
       <div class="d-flex mb-2 justify-content-center">
-            <button id="event-cancel-btn" type="button" class="btn btn-danger">Cancel</button>
+            <button id="event-cancel-btn" type="button" class="btn btn-danger" data-id="${arrayOfEvents[i].id}">Cancel</button>
        </div>
     </div>
 </div>
@@ -157,6 +158,7 @@ export function createEventsReceivedCards(arrayOfEvents, arrayOfPosts) {
       <div class="card-body">
         <div class="d-flex justify-content-between align-items-center">
             <h5 class="card-title" data-item-name="received-${arrayOfEvents[i].postId}">${arrayOfPosts[i].itemName}</h5>
+            <div style="color: rgba(159,157,157,0.82)"> ${arrayOfEvents[i].status}</div>
         </div>
         <p class="card-text">User Requesting Pickup: ${arrayOfEvents[i].requester.username}</p>
         <p class="card-text"><small>Pickup Time: ${arrayOfEvents[i].meetupTime}</small></p>
@@ -164,9 +166,10 @@ export function createEventsReceivedCards(arrayOfEvents, arrayOfPosts) {
         <p class="card-text"><small style="height: 50px">Pickup Location: ${arrayOfEvents[i].meetupLocation}</small></p>
       </div>
       <div class="d-flex mb-2 justify-content-around">
-            <button id="decline-request-btn" type="button" class="btn btn-danger">Decline</button>
-            <button id="accept-request-btn" type="button" class="btn" style="background-color: #6a9f5a; color: #FFFFFF">Accept</button>
+            <button id="decline-request-btn" type="button" class="btn btn-danger" data-id="${arrayOfEvents[i].id}">Decline</button>
+            <button id="accept-request-btn" type="button" class="btn" style="background-color: #6a9f5a; color: #FFFFFF" data-id="${arrayOfEvents[i].id}">Accept</button>
        </div>
+      
     </div>
 </div>
 

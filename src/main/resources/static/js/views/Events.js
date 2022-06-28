@@ -1,5 +1,12 @@
 import {createEventsReceivedCards, createEventsSentCards} from "./partials/postCards.js";
 import {waitForElm} from "../mapboxSearch.js";
+let url = `http://localhost:8080`
+const put = {
+    headers: {
+        "Content-Type": "application/json"
+    },
+    method: 'PUT'
+}
 
 export default function (props){
     getUserProps(props);
@@ -38,7 +45,9 @@ var arrayOfPostsUserIsRequesting = [];
 
 //Functions
 export function eventsEvents() {
+    clearArrays()
     eventsBackground();
+    onClickListener();
     getPendingShares(userProps);
     getPendingRequests(userProps);
     getArrayOfActiveSharedPosts(arrayOfShares);
@@ -74,7 +83,7 @@ function getArrayOfActiveSharedPosts(arrayOfActiveEvents) {
             method: 'GET'
         }
 
-        fetch(`http://localhost:8080/api/posts/${currentPostId}`, options)
+        fetch(`${url}/api/posts/${currentPostId}`, options)
             .then(res => res.json())
             .then(data => {
                 arrayOfActiveSharedPosts.push(data);
@@ -112,7 +121,7 @@ function getArrayOfActiveRequestedPosts(arrayOfActiveEvents){
             method: 'GET'
         }
 
-        fetch(`http://localhost:8080/api/posts/${currentPostId}`, options)
+        fetch(`${url}/api/posts/${currentPostId}`, options)
             .then(res => res.json())
             .then(data => {
                 arrayOfPostsUserIsRequesting.push(data);
@@ -134,6 +143,50 @@ function eventsBackground() {
     $('body').css("background", "none");
     $('body').css("background-color", "#FBFAF2");
 }
+
+function onClickListener(){
+    onclickCancel()
+    onClickAccept()
+    onClickDecline()
+}
+
+
+function onclickCancel(){
+    $(document).on('click', '#event-cancel-btn', function (){
+        let id = $(this).data('id')
+        console.log('click')
+        console.log(id)
+        fetch(`${url}/api/requester/events/changeStatus/close/${id}`, put)
+            .then(setTimeout (reload, 1500))
+            .catch(err=>console.log(err))
+
+    })
+}
+function reload(){
+    location.reload();
+}
+function onClickDecline(){
+    $(document).on('click', '#decline-request-btn', function (){
+        let id = $(this).data('id')
+        console.log('click')
+        console.log(id)
+        fetch(`${url}/api/requester/events/changeStatus/close/${id}`, put)
+            .then(setTimeout (reload, 1500))
+            .catch(err=>console.log(err))
+    })
+}
+
+function onClickAccept(){
+    $(document).on('click', '#accept-request-btn', function (){
+        let id = $(this).data('id')
+        console.log('click')
+        console.log(id)
+        fetch(`${url}/api/requester/events/changeStatus/open/${id}`, put)
+            .then(setTimeout (reload, 1500))
+            .catch(err=>console.log(err))
+    })
+}
+
 
 //Clears all the arrays
 function clearArrays() {
