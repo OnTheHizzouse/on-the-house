@@ -1,4 +1,5 @@
 import {createEventModal, editPostModal} from "./modals.js";
+import {eventsReceivedCardsBtn} from "./eventBtn.js";
 
 export function postCards(posts) {
     //language=HTML
@@ -150,6 +151,8 @@ export function createEventsSentCards(arrayOfEvents, arrayOfPosts) {
 
 export function createEventsReceivedCards(arrayOfEvents, arrayOfPosts) {
     //language=HTML
+    console.log(arrayOfPosts)
+    console.log(arrayOfPosts.length)
     let html = ``;
     for (let i = 0; i < arrayOfEvents.length; i++) {
         html += `
@@ -166,8 +169,7 @@ export function createEventsReceivedCards(arrayOfEvents, arrayOfPosts) {
         <p class="card-text"><small style="height: 50px">Pickup Location: ${arrayOfEvents[i].meetupLocation}</small></p>
       </div>
       <div class="d-flex mb-2 justify-content-around">
-            <button id="decline-request-btn" type="button" class="btn btn-danger" data-id="${arrayOfEvents[i].id}">Decline</button>
-            <button id="accept-request-btn" type="button" class="btn" style="background-color: #6a9f5a; color: #FFFFFF" data-id="${arrayOfEvents[i].id}">Accept</button>
+          ${eventsReceivedCardsBtn(arrayOfEvents[i])}
        </div>
       
     </div>

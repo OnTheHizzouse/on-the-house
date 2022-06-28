@@ -11,6 +11,7 @@ public interface PostsRepository extends JpaRepository <Post, Long> {
     List<Post> findAllByItemNameContains(@Param("itemName") String itemName);
 
     List<Post> findAllByUserId(Long id);
+
 }
 
 
