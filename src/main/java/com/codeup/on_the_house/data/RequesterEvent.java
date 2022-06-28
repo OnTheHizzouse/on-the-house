@@ -23,13 +23,13 @@ public class RequesterEvent {
     private String meetupLocation;
 
     @Enumerated(EnumType.STRING)
-    private DonorEvent.Status status = DonorEvent.Status.OPEN;
+    private DonorEvent.Status status = DonorEvent.Status.PENDING;
 
 
 
 
     public enum Status {
-        OPEN, CLOSED
+        OPEN, CLOSED, PENDING
     }
 
     @ManyToOne
