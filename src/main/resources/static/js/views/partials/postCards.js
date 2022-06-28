@@ -63,7 +63,7 @@ export function myPostCards(post) {
 
     for (let i = 0; i < post.length; i++) {
         html += ` 
-         <div class="card mb-3 col-3 mx-2" style="max-width: 550px; height: 475px border-radius: 2%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+         <div class="card mb-3 col-md-3 mx-2" style="max-width: 550px; height: 475px border-radius: 2%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
     <div>
       <div class="card-body">
         <div class="d-flex justify-content-between align-items-center">
@@ -95,7 +95,7 @@ export function landingCards(posts) {
     let htmlCard = ``
     for (let i = 0; i < posts.length; i++) {
         htmlCard += `
-        <div class="card mb-3 col-3 mx-2" style="max-width: 550px; height: 475px border-radius: 2%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <div class="card mb-3 col-md-3 mx-2" style="max-width: 550px; height: 475px border-radius: 2%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
     <div>
       <div class="card-body">
         <div class="d-flex justify-content-between align-items-center">
