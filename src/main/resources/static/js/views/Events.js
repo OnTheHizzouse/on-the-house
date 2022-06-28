@@ -134,3 +134,11 @@ function eventsBackground() {
     $('body').css("background", "none");
     $('body').css("background-color", "#FBFAF2");
 }
+
+//Clears all the arrays
+function clearArrays() {
+    arrayOfShares = [];
+    arrayOfActiveSharedPosts = [];
+    arrayOfRequests = [];
+    arrayOfPostsUserIsRequesting = [];
+}

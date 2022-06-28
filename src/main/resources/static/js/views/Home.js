@@ -462,8 +462,8 @@ function saveEventInfo(){
             method: 'POST',
             body: JSON.stringify(eventReqBody)
         }
-        fetch(`http://localhost:8080/api/requester/events/createDonorEvent/${postOwner}/${currentUser}/${postId}`,options)
-            .then(fetch(`http://localhost:8080/api/requester/events/createRequesterEvent/${postOwner}/${currentUser}/${postId}`,options))
+        fetch(`http://localhost:8080/api/requester/events/createDonorEvent/${currentUser}/${postOwner}/${postId}`,options)
+            .then(fetch(`http://localhost:8080/api/requester/events/createRequesterEvent/${currentUser}/${postOwner}/${postId}`,options))
             .catch(err=> console . log(err))
             .catch(err => console.log(err))
             .finally(setTimeout(location.reload(), 5000))
