@@ -22,18 +22,8 @@ export default function Splash(props) {
             <form id="box">
                 <div class="container row-2 align-content-center ">
                     <div class="container m-2 ">
-                        <div><img id="OTH" src="js/views/img/OTHLogo.png" alt="Oth logo"></div>
-                        <div>
-                            <h1>Join Us!</h1>
-                            <p>As a community sharing application we foster the exchange of goods with the goal of
-                                reducing
-                                food waste and food insecurity within local communities. We strive to create a
-                                comfortable and
-                                welcoming environment for all users to facilitate and encourage community interaction
-                                and cooperation.</p>
-                        </div>
+                        <div><img id="OTH" src="js/views/img/OTHLogo(Final).png" alt="Oth logo"></div>
                     </div>
-                    
                     <div class="container m-2">
                         <label for="email"><b>E-mail</b></label>
                         <input class="inputFields" placeholder="Enter E-mail" name="email" id="email" required>
@@ -45,9 +35,6 @@ export default function Splash(props) {
                     <button type="submit" class="btn btn-primary" id="register-btn">Register</button>
                     </div>
                     <div id="register-fields" class="container m-2"></div>
-
-                    <div class="container m-2 pb-3">
-                        <button type="button" class="cancel-btn">Cancel</button>
                     </div>
                 </div>
             </form>
