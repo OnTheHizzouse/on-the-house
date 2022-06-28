@@ -40,7 +40,7 @@ public class UserService {
 
     //     *******GET USER BY EMAIL************
     public User getUserByEmail(String email) {
-        return usersRepository.findByEmail(email);
+        return usersRepository.findByEmail(email).orElseThrow();
     }
 
 
