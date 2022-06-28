@@ -21,10 +21,10 @@ public class DonorEvent {
     private String meetupLocation;
 
     @Enumerated(EnumType.STRING)
-    private Status status = Status.OPEN;
+    private Status status = Status.PENDING;
 
     public enum Status {
-        OPEN, CLOSED
+        OPEN, CLOSED, PENDING
     }
 
     @ManyToOne
