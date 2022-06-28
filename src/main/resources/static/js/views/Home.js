@@ -405,7 +405,6 @@ function getAllUserPost(userId) {
     fetch(`http://localhost:8080/api/users/${userId}`, options)
         .then(res => res.json())
         .then(data => {
-
             currentMarkerPostCards(data)
         })
         .catch(err => {
