@@ -130,10 +130,10 @@ export function createEventsSentCards(arrayOfEvents, arrayOfPosts) {
         <div class="d-flex justify-content-between align-items-center">
             <h5 class="card-title" data-item-name="received-${arrayOfEvents[i].postId}">${arrayOfPosts[i].itemName}</h5>
         </div>
-        <h6 class="card-text">User Sharing: </h6> <p>${arrayOfEvents[i].donor.username}</p>
-        <h6 class="card-text"><small>Pickup Time: </small></h6><p>${arrayOfEvents[i].meetupTime}</p>
-        <h6 class="card-text"><small>Pickup Date: </small></h6><p>${arrayOfEvents[i].meetupDate}</p>
-        <h6 class="card-text"><small>Pickup Location: </small></h6><p style="height: 50px">${arrayOfEvents[i].meetupLocation}</p>
+        <p class="card-text">User Sharing: ${arrayOfEvents[i].donor.username}</p>
+        <p class="card-text"><small>Pickup Time: ${arrayOfEvents[i].meetupTime}</small></p>
+        <p class="card-text"><small>Pickup Date: ${arrayOfEvents[i].meetupDate}</small></p>
+        <p class="card-text"><small style="height: 50px">Pickup Location: ${arrayOfEvents[i].meetupLocation}</small></p>
       </div>
       <div class="d-flex mb-2 justify-content-center">
             <button id="event-cancel-btn" type="button" class="btn btn-danger">Cancel</button>
@@ -158,10 +158,10 @@ export function createEventsReceivedCards(arrayOfEvents, arrayOfPosts) {
         <div class="d-flex justify-content-between align-items-center">
             <h5 class="card-title" data-item-name="received-${arrayOfEvents[i].postId}">${arrayOfPosts[i].itemName}</h5>
         </div>
-        <h6 class="card-text">User Requesting Pickup: </h6> <p>${arrayOfEvents[i].requester.username}</p>
-        <h6 class="card-text"><small>Pickup Time: </small></h6><p>${arrayOfEvents[i].meetupTime}</p>
-        <h6 class="card-text"><small>Pickup Date: </small></h6><p>${arrayOfEvents[i].meetupDate}</p>
-        <h6 class="card-text"><small>Pickup Location: </small></h6><p style="height: 50px">${arrayOfEvents[i].meetupLocation}</p>
+        <p class="card-text">User Requesting Pickup: ${arrayOfEvents[i].requester.username}</p>
+        <p class="card-text"><small>Pickup Time: ${arrayOfEvents[i].meetupTime}</small></p>
+        <p class="card-text"><small>Pickup Date: ${arrayOfEvents[i].meetupDate}</small></p>
+        <p class="card-text"><small style="height: 50px">Pickup Location: ${arrayOfEvents[i].meetupLocation}</small></p>
       </div>
       <div class="d-flex mb-2 justify-content-around">
             <button id="decline-request-btn" type="button" class="btn btn-danger">Decline</button>
