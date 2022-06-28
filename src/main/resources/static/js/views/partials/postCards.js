@@ -75,7 +75,7 @@ export function myPostCards(post) {
         <p class="card-text"><small>Expiry Date: ${post[i].expiryDate}</small></p>
         <p class="card-text"><small>Shared by: ${post[i].user.username}</small></p>
       </div>
-      <div class="d-flex mb-2 justify-content-around">
+      <div class="d-flex row mx-2 justify-content-around">
               ${editPostModal(post[i])}
               <button id="deleteBtn" type="button" class="btn btn-danger" onclick="confirmAction()" data-id="${post[i].id}">Delete</button>
        </div>
@@ -163,7 +163,7 @@ export function createEventsReceivedCards(arrayOfEvents, arrayOfPosts) {
         <p class="card-text"><small>Pickup Date: ${arrayOfEvents[i].meetupDate}</small></p>
         <p class="card-text"><small style="height: 50px">Pickup Location: ${arrayOfEvents[i].meetupLocation}</small></p>
       </div>
-      <div class="d-flex mb-2 justify-content-around">
+      <div class="d-flex row mx-2 justify-content-center">
             <button id="decline-request-btn" type="button" class="btn btn-danger">Decline</button>
             <button id="accept-request-btn" type="button" class="btn" style="background-color: #6a9f5a; color: #FFFFFF">Accept</button>
        </div>
