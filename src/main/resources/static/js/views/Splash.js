@@ -22,7 +22,11 @@ export default function Splash(props) {
             <form id="box">
                 <div class="container row-2 align-content-center ">
                     <div class="container m-2 ">
-                        <div><img id="OTH" src="js/views/img/OTHLogo(Final).png" alt="Oth logo"></div>
+                        <div>
+                            <a href="/home">
+                                <img id="OTH" src="js/views/img/OTHLogo(Final).png" alt="Oth logo">
+                            </a>
+                        </div>
                     </div>
                     <div class="container m-2">
                         <label for="email"><b>E-mail</b></label>
@@ -35,7 +39,7 @@ export default function Splash(props) {
                     <button type="submit" class="btn btn-primary" id="register-btn">Register</button>
                     </div>
                     <div id="register-fields" class="container m-2"></div>
-                    </div>
+                </div>
                 </div>
             </form>
         </main>
@@ -98,6 +102,7 @@ function RegisterFields() {
             <div id="address"></div>
             <br>
             <button type="submit" class="btn btn-primary" id="register-btn-two">Register</button>
+            <button type="button" class="cancel-btn">Cancel</button>
 
         `)
 
@@ -113,7 +118,7 @@ function RegisterEvent() {
         let newEmail = $('#email').val();
         let geoCoderCoordinates = $('#result').text();
         let geoCoderAddress = $('#address').text();
-        let coordinates = geoCoderCoordinates.replace('"',"")
+        let coordinates = geoCoderCoordinates.replace('"', "")
         let address = geoCoderAddress.replace('"', "")
         address = address.replace('"', "")
         console.log(address);
@@ -125,7 +130,7 @@ function RegisterEvent() {
             method: 'GET'
         }
         //checks if email is already being used
-        checkIfEmailExists(newEmail, optionEmailCheck, newPassword, coordinates,address)
+        checkIfEmailExists(newEmail, optionEmailCheck, newPassword, coordinates, address)
 
     })
 }
@@ -141,7 +146,7 @@ function createUserFetch(options) {
 }
 
 //function that checks if email is already being used
-function checkIfEmailExists(checkEmail, options, newPassword,coordinates ,address) {
+function checkIfEmailExists(checkEmail, options, newPassword, coordinates, address) {
 
     fetch(`http://localhost:8080/api/users/email/${checkEmail}`, options)
         .then(res => res.json())
@@ -150,7 +155,7 @@ function checkIfEmailExists(checkEmail, options, newPassword,coordinates ,addres
         })
         .catch(err => {
             //check if newPassword is at least 8 characters long
-            checkPasswordLength(checkEmail, newPassword, coordinates,address)
+            checkPasswordLength(checkEmail, newPassword, coordinates, address)
         })
 }
 
@@ -225,7 +230,7 @@ function removeNavbarSpace() {
     $('#navbarSpace').css("height", "0px")
 }
 
-function splashBackground(){
+function splashBackground() {
     $('body').css('background-color', '')
     $('body').css('background-image', '')
 }
