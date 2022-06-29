@@ -12,6 +12,8 @@ import java.util.List;
 
 @Service
 public class PostService {
+
+
     private final PostsRepository postsRepository;
     private final UserService userService;
 
