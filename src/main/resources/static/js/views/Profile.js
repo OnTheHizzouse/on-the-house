@@ -1,7 +1,7 @@
 import {getHeaders} from "../auth.js";
-import {myPostCards, postCards} from "./partials/postCards.js";
-import {editUserProfileModal} from "./partials/modals.js";
 import {myFooter} from "../views/partials/footer.js";
+// import {myPostCards} from "./partials/postCards.js";
+import {editPostModal, editUserProfileModal} from "./partials/modals.js";
 
 const postUrl = "http://localhost:8080/api/posts"
 const profileEditURL = "http://localhost:8080/api/users"
@@ -10,8 +10,9 @@ let postId = "";
 
 export default function Profile(props) {
     console.log("This is the Profile page");
-    console.log(props)
-    console.log(props.posts)
+    console.log(props.user.posts)
+    // console.log(props)
+    // console.log(props.posts)
     profileProps = props;
 // language=html
     return `
@@ -68,8 +69,13 @@ export default function Profile(props) {
             </div>
         </div>
 
-        <div id="profileCards" class="row mt-4 justify-content-center">
-            ${myPostCards(profileProps.posts)}
+
+    
+<!--MY PROFILE POSTCARDS-->
+        <div class="row mt-4 justify-content-center" id="profileCards">
+            ${myPostCards(props.user)}
+            
+
         </div>
         ${myFooter()}
         </body>
@@ -81,11 +87,14 @@ var userContinue = 0;
 var profileProps;
 
 export function userPostEvents() {
+
     $('body').css("background", "none");
     $('body').css("background-color", "#FBFAF2")
+    // changeNavbarLanding();
     deletePostListener();
     saveEditsPostListener();
     saveProfileEventListener();
+
 }
 
 
@@ -236,5 +245,12 @@ function confirmAction() {
     }
 
 }
+
+// function changeNavbarLanding() {
+//     $('#nav-home').attr('href', '/home');
+//     $('#nav-profile').attr('href', '/profile');
+//     $('#nav-events').attr('href', '/events');
+//     $('#nav-about').html(`<a class="nav-link mr-5" href="/about" id="nav-about" data-link>ABOUT</a>`);
+// }
 
 

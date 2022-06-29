@@ -3,6 +3,7 @@ package com.codeup.on_the_house.service;
 import com.codeup.on_the_house.data.User;
 import com.codeup.on_the_house.data.UsersRepository;
 import com.codeup.on_the_house.dto.CreateUserDTO;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,14 +11,18 @@ import java.util.Optional;
 
 @Service
 public class UserService {
+    private PasswordEncoder passwordEncoder;
 
     private final UsersRepository usersRepository;
 
-    public UserService(UsersRepository usersRepository) {
+    public UserService(PasswordEncoder passwordEncoder, UsersRepository usersRepository) {
+        this.passwordEncoder = passwordEncoder;
         this.usersRepository = usersRepository;
     }
 
     public void createUser(CreateUserDTO createUserDTO) {
+        String hashedPass = passwordEncoder.encode(createUserDTO.getPassword());
+        createUserDTO.setPassword(hashedPass);
         usersRepository.save(new User(
                 createUserDTO.getFirstName(),
                 createUserDTO.getLastName(),
@@ -39,7 +44,7 @@ public class UserService {
     }
 
     //     *******GET USER BY EMAIL************
-    public User getUserByEmail(String email) {
+    public Optional <User> getUserByEmail(String email) {
         return usersRepository.findByEmail(email);
     }
 

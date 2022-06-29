@@ -7,6 +7,7 @@ import com.codeup.on_the_house.dto.CreateRequesterEventDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RequesterEventService {
@@ -24,10 +25,8 @@ public class RequesterEventService {
     }
 
 
-
-
     //    ******* GET ALL EVENTS *********
-    public List<RequesterEvent> getAllRequesterEvents(){
+    public List<RequesterEvent> getAllRequesterEvents() {
         System.out.println("(Service) All requester events....");
         return requesterEventsRepository.findAll();
     }
@@ -35,7 +34,8 @@ public class RequesterEventService {
 
     //    ******* USER EVENT ASSOCIATION *******
 //    EVENT IS CREATED BY REQUESTER, POST ID IS ASSOCIATED WITH POST OWNER BY USERNAME
-    public void createEvent (CreateRequesterEventDTO requesterDto, RequesterEvent newRequesterEvent, CreateDonorEventDTO dto, DonorEvent newDonorEvent, String username, String requesterName, Long postId) {
+//    WILL POPULATE DONOR TABLE
+    public void createDonorEvent(CreateDonorEventDTO dto, DonorEvent newDonorEvent, String username, String requesterName, Long postId) {
         User user = userService.getUserByUsername(username);
         User requester = userService.getUserByUsername(requesterName);
 
@@ -44,27 +44,60 @@ public class RequesterEventService {
         newDonorEvent.setMeetupTime(dto.getMeetupTime());
         newDonorEvent.setMeetupLocation(dto.getMeetupLocation());
 
-        newRequesterEvent.setPostId(postId);
-        newRequesterEvent.setMeetupDate(dto.getMeetupDate());
-        newRequesterEvent.setMeetupTime(dto.getMeetupTime());
-        newRequesterEvent.setMeetupLocation(dto.getMeetupLocation());
-
         requester.getDonorEvents().add(newDonorEvent);
         user.getDonorEvents().add(newDonorEvent);
-
-        requester.getRequesterEvents().add(newRequesterEvent);
-        user.getRequesterEvents().add(newRequesterEvent);
 
         newDonorEvent.setUser(user);
         newDonorEvent.setRequester(requester);
 
-        newRequesterEvent.setUser(user);
-        newRequesterEvent.setRequester(requester);
-
         donorEventsRepository.save(newDonorEvent);
+
+    }
+
+    //    WILL POPULATE REQUESTER TABLE
+
+    public void createRequesterEvent(CreateRequesterEventDTO requesterDto, RequesterEvent newRequesterEvent, String username, String donorName, Long postId) {
+        User user = userService.getUserByUsername(username);
+        User donor = userService.getUserByUsername(donorName);
+
+        newRequesterEvent.setPostId(postId);
+        newRequesterEvent.setMeetupDate(requesterDto.getMeetupDate());
+        newRequesterEvent.setMeetupTime(requesterDto.getMeetupTime());
+        newRequesterEvent.setMeetupLocation(requesterDto.getMeetupLocation());
+
+        donor.getRequesterEvents().add(newRequesterEvent);
+        user.getRequesterEvents().add(newRequesterEvent);
+
+        newRequesterEvent.setUser(user);
+        newRequesterEvent.setDonor(donor);
+
         requesterEventsRepository.save(newRequesterEvent);
 
+    }
 
+
+    public void changeStatusToOpen(long id){
+        RequesterEvent currentRequest = requesterEventsRepository.findById(id);
+     DonorEvent currentShared = donorEventsRepository.findById(id);
+        DonorEvent.Status open = DonorEvent.Status.OPEN;
+
+        currentRequest.setStatus(open);
+     currentShared.setStatus(open);
+
+        requesterEventsRepository.save(currentRequest);
+        donorEventsRepository.save(currentShared);
+    }
+
+    public void changeStatusToClosed(long id){
+        RequesterEvent currentRequest = requesterEventsRepository.findById(id);
+        DonorEvent currentShared = donorEventsRepository.findById(id);
+        DonorEvent.Status closed = DonorEvent.Status.CLOSED;
+
+        currentRequest.setStatus(closed);
+        currentShared.setStatus(closed);
+
+        requesterEventsRepository.save(currentRequest);
+        donorEventsRepository.save(currentShared);
     }
 
 }

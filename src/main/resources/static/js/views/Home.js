@@ -240,6 +240,8 @@ function savePostFetch(username, reqBody) {
     }
     console.log(options)
     fetch(`http://localhost:8080/api/posts/${username}`, options)
+        .then(res=>{
+            console.log(res)})
         .then(console.log('this post has been created'))
         .catch(err => console.log(err))
 }
@@ -406,7 +408,6 @@ function getAllUserPost(userId) {
     fetch(`http://localhost:8080/api/users/${userId}`, options)
         .then(res => res.json())
         .then(data => {
-
             currentMarkerPostCards(data)
         })
         .catch(err => {
@@ -453,13 +454,22 @@ function saveEventInfo(){
         let postOwner = $(this).data("name")
         let currentUser = userProps.username
         const eventReqBody={
-            meetupDate: $(`#meet-date${postId}`).val(),
+            meetupDate: $(`#meet-date${postId}`).val().split("-").reverse().join("-"),
             meetupTime:$(`#meet-time${postId}`).val(),
             meetupLocation:$(`#meetUp${postId}`).val()
         }
-        console.log(currentUser)
-        console.log(postId)
-        console.log(postOwner)
-        console.log(eventReqBody)
+        const options = {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: 'POST',
+            body: JSON.stringify(eventReqBody)
+        }
+        fetch(`http://localhost:8080/api/requester/events/createDonorEvent/${currentUser}/${postOwner}/${postId}`,options)
+            .then(fetch(`http://localhost:8080/api/requester/events/createRequesterEvent/${currentUser}/${postOwner}/${postId}`,options))
+            .catch(err=> console . log(err))
+            .catch(err => console.log(err))
+            .finally(setTimeout(location.reload(), 5000))
+
     })
 }
