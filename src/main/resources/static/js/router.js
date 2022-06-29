@@ -63,7 +63,8 @@ export default function router(URI) {
         '/events':{
             returnView: Events,
             state: {
-                user:'/api/users/me'
+                user:'/api/users/me',
+                posts:'/api/posts'
                 },
             uri: '/events',
             title: "Events",

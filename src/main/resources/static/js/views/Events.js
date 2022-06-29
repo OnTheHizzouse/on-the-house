@@ -11,7 +11,7 @@ const put = {
 
 export default function (props){
     getUserProps(props);
-
+    console.log(props)
     // language=HTML
     return`
     <body>
@@ -70,6 +70,7 @@ function getPendingShares(props) {
         if(props.user.donorEvents[i].status === "OPEN" || props.user.donorEvents[i].status === "PENDING") {
             arrayOfShares.push(props.user.donorEvents[i])
         }
+        console.log(arrayOfShares)
     }
 }
 
@@ -130,22 +131,14 @@ function getPendingRequests(props) {
 function getArrayOfActiveRequestedPosts(arrayOfActiveEvents){
     console.log(arrayOfActiveEvents)
 
-        const options = {
-            headers: {
-                "Content-Type": "application/json"
-            },
-            method: 'GET'
-        }
+
 // Todo: filter out the users post
-        fetch(`${url}/api/posts`, options)
-            .then(res => res.json())
-            .then(data => {
-                arrayOfPostsUserIsRequesting = data
+
+                arrayOfPostsUserIsRequesting = userProps.posts
                 filterEventPost(arrayOfActiveEvents)
                 $('#waiting-span-two').html(`<span id="loaded-span-two"></span>`)
                 startRequestCards(arrayOfRequests, requstedPost)
-            })
-            .catch(err => console.log(err))
+
 
 }
 
@@ -154,6 +147,8 @@ function filterEventPost(events){
 
     for (let i = 0; i < events.length; i++) {
         console.log(events[i].id)
+        console.log(arrayOfPostsUserIsRequesting)
+        console.log(arrayOfPostsUserIsRequesting.length)
         for (let j = 0; j < arrayOfPostsUserIsRequesting.length; j++) {
             if (arrayOfPostsUserIsRequesting[j].id == events[i].postId) {
                 console.log('getting the post and event')
