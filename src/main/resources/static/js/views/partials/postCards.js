@@ -1,4 +1,5 @@
 import {createEventModal, editPostModal} from "./modals.js";
+import {eventsReceivedCardsBtn} from "./eventBtn.js";
 
 export function postCards(posts) {
     //language=HTML
@@ -120,9 +121,14 @@ export function landingCards(posts) {
 export function createEventsSentCards(arrayOfEvents, arrayOfPosts) {
     //language=HTML
     console.log(arrayOfPosts)
-    console.log("A");
+    let status = "";
     let html = ``;
     for (let i = 0; i < arrayOfEvents.length; i++) {
+        if(arrayOfEvents[i].status === "PENDING") {
+            status = `<div class="my-2 text-center" style="background-color: darkorange; color: white; border: 3px solid darkorange; width: 90%">Awaiting Approval</div>`
+        } else if(arrayOfEvents[i].status === "OPEN") {
+            status = `<div class="my-2 text-center" style="background-color: #2788bb; color: white; border: 3px solid #2788bb; width: 90%">Ready For Pickup</div>`
+        }
         html += `
          <div class="card mb-3 col-3 mx-2" style="max-width: 550px; height: 550px border-radius: 2%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
     <div>
@@ -135,8 +141,12 @@ export function createEventsSentCards(arrayOfEvents, arrayOfPosts) {
         <p class="card-text"><small>Pickup Date: ${arrayOfEvents[i].meetupDate}</small></p>
         <p class="card-text"><small style="height: 50px">Pickup Location: ${arrayOfEvents[i].meetupLocation}</small></p>
       </div>
+      <div class="d-flex justify-content-center">
+      ${status}
+      </div>
+      
       <div class="d-flex mb-2 justify-content-center">
-            <button id="event-cancel-btn" type="button" class="btn btn-danger">Cancel</button>
+            <button id="event-cancel-btn" type="button" class="btn btn-danger" data-id="${arrayOfEvents[i].id}">Cancel</button>
        </div>
     </div>
 </div>
@@ -149,8 +159,16 @@ export function createEventsSentCards(arrayOfEvents, arrayOfPosts) {
 
 export function createEventsReceivedCards(arrayOfEvents, arrayOfPosts) {
     //language=HTML
+    console.log("LOOK HERE");
+    console.log(arrayOfPosts)
+    let status = "";
     let html = ``;
     for (let i = 0; i < arrayOfEvents.length; i++) {
+        if(arrayOfEvents[i].status === "PENDING") {
+            status = `<div class="my-2 text-center" style="background-color: darkorange; color: white; border: 3px solid darkorange; width: 90%">Awaiting Approval</div>`
+        } else if(arrayOfEvents[i].status === "OPEN") {
+            status = `<div class="my-2 text-center" style="background-color: #2788bb; color: white; border: 3px solid #2788bb; width: 90%">Ready For Pickup</div>`
+        }
         html += `
          <div class="card mb-3 col-3 mx-2" style="max-width: 550px; height: 550px border-radius: 2%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
     <div>
@@ -163,10 +181,14 @@ export function createEventsReceivedCards(arrayOfEvents, arrayOfPosts) {
         <p class="card-text"><small>Pickup Date: ${arrayOfEvents[i].meetupDate}</small></p>
         <p class="card-text"><small style="height: 50px">Pickup Location: ${arrayOfEvents[i].meetupLocation}</small></p>
       </div>
+      <div class="d-flex justify-content-center">
+      ${status}
+      </div>
+      
       <div class="d-flex mb-2 justify-content-around">
-            <button id="decline-request-btn" type="button" class="btn btn-danger">Decline</button>
-            <button id="accept-request-btn" type="button" class="btn" style="background-color: #6a9f5a; color: #FFFFFF">Accept</button>
+          ${eventsReceivedCardsBtn(arrayOfEvents[i])}
        </div>
+      
     </div>
 </div>
 

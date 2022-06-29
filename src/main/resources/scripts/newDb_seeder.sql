@@ -33,5 +33,7 @@ INSERT INTO requester_events( donor_id, user_id, post_id, meetup_date, meetup_ti
     VALUE (2,1,2, '22:06:28', '15:24:00', '123 fake st, city, state, 95662', 'OPEN' ),
     (1,3,7, '22:06:30', '11:24:00', '485 wall st, city, state, 84574', 'PENDING' ),
     (3,2,1, '22:08:17', '05:51:00', '451 water st, city, state, 84574', 'OPEN' ),
-    (3,1,5, '22:12:25', '14:45:00', '8967 flower st, city, state, 84574', 'CLOSED' );
+    (3,1,5, '22:12:25', '14:45:00', '8967 flower st, city, state, 84574', 'CLOSED' ),
+    (1,2,9, '22:06:28', '12:00:00', '25 Test St. Test, TX, 12837', 'OPEN');
+
 
