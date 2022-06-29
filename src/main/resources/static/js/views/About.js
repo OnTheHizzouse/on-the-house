@@ -1,3 +1,5 @@
+import {myFooter} from "../views/partials/footer.js";
+
 export default function About() {
     console.log("This is the About Page");
     //language=HTML
@@ -177,8 +179,12 @@ export default function About() {
         <!--        <div class="card bg-dark text-white">-->
         <!--            <img src="js/views/img/ThankYou.png" class="card-img-mission" alt="..." height="200">-->
         <!--        </div>-->
+
+        
         </div>
+        ${myFooter()}
         </body>
     `;
 }
+
 
