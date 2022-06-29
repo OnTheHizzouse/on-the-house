@@ -115,7 +115,7 @@ export function landingCards(posts) {
     }
     return htmlCard
 }
-// <p className="card-text"><small>Shared by: ${user}</small></p>
+// <p cla.ssName="card-text"><small>Shared by: ${user}</small></p>
 
 export function createEventsSentCards(arrayOfEvents, arrayOfPosts) {
     //language=HTML
