@@ -1,7 +1,7 @@
 import {getHeaders} from "../auth.js";
+import {myFooter} from "../views/partials/footer.js";
 // import {myPostCards} from "./partials/postCards.js";
 import {editPostModal, editUserProfileModal} from "./partials/modals.js";
-import {myPostCards} from "./partials/postCards.js";
 
 const postUrl = "http://localhost:8080/api/posts"
 const profileEditURL = "http://localhost:8080/api/users"
@@ -69,6 +69,7 @@ export default function Profile(props) {
             </div>
         </div>
 
+
     
 <!--MY PROFILE POSTCARDS-->
         <div class="row mt-4 justify-content-center" id="profileCards">
@@ -76,6 +77,7 @@ export default function Profile(props) {
             
 
         </div>
+        ${myFooter()}
         </body>
     `;
 

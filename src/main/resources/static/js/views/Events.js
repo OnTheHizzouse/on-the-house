@@ -1,3 +1,4 @@
+import {myFooter} from "../views/partials/footer.js";
 import {createEventsReceivedCards, createEventsSentCards} from "./partials/postCards.js";
 import {waitForElm} from "../mapboxSearch.js";
 let url = `http://localhost:8080`
@@ -14,7 +15,11 @@ export default function (props){
     // language=HTML
     return`
     <body>
-    
+
+    <h4>
+        This is the events page.
+    </h4>
+
     <div class="d-flex justify-content-center">
         <h3>Your Requests</h3>
     </div>
@@ -31,6 +36,7 @@ export default function (props){
     
     <span id="waiting-span-one"></span>
     <span id="waiting-span-two"></span>
+    ${myFooter()}
     </body>
     
     `

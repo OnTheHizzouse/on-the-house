@@ -1,5 +1,6 @@
 import {waitForElm} from "../mapboxSearch.js";
 import {landingCards} from "./partials/postCards.js";
+import {myFooter} from "../views/partials/footer.js";
 
 export default function Landing(props) {
     //language=HTML
@@ -55,6 +56,7 @@ export default function Landing(props) {
         </div>
 
         </div>
+        ${myFooter()}
         </body>
     `
 }
