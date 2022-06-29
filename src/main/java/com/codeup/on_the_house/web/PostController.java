@@ -4,6 +4,7 @@ import com.codeup.on_the_house.data.Post;
 import com.codeup.on_the_house.dto.CreatePostDTO;
 import com.codeup.on_the_house.dto.CreateUserDTO;
 import com.codeup.on_the_house.service.PostService;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,6 +43,12 @@ public class PostController {
     public List<Post> getAllPostsByUserId(@PathVariable Long id) {
         return postService.getPostsByUserId(id);
     }
+
+//    @GetMapping("searchItemsByUserId/{id}")
+//    public List<Post> getAllPostsByUserId(OAuth2Authentication auth) {
+//        System.out.println(auth.toString());
+//        return postService.getPostsByUserId(auth.);
+//    }
 
     @PostMapping("{username}")
     private void addNewPost(@RequestBody CreatePostDTO createPostDTO, @PathVariable String username){

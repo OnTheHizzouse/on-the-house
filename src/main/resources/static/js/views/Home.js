@@ -239,6 +239,8 @@ function savePostFetch(username, reqBody) {
     }
     console.log(options)
     fetch(`http://localhost:8080/api/posts/${username}`, options)
+        .then(res=>{
+            console.log(res)})
         .then(console.log('this post has been created'))
         .catch(err => console.log(err))
 }
