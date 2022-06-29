@@ -1,7 +1,7 @@
 import {waitForElm} from "../mapboxSearch.js";
 import {markerPostCards, postCards} from "./partials/postCards.js";
 import {createPostModal} from "./partials/modals.js";
-import {myFooter} from "./partials/footer.js";
+import {myFooter} from "../views/partials/footer.js";
 
 export default function Home(props) {
     //todo styling
@@ -66,6 +66,7 @@ export default function Home(props) {
         </div>
 
         </div>
+        ${myFooter()}
         </body>
     `;
 }
@@ -239,6 +240,8 @@ function savePostFetch(username, reqBody) {
     }
     console.log(options)
     fetch(`http://localhost:8080/api/posts/${username}`, options)
+        .then(res=>{
+            console.log(res)})
         .then(console.log('this post has been created'))
         .catch(err => console.log(err))
 }
