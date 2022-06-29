@@ -46,7 +46,7 @@ export function markerPostCards(user) {
         <img src='https://images.pexels.com/photos/235294/pexels-photo-235294.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' class="img-fluid rounded-start my-2" alt="..." id="card-img-home">
         <p class="card-text" style="height: 40px">${user.posts[i].description}</p>
         <p class="card-text"><small>Quantity: ${user.posts[i].quantity}</small></p>
-        <p class="card-text"><small>Expiry Date: ${user.posts.expiryDate}</small></p>
+        <p class="card-text"><small>Expiry Date: ${user.posts[i].expiryDate}</small></p>
         <p class="card-text"><small>Shared by: ${user.username}</small></p>
       </div>
     </div>
