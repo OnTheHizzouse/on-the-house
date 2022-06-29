@@ -16,10 +16,6 @@ export default function (props){
     return`
     <body>
 
-    <h4>
-        This is the events page.
-    </h4>
-
     <div class="d-flex justify-content-center">
         <h3>Your Requests</h3>
     </div>
