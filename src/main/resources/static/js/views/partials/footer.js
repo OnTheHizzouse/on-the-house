@@ -1,7 +1,7 @@
 export function myFooter() {
     //language=HTML
     return `
-        <footer class="bg-light text-center text-lg-start">
+        <footer class="bg-light text-center text-lg-start" id="footer-final">
             <div class="text-center text-light p-3" style="background-color: #2287bb;">
                 <img src="js/views/img/recycle-img.png" class="recycle-img">
                <div>
