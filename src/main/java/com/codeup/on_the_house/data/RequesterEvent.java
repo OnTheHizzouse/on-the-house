@@ -1,55 +1,62 @@
 package com.codeup.on_the_house.data;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name="events")
+@Table(name="requester_events")
 @DynamicUpdate
-public class Event {
+public class RequesterEvent {
 
 
-//    ********* EVENT PROPERTIES *********
+    //    ********* EVENT PROPERTIES *********
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long postId;
     private LocalDate meetupDate;
     private String meetupTime;
     private String meetupLocation;
 
     @Enumerated(EnumType.STRING)
-    private Status status = Status.OPEN;
+    private DonorEvent.Status status = DonorEvent.Status.PENDING;
+
+
+
 
     public enum Status {
-        OPEN, CLOSED
+        OPEN, CLOSED, PENDING
     }
 
     @ManyToOne
-    @JsonIgnoreProperties({"events"})
+    @JsonIgnoreProperties({"requesterEvents", "password", "donorEvent"})
     private User user;
 
-    @OneToOne
-    @JsonIgnoreProperties({"events"})
-    private Post post;
+    @ManyToOne
+    @JsonIgnoreProperties({"requesterEvents", "posts", "password"})
+    private User donor;
 
 
+    //    *********** CONSTRUCTOR *************
 
 
-//    *********** CONSTRUCTOR *************
-
-    public Event(Long id, LocalDate meetupDate, String meetupTime, String meetupLocation, Status status) {
+    public RequesterEvent(Long id, Long postId, LocalDate meetupDate, String meetupTime, String meetupLocation, DonorEvent.Status status) {
         this.id = id;
+        this.postId = postId;
         this.meetupDate = meetupDate;
         this.meetupTime = meetupTime;
         this.meetupLocation = meetupLocation;
         this.status = status;
     }
 
-//    CONSTRUCTOR WITH NO ID PROP
+    //    CONSTRUCTOR WITH NO ID PROP
 
-    public Event(LocalDate meetupDate, String meetupTime, String meetupLocation, Status status) {
+    public RequesterEvent(Long postId, LocalDate meetupDate, String meetupTime, String meetupLocation, DonorEvent.Status status) {
+        this.postId = postId;
         this.meetupDate = meetupDate;
         this.meetupTime = meetupTime;
         this.meetupLocation = meetupLocation;
@@ -58,11 +65,11 @@ public class Event {
 
 //    EMPTY CONSTRUCTOR
 
-    public Event() {
+    public RequesterEvent() {
     }
 
 
-//    ********** GETTERS AND SETTERS **********
+    //    ********** GETTERS AND SETTERS **********
 //    USER AND POST *********
 
     public User getUser() {
@@ -73,15 +80,19 @@ public class Event {
         this.user = user;
     }
 
-    public Post getPost() {
-        return post;
+    public User getDonor() {
+        return donor;
     }
 
-    public void setPost(Post post) {
-        this.post = post;
+    public void setDonor(User donor) {
+        this.donor = donor;
     }
 
-//    *******************
+    public void setRequester(User requester) {
+    }
+
+    //    *******************
+
 
     public Long getId() {
         return id;
@@ -89,6 +100,14 @@ public class Event {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Long postId) {
+        this.postId = postId;
     }
 
     public LocalDate getMeetupDate() {
@@ -115,22 +134,21 @@ public class Event {
         this.meetupLocation = meetupLocation;
     }
 
-    public Status getStatus() {
+    public DonorEvent.Status getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(DonorEvent.Status status) {
         this.status = status;
     }
 
-
-//    ********** TO STRING ************
-
+    //    ********** TO STRING ************
 
     @Override
     public String toString() {
-        return "Event{" +
+        return "RequesterEvent{" +
                 "id=" + id +
+                ", postId=" + postId +
                 ", meetupDate=" + meetupDate +
                 ", meetupTime='" + meetupTime + '\'' +
                 ", meetupLocation='" + meetupLocation + '\'' +

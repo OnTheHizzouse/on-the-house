@@ -57,6 +57,10 @@ export default function Splash(props) {
 
 //Event listener
 export function SplashEvents() {
+    splashBackground();
+    removeNavbarSpace();
+    $('body').css("background-color", "none")
+    $('body').css("background-image", "url('js/views/partials/pexels-photo-6462424.jpeg')")
     RegisterFields();
     RegisterEvent();
     CancelButtonPressed();
@@ -142,7 +146,7 @@ function RegisterEvent() {
 //the fetch request that creates a user and add the user to database
 function createUserFetch(options) {
     fetch("http://localhost:8080/api/users/createUser", options)
-        .then(alert("You have created a user 🌚"))//todo: get rid of this alert
+        .then(alert("You have created a user "))//todo: get rid of this alert
         .catch(err => console.log(err))
         .finally(
             location.reload()
@@ -228,4 +232,13 @@ function LoginEvent() {
                 console.log(err + " The email is not correct")
             })
     })
+}
+
+function removeNavbarSpace() {
+    $('#navbarSpace').css("height", "0px")
+}
+
+function splashBackground(){
+    $('body').css('background-color', '')
+    $('body').css('background-image', '')
 }

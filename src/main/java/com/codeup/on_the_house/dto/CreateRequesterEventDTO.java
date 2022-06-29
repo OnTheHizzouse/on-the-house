@@ -2,9 +2,10 @@ package com.codeup.on_the_house.dto;
 
 import java.time.LocalDate;
 
-public class CreateEventDTO {
+public class CreateRequesterEventDTO {
 
-//    ******* PROPERTIES ******
+
+    //    ******* PROPERTIES ******
     private LocalDate meetupDate;
     private String meetupTime;
     private String meetupLocation;
@@ -12,17 +13,14 @@ public class CreateEventDTO {
 
 //    ******** CONSTRUCTOR *********
 
-    public CreateEventDTO(LocalDate meetupDate, String meetupTime, String meetupLocation) {
+
+    public CreateRequesterEventDTO(LocalDate meetupDate, String meetupTime, String meetupLocation) {
         this.meetupDate = meetupDate;
         this.meetupTime = meetupTime;
         this.meetupLocation = meetupLocation;
     }
 
-    public CreateEventDTO() {
-    }
-
     //    ******* GETTERS AND SETTERS ********
-
 
     public LocalDate getMeetupDate() {
         return meetupDate;

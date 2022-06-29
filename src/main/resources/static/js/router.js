@@ -3,7 +3,11 @@ import Error404 from "./views/Error404.js";
 import Loading from "./views/Loading.js";
 import Home, {homepageEvent} from "./views/Home.js";
 import Profile, {userPostEvents} from "./views/Profile.js";
-import Events from "./views/Events.js";
+import Events, {eventsEvents} from "./views/Events.js";
+import Landing, {LandingEvents} from "./views/Landing.js";
+
+import About from "./views/About.js";
+
 
 
 /**
@@ -12,12 +16,13 @@ import Events from "./views/Events.js";
  * @returns {*}
  */
 export default function router(URI) {
+
     const routes = {
-        '/': {
+        '/login': {
             returnView: Splash,
             state: {},
-            uri: '/',
-            title: 'Splash',
+            uri: '/login',
+            title: 'Login/Register',
             viewEvent: SplashEvents
         },'/error': {
             returnView: Error404,
@@ -46,8 +51,8 @@ export default function router(URI) {
             returnView: Profile,
             state: {
                 //todo change from fake user to a real user
-                user:'/api/users/test1@email.com',
-                posts:'/api/posts'
+                user:'/api/users/1',
+                posts:'/api/posts/searchItemsByUserId/1'
             },
             uri: '/profile',
             title: 'Profile',
@@ -56,9 +61,28 @@ export default function router(URI) {
         '/events':{
             returnView: Events,
             state: {
+                user:'/api/users/1'
                 },
             uri: '/events',
-            title: "Events"
+            title: "Events",
+            viewEvent: eventsEvents
+        },
+        '/':{
+            returnView: Landing,
+            state: {
+                users: '/api/users',
+                posts: '/api/posts'
+            },
+            uri: '/',
+            title: "Welcome",
+            viewEvent: LandingEvents
+        },
+        '/about':{
+            returnView: About,
+            state: {
+            },
+            uri: '/about',
+            title: "About",
         }
     };
 
