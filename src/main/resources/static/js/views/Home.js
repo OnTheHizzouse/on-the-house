@@ -3,6 +3,8 @@ import {markerPostCards, postCards} from "./partials/postCards.js";
 import {createPostModal} from "./partials/modals.js";
 import {myFooter} from "../views/partials/footer.js";
 
+let url = `http://localhost:8080`
+
 export default function Home(props) {
     //todo styling
     //todo add search bar for US6
@@ -180,7 +182,8 @@ function searchPostsByItemNameEventListener() {
             do {
 
                 if (postsOfUsersWithin5Miles[p].itemName.toLowerCase().includes(itemNameToSearch.toLowerCase())) {
-                    fetch(`http://localhost:8080/api/posts/searchItems/${itemNameToSearch}`, options)
+                    fetch(`
+                    /posts/searchItems/${itemNameToSearch}`, options)
                         .then(res => res.json())
                         .then(data => {
                             startCards(data)
@@ -239,7 +242,7 @@ function savePostFetch(username, reqBody) {
         body: JSON.stringify(reqBody)
     }
     console.log(options)
-    fetch(`http://localhost:8080/api/posts/${username}`, options)
+    fetch(url + `/api/posts/${username}`, options)
         .then(res=>{
             console.log(res)})
         .then(console.log('this post has been created'))
@@ -405,7 +408,7 @@ function getAllUserPost(userId) {
         },
         method: 'GET'
     }
-    fetch(`http://localhost:8080/api/users/${userId}`, options)
+    fetch(url + `/api/users/${userId}`, options)
         .then(res => res.json())
         .then(data => {
             currentMarkerPostCards(data)
@@ -426,7 +429,7 @@ function getPostsOfUsersWithin5Miles(arrayOfUsers) {
 
     for (let i = 0; i < arrayOfUsers.length; i++) {
         let id = arrayOfUsers[i].id;
-        fetch(`http://localhost:8080/api/posts/searchItemsByUserId/${id}`, options)
+        fetch(url + `/api/posts/searchItemsByUserId/${id}`, options)
             .then(res => res.json())
             .then(data => {
                 for (let j = 0; j < data.length; j++) {
@@ -465,8 +468,8 @@ function saveEventInfo(){
             method: 'POST',
             body: JSON.stringify(eventReqBody)
         }
-        fetch(`http://localhost:8080/api/requester/events/createDonorEvent/${currentUser}/${postOwner}/${postId}`,options)
-            .then(fetch(`http://localhost:8080/api/requester/events/createRequesterEvent/${currentUser}/${postOwner}/${postId}`,options))
+        fetch(url + `/api/requester/events/createDonorEvent/${currentUser}/${postOwner}/${postId}`,options)
+            .then(fetch(url + `/api/requester/events/createRequesterEvent/${currentUser}/${postOwner}/${postId}`,options))
             .catch(err=> console . log(err))
             .catch(err => console.log(err))
             .finally(setTimeout(location.reload(), 5000))

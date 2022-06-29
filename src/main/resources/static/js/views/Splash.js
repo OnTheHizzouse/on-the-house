@@ -1,6 +1,8 @@
 import {myFooter} from "../views/partials/footer.js";
 import addLoginEvent from "../auth.js";
 
+let url = `http://localhost:8080`
+
 export default function Splash(props) {
 // language=HTML
     return `
@@ -140,7 +142,7 @@ function RegisterEvent() {
 
 //the fetch request that creates a user and add the user to database
 function createUserFetch(options) {
-    fetch("http://localhost:8080/api/users/createUser", options)
+    fetch(url + "/api/users/createUser", options)
         .then(alert("You have created a user 🌚"))//todo: get rid of this alert
         .catch(err => console.log(err))
         .finally(
@@ -151,7 +153,7 @@ function createUserFetch(options) {
 //function that checks if email is already being used
 function checkIfEmailExists(checkEmail, options, newPassword, coordinates, address) {
 
-    fetch(`http://localhost:8080/api/users/email/${checkEmail}`, options)
+    fetch(url + `/api/users/email/${checkEmail}`, options)
         .then(res => res.json())
         .then(data => {
             alert("This Email is already being used plz try a different email")
@@ -215,7 +217,7 @@ function LoginEvent() {
         let checkEmail = $('#email').val();
         console.log(checkPassword)
         console.log(checkEmail)
-        fetch(`http://localhost:8080/api/users/email/${checkEmail}`, options)
+        fetch(url + `/api/users/email/${checkEmail}`, options)
             .then(res => res.json())
             .then(users => {
                 //todo change refactor to with security when implemented

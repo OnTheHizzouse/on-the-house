@@ -3,8 +3,9 @@ import {myFooter} from "../views/partials/footer.js";
 import {myPostCards} from "./partials/postCards.js";
 import {editPostModal, editUserProfileModal} from "./partials/modals.js";
 
-const postUrl = "http://localhost:8080/api/posts"
-const profileEditURL = "http://localhost:8080/api/users"
+let url = `http://localhost:8080`
+const postUrl = url + "/api/posts"
+const profileEditURL = url + "/api/users"
 let postId = "";
 
 

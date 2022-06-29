@@ -2,6 +2,8 @@ import {waitForElm} from "../mapboxSearch.js";
 import {landingCards} from "./partials/postCards.js";
 import {myFooter} from "../views/partials/footer.js";
 
+let url = `http://localhost:8080`
+
 export default function Landing(props) {
     //language=HTML
     return `
@@ -186,7 +188,7 @@ function getAllPostsForLanding(arrayOfPosts) {
 
     for (let i = 0; i < arrayOfPosts.length; i++) {
         let id = arrayOfPosts[i].id;
-        fetch(`http://localhost:8080/api/posts/${id}`, options)
+        fetch(url + `/api/posts/${id}`, options)
             .then(res => res.json())
             .then(data => startCards(arrayOfPosts))
     }
@@ -219,7 +221,7 @@ function searchPostsByItemNameEventListener() {
             do {
 
                 if (postsProps[p].itemName.toLowerCase().includes(itemNameToSearch.toLowerCase())) {
-                    fetch(`http://localhost:8080/api/posts/searchItems/${itemNameToSearch}`, options)
+                    fetch(url + `/api/posts/searchItems/${itemNameToSearch}`, options)
                         .then(res => res.json())
                         .then(data => {
                             startCards(data)
@@ -245,7 +247,7 @@ function getAllUserPost(userId) {
         },
         method: 'GET'
     }
-    fetch(`http://localhost:8080/api/users/${userId}`, options)
+    fetch(url + `/api/users/${userId}`, options)
         .then(res => res.json())
         .then(data => {
             startCards(data.posts)
