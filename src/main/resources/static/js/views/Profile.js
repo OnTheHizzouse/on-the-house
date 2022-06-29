@@ -68,9 +68,7 @@ export default function Profile(props) {
         </div>
 
         <div id="profileCards" class="row mt-4 justify-content-center">
-<!--            <div class="card mb-3 col-3 mx-2">-->
             ${myPostCards(profileProps.posts)}
-<!--        </div>-->
         </div>
 
         </body>
