@@ -177,11 +177,6 @@ export default function About() {
         <br>
         <br>
         <br>
-        <!--        <div class="card bg-dark text-white">-->
-        <!--            <img src="js/views/img/ThankYou.png" class="card-img-mission" alt="..." height="200">-->
-        <!--        </div>-->
-
-
         </div>
         ${myFooter()}
         </body>

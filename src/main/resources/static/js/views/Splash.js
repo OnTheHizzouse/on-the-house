@@ -1,3 +1,5 @@
+import {myFooter} from "../views/partials/footer.js";
+
 export default function Splash(props) {
 // language=HTML
     return `
