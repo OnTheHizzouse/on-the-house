@@ -36,7 +36,4 @@ INSERT INTO requester_events( donor_id, user_id, post_id, meetup_date, meetup_ti
     (3,1,5, '22:12:25', '14:45:00', '8967 flower st, city, state, 84574', 'CLOSED' ),
     (1,2,9, '22:06:28', '12:00:00', '25 Test St. Test, TX, 12837', 'OPEN');
 
-use  oth_db;
-select *
-from posts
-where user_id !=?;
+
