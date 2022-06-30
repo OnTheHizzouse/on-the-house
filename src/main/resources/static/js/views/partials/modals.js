@@ -21,9 +21,9 @@ Create Post
       <textarea class="inputFields " placeholder="Description of Item" name="description" id="create-description" required></textarea>
       <br>
 <!--      todo change this to take in a photo-->
-       <label for="photo"><b>Photo:</b></label>
-      <input class="inputFields"  name="photo" id="create-photo"  required>
-      <br>
+       <label for="photo" style="display:none"><b>Photo:</b></label>
+      <input class="inputFields"  name="photo" id="create-photo" style="display:none" required>
+<!--      <br>-->
 <!--     todo possible calender integration -->
        <label for="date"><b>Post Expiration Date:</b></label>
       <input class="inputFields" placeholder="yyyy-mm-dd" name="date" id="create-expire-date"  required>
@@ -70,14 +70,14 @@ export function editPostModal(post) {
                                       id="description-${post.id}" required>${post.description}</textarea>
                             <br>
                                 <!--      todo change this to take in a photo-->
-                                <label For="photo"><b>Edit Photo:</b></label>
+                                <label For="photo" style="display:none"><b>Edit Photo:</b></label>
 
                                 <!--  vvvv Will eventually need to be changed to Post img. Maybe inside a div with these props (id="photo-post.id">post.photo<) Using Jquery-->
-                                <input class="inputFields" value="${post.itemPhoto}"
+                                <input class="inputFields" value="${post.itemPhoto}" style="display:none"
                                        placeholder="Photo upload here..." name="photo" id="photo-${post.id}"
                                        required>
 
-                                    <br>
+<!--                                    <br>-->
                                         <!--     todo possible calender integration -->
                                         <label For="date"><b>Edit Expiration Date:</b></label>
                                         <input class="inputFields" placeholder="yyyy-mm-dd" name="date" value="${post.expiryDate}"

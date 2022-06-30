@@ -9,7 +9,7 @@ export function eventsReceivedCardsBtn(arrayOfEvents){
     if (status == 'OPEN'){
         html +=`
          <button id="decline-request-btn" type="button" class="btn btn-danger" data-id="${arrayOfEvents.id}">Cancel</button>
-            <button id="final-accept-btn" type="button" class="btn" style="background-color: #6a9f5a; color: #FFFFFF" data-id="${arrayOfEvents.id}" data-postId="${postId}">Received</button>
+            <button id="final-accept-btn" type="button" class="btn" style="background-color: #6a9f5a; color: #FFFFFF" data-id="${arrayOfEvents.id}" data-postId="${postId}">Picked Up</button>
 `
     }else {
         html +=`
