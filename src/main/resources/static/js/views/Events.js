@@ -1,7 +1,7 @@
 import {myFooter} from "../views/partials/footer.js";
 import {createEventsReceivedCards, createEventsSentCards} from "./partials/postCards.js";
 import {waitForElm} from "../mapboxSearch.js";
-let url = `http://localhost:8080`
+let url = `https://onthehouse.fulgentcorp.com:8080`
 const put = {
     headers: {
         "Content-Type": "application/json"

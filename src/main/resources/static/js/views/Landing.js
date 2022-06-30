@@ -3,7 +3,7 @@ import {landingCards} from "./partials/postCards.js";
 import {myFooter} from "../views/partials/footer.js";
 import {getHeaders} from "../auth.js";
 
-let url = `http://localhost:8080`
+let url = `https://onthehouse.fulgentcorp.com:8080`
 
 export default function Landing(props) {
     //language=HTML
