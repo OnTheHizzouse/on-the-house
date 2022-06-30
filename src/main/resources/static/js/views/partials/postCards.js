@@ -109,7 +109,7 @@ export function myPostCards(user) {
         <img src='https://images.pexels.com/photos/235294/pexels-photo-235294.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' class="img-fluid rounded-start my-2" alt="..." id="card-img-home">
         <p class="card-text" style="height: 40px">${post[i].description}</p>
         <p class="card-text"><small>Quantity: ${post[i].quantity}</small></p>
-        <p class="card-text"><small>Expiry Date: ${post[i].expiryDate.split("-").reverse().join("-")}</small></p>
+        <p class="card-text"><small>Expiry Date: ${post[i].expiryDate}</small></p>
         <p class="card-text"><small>Shared by: ${user.username}</small></p>
       </div>
       <div class="d-flex mb-2 justify-content-around">
@@ -148,6 +148,7 @@ export function landingCards(posts) {
 
 
 
+
       </div>
     </div>
 </div>
@@ -177,7 +178,7 @@ export function createEventsSentCards(arrayOfEvents, arrayOfPosts) {
         </div>
         <p class="card-text">User Sharing: ${arrayOfEvents[i].donor.username}</p>
         <p class="card-text"><small>Pickup Time: ${arrayOfEvents[i].meetupTime}</small></p>
-        <p class="card-text"><small>Pickup Date: ${arrayOfEvents[i].meetupDate.split("-").reverse().join("-")}</small></p>
+        <p class="card-text"><small>Pickup Date: ${arrayOfEvents[i].meetupDate}</small></p>
         <p class="card-text"><small style="height: 50px">Pickup Location: ${arrayOfEvents[i].meetupLocation}</small></p>
       </div>
       <div class="d-flex justify-content-center">

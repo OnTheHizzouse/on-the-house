@@ -168,10 +168,6 @@ function deletePostListener() {
         } else {
             return null;
         }
-        //CAUSING ERRORS WHEN UNCOMMENTED...FOR NOW JUST IMPLEMENTING PAGE RELOAD
-        //     .finally(() => {
-        //     createView("/profile")
-        // })
     })
 }
 

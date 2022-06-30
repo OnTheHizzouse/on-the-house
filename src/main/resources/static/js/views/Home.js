@@ -2,6 +2,7 @@ import {waitForElm} from "../mapboxSearch.js";
 import {markerPostCards, postCards} from "./partials/postCards.js";
 import {createPostModal} from "./partials/modals.js";
 import {myFooter} from "../views/partials/footer.js";
+import {getHeaders} from "../auth.js";
 
 let url = `http://localhost:8080`
 
@@ -47,7 +48,8 @@ export default function Home(props) {
         ${getUserProps(props.user)}
         <!--TODO: MOVE INPUT FIELD/SEARCHBAR TO WHERE IT NEEDS TO BE-->
         <div class="d-flex justify-content-center">
-            <p class="mt-2">Click a <img src="js/views/img/postmarker.png" id="postmarker"> on the map to see what your neighbors are sharing!</p>
+            <p class="mt-2">Click a <img src="js/views/img/postmarker.png" id="postmarker"> on the map to see what your
+                neighbors are sharing!</p>
         </div>
         <div class="d-flex justify-content-center mb-5">
             <div id="map"></div>
@@ -100,7 +102,7 @@ function initMap(lng, lat) {
         map.dragPan.disable();
         addUserMarkersToMap(geoJson, map);
         addActiveUserMarkersToMap(currentUserGeoJson, map);
-        $(".marker").click(function (){
+        $(".marker").click(function () {
             console.log(this.id)
             getAllUserPost(this.id)
         })
@@ -131,8 +133,8 @@ function startCards(props) {
 }
 
 //updates the cards when the marker is clicked on
-function currentMarkerPostCards(user){
-    waitForElm("#cards").then((elm)=>{
+function currentMarkerPostCards(user) {
+    waitForElm("#cards").then((elm) => {
         $('#cards').html(markerPostCards(user))
     })
 }
@@ -142,7 +144,7 @@ export function homepageEvent() {
     $('body').css("background", "none");
     $('body').css("background-color", "#FBFAF2")
 
-    let today = new Date().toLocaleDateString('en-Us', {timeZone :'UTC'});
+    let today = new Date().toLocaleDateString('en-Us', {timeZone: 'UTC'});
     console.log(today)
     emptyTheArray()
     savePostEventListener();
@@ -171,9 +173,7 @@ function searchPostsByItemNameEventListener() {
         let itemNameToSearch = $('#search-by-item-name-input').val();
         console.log(itemNameToSearch)
         const options = {
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: getHeaders(),
             method: 'GET'
         }
 
@@ -234,16 +234,15 @@ function savePostFetch(username, reqBody) {
     console.log(username)
     console.log(reqBody)
     const options = {
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers: getHeaders(),
         method: 'POST',
         body: JSON.stringify(reqBody)
     }
     console.log(options)
     fetch(url + `/api/posts/${username}`, options)
-        .then(res=>{
-            console.log(res)})
+        .then(res => {
+            console.log(res)
+        })
         .then(console.log('this post has been created'))
         .catch(err => console.log(err))
 }
@@ -345,9 +344,9 @@ function addUserMarkersToMap(geoJsonData, map) {
             .setLngLat(feature.geometry.coordinates)
             .setPopup(
                 new mapboxgl.Popup({offset: 25}) // add popups
-                    // .setHTML(
-                    //     `<div>${feature.properties.title}</div>`
-                    // )
+                // .setHTML(
+                //     `<div>${feature.properties.title}</div>`
+                // )
             )
             .addTo(map);
     }
@@ -402,9 +401,7 @@ function addActiveUserMarkersToMap(geoJsonData, map) {
 // gets all post of a specific user
 function getAllUserPost(userId) {
     const options = {
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers: getHeaders(),
         method: 'GET'
     }
     fetch(url + `/api/users/${userId}`, options)
@@ -420,9 +417,7 @@ function getAllUserPost(userId) {
 //gets all the post of the user within 5 miles
 function getPostsOfUsersWithin5Miles(arrayOfUsers) {
     const options = {
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers: getHeaders(),
         method: 'GET'
     }
 
@@ -436,10 +431,11 @@ function getPostsOfUsersWithin5Miles(arrayOfUsers) {
             .then(data => {
                 for (let j = 0; j < data.length; j++) {
                     tempArray.push(data[j]);
-                }})
+                }
+            })
             .then(data => {
-                for (let j = 0; j < tempArray.length ; j++) {
-                    if(tempArray[j].status === "OPEN") {
+                for (let j = 0; j < tempArray.length; j++) {
+                    if (tempArray[j].status === "OPEN") {
                         postsOfUsersWithin5Miles.push(tempArray[j]);
                         console.log(postsOfUsersWithin5Miles)
                         startCards(postsOfUsersWithin5Miles)
@@ -459,33 +455,32 @@ function emptyTheArray() {
     postsOfUsersWithin5Miles = []
 }
 
-function saveEventInfo(){
-    $(document).on("click", "#create-event-btn", function (e){
+function saveEventInfo() {
+    $(document).on("click", "#create-event-btn", function (e) {
         e.preventDefault();
         console.log("this button has been click")
         let postId = $(this).data("id")
         let postOwner = $(this).data("name")
         let currentUser = userProps.username
-        const eventReqBody={
-            meetupDate: $(`#meet-date${postId}`).val().split("-").reverse().join("-"),
-            meetupTime:$(`#meet-time${postId}`).val(),
-            meetupLocation:$(`#meetUp${postId}`).val()
+        const eventReqBody = {
+            meetupDate: $(`#meet-date${postId}`).val(),
+            meetupTime: $(`#meet-time${postId}`).val(),
+            meetupLocation: $(`#meetUp${postId}`).val()
         }
         const options = {
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: getHeaders(),
             method: 'POST',
             body: JSON.stringify(eventReqBody)
         }
-        fetch(url + `/api/requester/events/createDonorEvent/${currentUser}/${postOwner}/${postId}`,options)
-            .then(fetch(url + `/api/requester/events/createRequesterEvent/${currentUser}/${postOwner}/${postId}`,options))
-            .catch(err=> console . log(err))
+        const createRequesterEvent = ()=>{fetch(url + `/api/requester/events/createRequesterEvent/${currentUser}/${postOwner}/${postId}`, options).catch(err => console.log(err))}
+        fetch(url + `/api/requester/events/createDonorEvent/${currentUser}/${postOwner}/${postId}`, options)
+            .then(createRequesterEvent)
             .catch(err => console.log(err))
-            .finally(setTimeout(reload, 2000))
-
+            // .finally(setTimeout(reload, 2000))
     })
-    function reload(){
+
+
+    function reload() {
         location.reload()
     }
 }
