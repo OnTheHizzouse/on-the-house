@@ -1,0 +1,385 @@
+.mapboxgl-ctrl-geocoder--button {
+    width: 50%;
+}
+
+#bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+}
+
+body {
+    background-color: #FBFAF2;
+}
+
+#box {
+    height: auto;
+    width: 55%;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.inputFields {
+    width: 100%;
+    background: white;
+    padding: 6px 12px;
+    margin: 3px 0;
+    display: inline-block;
+    border: 1px dotted #ccc;
+    box-sizing: border-box;
+}
+
+button {
+
+    padding: 6px 12px;
+    margin: 3px 0;
+    display: inline-block;
+    border: 1px dotted #ccc;
+    box-sizing: border-box;
+    border-radius: 6px;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.cancel-btn {
+    width: 100%;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    margin-bottom: 20px;
+}
+
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+
+.container {
+    padding-left: 4px;
+    /* padding-right: 4px;*/
+    background: white;
+
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/*NAVBAR*/
+#completeNavbar {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#navbarSpace {
+    height: 150px;
+    width: 100%;
+}
+
+.nav-link {
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+    font-size: large;
+}
+
+.request-home-card-btn {
+    background-color: #6a9f5a;
+    color: #FBFAF2;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 85px;
+    height: 50px;
+    font-size: small;
+}
+
+#card-img-home {
+    border: 1px slategrey solid;
+    border-radius: 5%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#about-me-pics {
+    border-radius: 5%;
+    margin-bottom: 5px;
+
+}
+
+#photo-cards {
+    margin-top: 10px;
+}
+
+/*Marker for use in homepage text*/
+#postmarker {
+    height: 40px;
+    width: 40px;
+}
+
+/*************************************************** HOMEPAGE.CSS*/
+
+#OTH {
+    display: flex;
+    height: auto;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+#OTH-Nav{
+    display: flex;
+    height: auto;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+
+.recycle-img{
+    width: 35px;
+    height: 35px;
+    margin-bottom: 5px;
+}
+
+#footer-final{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.containers {
+    display: grid;
+    height: fit-content;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 0.3fr 1.5fr 1.2fr 0.8fr;
+    grid-template-areas:
+    "nav nav nav nav"
+    "sidebar main main main"
+    "sidebar content1 content2 content3"
+    "sidebar footer footer footer";
+    grid-gap: 5px;
+    grid-row-gap: 5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    /*color: white;*/
+    text-align: center;
+}
+
+.carousel-item {
+    width: 100%;
+}
+
+#homeMap {
+    background: #84ffff;
+    grid-area: main;
+    border-radius: 3px;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    margin: 0;
+    padding-top: 10px;
+}
+
+#sidebar {
+    background: #18ffff;
+    grid-area: sidebar;
+    border-radius: 3px;
+    padding-top: 10px;
+}
+
+#food {
+    background: #64AE8B;
+    grid-area: content1;
+    border-radius: 3px;
+    padding-top: 10px;
+}
+
+#electronics {
+    background: #43a9b7;
+    grid-area: content2;
+    border-radius: 3px;
+    padding-top: 10px;
+}
+
+#misc {
+    background: #2788bb;
+    grid-area: content3;
+    border-radius: 3px;
+    padding-top: 10px;
+}
+
+#homeFooter {
+    background: #6a9f5a;
+    grid-area: footer;
+    border-radius: 3px;
+    padding-top: 10px;
+}
+
+.homePhotos {
+    text-align: center;
+    display: block;
+    font-family: inherit;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 5px;
+}
+
+#android {
+    height: 20px;
+    width: 30px;
+}
+
+.the-great-assist {
+    font-family: 'Oswald', sans-serif;
+    font-weight: lighter;
+    color: #404040;
+    margin-bottom: 5px;
+}
+
+.meet-the-team {
+    font-family: 'Oswald', sans-serif;
+    font-weight: lighter;
+    color: #404040;
+    margin-top: 10px;
+}
+
+#mission-bio {
+    width: 600px;
+    text-wrap: normal;
+    background-color: #FBFAF2;
+
+}
+
+#register-btn {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#register-btn-two{
+    width: 100%;
+}
+
+#login-btn {
+    width: 100%;
+}
+
+.blue-btn {
+    background-color: #2788bb;
+    color: #FBFAF2;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#search-by-item-name-input {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border: solid #2788bb 2px;
+    border-radius: 10px;
+}
+
+.card-img-mission {
+    /*width: 150vh;*/
+    /*height: 50vh;*/
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.github-btn {
+    width: 25px;
+    height: 25px
+}
+
+.linkedin-btn {
+    width: 25px;
+    height: 25px
+}
+
+.card-img-top {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.nav-dividers {
+    font-size: xx-large;
+    font-weight: lighter;
+}
+
+.about-me-mini-bios {
+    justify-content: center;
+    align-content: center;
+}
+
+@media only screen and (max-width: 550px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.4fr 0.4fr 2.2fr 1.2fr 1.2fr 1.2fr 1fr;
+        grid-template-areas:
+      "nav"
+      "sidebar"
+      "main"
+      "content1"
+      "content2"
+      "content3"
+      "footer";
+    }
+}
+
+/***************************************************** Profile2.css*/
+
+.main-body {
+    padding: 15px;
+}
+
+#fimg {
+    border-radius: 7px;
+}
+
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 80px;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0, 0, 0, .125);
+    border-radius: .25rem;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1rem;
+}
+
+img {
+    object-fit: cover;
+}
+
+.card-title {
+    margin-right: 0 !important;
+}
+
+.card-body {
+    margin-right: 0 !important;
+}
+
+
+/***************************************BREAK POINTS**************/
+
+/*@media (max-width: 575px) {*/
+
+/*}*/
+
+/*@media (max-width: 700px) {*/
+
+/*}*/
+
+/*@media (max-width: 1000px) {*/
+
+/*}*/
+
