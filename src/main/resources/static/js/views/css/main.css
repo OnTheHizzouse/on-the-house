@@ -368,6 +368,20 @@ img {
     margin-right: 0 !important;
 }
 
+.nav-dividers {
+    display: none;
+}
+
+#nav-link{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: x-large;
+}
+
+#img-mission{
+    width: auto;
+}
+
 
 /***************************************BREAK POINTS**************/
 
