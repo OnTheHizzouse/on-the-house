@@ -93,9 +93,12 @@ export function markerPostCards(user) {
 export function myPostCards(user) {
     //language=HTML
     let post = user.posts;
+    console.log("******")
+    console.log(user.posts)
     let html = ``
 
     for (let i = 0; i < post.length; i++) {
+        if(post[i].status === "OPEN"){
             html += ` 
          <div class="card mb-3 col-3 mx-2" style="max-width: 550px; height: 475px border-radius: 2%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
     <div>
@@ -118,6 +121,8 @@ export function myPostCards(user) {
  
 <br>
 `
+        }
+
         }
 
     return html
