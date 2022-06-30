@@ -21,8 +21,8 @@ export default function About() {
         <!--        </div>-->
 
 
-        <div class="card bg-dark text-white">
-            <img src="js/views/img/mission.png" class="card-img-mission" alt="..." height="400">
+        <div class="card bg-dark text-white" id="img-mission" style="height: auto; width: auto">
+            <img src="js/views/img/mission.png" class="card-img-mission" alt="...">
         </div>
 
         <!--        -About Cards- -->
@@ -177,8 +177,15 @@ export default function About() {
         <br>
         <br>
         <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         </div>
+        <div>
         ${myFooter()}
+        </div>
         </body>
     `;
 }

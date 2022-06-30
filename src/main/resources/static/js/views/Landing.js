@@ -202,6 +202,8 @@ function changeNavbarLanding() {
     $('#nav-profile').attr('href', '/login');
     $('#nav-events').attr('href', '/login');
     $('#nav-about').html(`<a class="nav-link mr-5" href="/login" id="nav-about" data-link>LOGIN/REGISTER</a>`);
+    $('#nav-logout-divider').html('');
+    $('#nav-logout').html('');
 }
 
 function searchPostsByItemNameEventListener() {

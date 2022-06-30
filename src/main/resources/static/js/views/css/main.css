@@ -21,7 +21,7 @@ body {
     justify-content: center;
     align-content: center;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -150,6 +150,13 @@ span.psw {
 
 #footer-final{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: #FBFAF2;
+    text-align: center;
+    margin-top: 50px;
 }
 
 
@@ -264,6 +271,7 @@ span.psw {
 
 #register-btn-two{
     width: 100%;
+    margin-bottom: 20px;
 }
 
 #login-btn {
@@ -311,6 +319,8 @@ span.psw {
     justify-content: center;
     align-content: center;
 }
+
+
 
 @media only screen and (max-width: 550px) {
     .container {
@@ -368,6 +378,27 @@ img {
     margin-right: 0 !important;
 }
 
+.nav-dividers {
+    display: none;
+}
+
+#nav-link{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: x-large;
+}
+
+#img-mission{
+    width: auto;
+}
+
+.cancel-btn {
+    width: 100%;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    margin-bottom: 20px;
+}
 
 /***************************************BREAK POINTS**************/
 
