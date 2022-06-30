@@ -1,6 +1,7 @@
 import {waitForElm} from "../mapboxSearch.js";
 import {landingCards} from "./partials/postCards.js";
 import {myFooter} from "../views/partials/footer.js";
+import {getHeaders} from "../auth.js";
 
 let url = `http://localhost:8080`
 
@@ -180,9 +181,7 @@ function getAllPostsForLanding(arrayOfPosts) {
     console.log("Array of Posts")
     console.log(arrayOfPosts)
     const options = {
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers: getHeaders(),
         method: 'GET'
     }
 
@@ -210,9 +209,7 @@ function searchPostsByItemNameEventListener() {
         let itemNameToSearch = $('#search-by-item-name-input').val();
         console.log(itemNameToSearch)
         const options = {
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: getHeaders(),
             method: 'GET'
         }
 
@@ -242,9 +239,7 @@ function searchPostsByItemNameEventListener() {
 
 function getAllUserPost(userId) {
     const options = {
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers: getHeaders(),
         method: 'GET'
     }
     fetch(url + `/api/users/${userId}`, options)

@@ -22,7 +22,7 @@ public class PostController {
     }
 
     //******** GET BY ID *************
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+//    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     @GetMapping("{id}")
     public Post getById(@PathVariable Long id) {
         System.out.println("Post with an ID of " + id + " has been retrieved");
@@ -30,7 +30,7 @@ public class PostController {
 
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+//    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     @GetMapping("searchItems/{itemName}")
     public List<Post> getAllPostsWithItemName(@PathVariable String itemName) {
         return postService.getPostsByItemName(itemName);
@@ -49,11 +49,6 @@ public class PostController {
         return postService.getPostsByUserId(id);
     }
 
-//    @GetMapping("searchItemsByUserId/{id}")
-//    public List<Post> getAllPostsByUserId(OAuth2Authentication auth) {
-//        System.out.println(auth.toString());
-//        return postService.getPostsByUserId(auth.);
-//    }
 
     @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     @PostMapping("{username}")
@@ -70,13 +65,14 @@ public class PostController {
         System.out.println("Post with ID of " + id + " has been updated successfully");
     }
 
+
     @DeleteMapping("{id}")
     public void deletePost(@PathVariable Long id) {
         postService.deletePostById(id);
         System.out.println("Post with an ID of " + id + " has been deleted");
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+
     @PutMapping("changeStatus/close/{id}")
     public void changePostStatusToClosed(@PathVariable long id) {
         postService.changePostStatusToClosed(id);

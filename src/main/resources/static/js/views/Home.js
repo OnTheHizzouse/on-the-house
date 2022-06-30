@@ -173,7 +173,9 @@ function searchPostsByItemNameEventListener() {
         let itemNameToSearch = $('#search-by-item-name-input').val();
         console.log(itemNameToSearch)
         const options = {
-            headers: getHeaders(),
+            headers: {
+                "Content-Type": "application/json"
+            },
             method: 'GET'
         }
 
@@ -215,7 +217,7 @@ function savePostEventListener() {
         let itemName = $('#create-item-name').val()
         let description = $('#create-description').val()
         let itemPhoto = $('#create-photo').val()
-        let expiryDate = $('#create-expire-date').val().split("-").reverse().join("-")
+        let expiryDate = $('#create-expire-date').val()
         let quantity = $('#create-quantity').val()
         const postReqBody = {
             itemName: itemName,
@@ -401,7 +403,9 @@ function addActiveUserMarkersToMap(geoJsonData, map) {
 // gets all post of a specific user
 function getAllUserPost(userId) {
     const options = {
-        headers: getHeaders(),
+        headers: {
+            "Content-Type": "application/json"
+        },
         method: 'GET'
     }
     fetch(url + `/api/users/${userId}`, options)
@@ -417,7 +421,9 @@ function getAllUserPost(userId) {
 //gets all the post of the user within 5 miles
 function getPostsOfUsersWithin5Miles(arrayOfUsers) {
     const options = {
-        headers: getHeaders(),
+        headers: {
+            "Content-Type": "application/json"
+        },
         method: 'GET'
     }
 

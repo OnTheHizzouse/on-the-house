@@ -26,7 +26,7 @@ Create Post
       <br>
 <!--     todo possible calender integration -->
        <label for="date"><b>Post Expiration Date:</b></label>
-      <input class="inputFields" placeholder="dd-mm-yyyy" name="date" id="create-expire-date"  required>
+      <input class="inputFields" placeholder="yyyy-mm-dd" name="date" id="create-expire-date"  required>
       <br>
        <label for="quantity"><b>Quantity:</b></label>
       <input class="inputFields" placeholder="Enter the number available" name="quantity" id="create-quantity"  required>
@@ -80,7 +80,7 @@ export function editPostModal(post) {
                                     <br>
                                         <!--     todo possible calender integration -->
                                         <label For="date"><b>Edit Expiration Date:</b></label>
-                                        <input class="inputFields" placeholder="yyyy-mm-dd" name="date" value="${post.expiryDate.split("-").reverse().join("-")}"
+                                        <input class="inputFields" placeholder="yyyy-mm-dd" name="date" value="${post.expiryDate}"
                                                id="expiryDate-${post.id}" required>
                                             <br>
                                                 <label For="quantity"><b>Edit Quantity:</b></label>
@@ -119,7 +119,7 @@ Request
       </div>
       <div class="modal-body">
        <label for="meet-date"><b>Meet up date::</b></label>
-      <input class="inputFields" placeholder="dd-mm-yyyy" name="meet-date" id="meet-date${postId}">
+      <input class="inputFields" placeholder="yyyy-mm-dd" name="meet-date" id="meet-date${postId}">
       <br>
 
        <label for="meet-time"><b>Meet up time:</b></label>

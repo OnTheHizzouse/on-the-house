@@ -138,7 +138,7 @@ function saveEditsPostListener() {
 
         fetch(`${postUrl}/${postId}`, request)
             .then(res => {
-                location.reload();
+                // location.reload();
             })
             .catch(err => console.log(err));
     })
