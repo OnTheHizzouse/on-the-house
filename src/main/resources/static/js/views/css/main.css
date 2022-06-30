@@ -21,7 +21,7 @@ body {
     justify-content: center;
     align-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -51,10 +51,11 @@ button:hover {
 }
 
 .cancel-btn {
-    width: auto;
-    padding: 10px 18px;
+    width: 100%;
     background-color: #f44336;
     color: white;
+    border: none;
+    margin-bottom: 20px;
 }
 
 .imgcontainer {
@@ -63,8 +64,8 @@ button:hover {
 }
 
 .container {
-   padding-left: 4px;
-   /* padding-right: 4px;*/
+    padding-left: 4px;
+    /* padding-right: 4px;*/
     background: white;
 
 }
@@ -90,7 +91,7 @@ span.psw {
     font-size: large;
 }
 
-.request-home-card-btn{
+.request-home-card-btn {
     background-color: #6a9f5a;
     color: #FBFAF2;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -99,12 +100,21 @@ span.psw {
     font-size: small;
 }
 
-#card-img-home{
+#card-img-home {
     border: 1px slategrey solid;
     border-radius: 5%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+#about-me-pics {
+    border-radius: 5%;
+    margin-bottom: 5px;
 
+}
+
+#photo-cards {
+    margin-top: 10px;
+}
 
 /*Marker for use in homepage text*/
 #postmarker {
@@ -120,8 +130,28 @@ span.psw {
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
+    width: 50%;
+}
+
+#OTH-Nav{
+    display: flex;
+    height: auto;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
     width: 40%;
 }
+
+.recycle-img{
+    width: 35px;
+    height: 35px;
+    margin-bottom: 5px;
+}
+
+#footer-final{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 
 .containers {
     display: grid;
@@ -206,48 +236,82 @@ span.psw {
     width: 30px;
 }
 
+.the-great-assist {
+    font-family: 'Oswald', sans-serif;
+    font-weight: lighter;
+    color: #404040;
+    margin-bottom: 5px;
+}
 
-.blue-btn{
+.meet-the-team {
+    font-family: 'Oswald', sans-serif;
+    font-weight: lighter;
+    color: #404040;
+    margin-top: 10px;
+}
+
+#mission-bio {
+    width: 600px;
+    text-wrap: normal;
+    background-color: #FBFAF2;
+
+}
+
+#register-btn {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#register-btn-two{
+    width: 100%;
+}
+
+#login-btn {
+    width: 100%;
+}
+
+.blue-btn {
     background-color: #2788bb;
     color: #FBFAF2;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#search-by-item-name-input{
+#search-by-item-name-input {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border: solid #2788bb 2px;
     border-radius: 10px;
 }
 
-.card-img-mission{
+.card-img-mission {
     /*width: 150vh;*/
     /*height: 50vh;*/
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.github-btn{
+.github-btn {
     width: 25px;
     height: 25px
 }
 
-.linkedin-btn{
+.linkedin-btn {
     width: 25px;
     height: 25px
 }
 
-.card-img-top{
+.card-img-top {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.nav-dividers{
+.nav-dividers {
     font-size: xx-large;
     font-weight: lighter;
 }
 
-.about-me-mini-bios{
+.about-me-mini-bios {
     justify-content: center;
     align-content: center;
 }
+
 @media only screen and (max-width: 550px) {
     .container {
         grid-template-columns: 1fr;
@@ -269,8 +333,8 @@ span.psw {
     padding: 15px;
 }
 
-#fimg{
-border-radius: 7px;
+#fimg {
+    border-radius: 7px;
 }
 
 
@@ -304,14 +368,7 @@ img {
     margin-right: 0 !important;
 }
 
-.the-great-assist{
-    font-family: 'Oswald', sans-serif;
 
-}
-
-.meet-the-team{
-    font-family: 'Oswald', sans-serif;
-}
 /***************************************BREAK POINTS**************/
 
 /*@media (max-width: 575px) {*/

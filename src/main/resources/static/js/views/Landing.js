@@ -1,5 +1,9 @@
 import {waitForElm} from "../mapboxSearch.js";
 import {landingCards} from "./partials/postCards.js";
+import {myFooter} from "../views/partials/footer.js";
+import {getHeaders} from "../auth.js";
+
+let url = `http://localhost:8080`
 
 export default function Landing(props) {
     //language=HTML
@@ -55,6 +59,7 @@ export default function Landing(props) {
         </div>
 
         </div>
+        ${myFooter()}
         </body>
     `
 }
@@ -176,15 +181,13 @@ function getAllPostsForLanding(arrayOfPosts) {
     console.log("Array of Posts")
     console.log(arrayOfPosts)
     const options = {
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers: getHeaders(),
         method: 'GET'
     }
 
     for (let i = 0; i < arrayOfPosts.length; i++) {
         let id = arrayOfPosts[i].id;
-        fetch(`http://localhost:8080/api/posts/${id}`, options)
+        fetch(url + `/api/posts/${id}`, options)
             .then(res => res.json())
             .then(data => startCards(arrayOfPosts))
     }
@@ -206,9 +209,7 @@ function searchPostsByItemNameEventListener() {
         let itemNameToSearch = $('#search-by-item-name-input').val();
         console.log(itemNameToSearch)
         const options = {
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: getHeaders(),
             method: 'GET'
         }
 
@@ -217,7 +218,7 @@ function searchPostsByItemNameEventListener() {
             do {
 
                 if (postsProps[p].itemName.toLowerCase().includes(itemNameToSearch.toLowerCase())) {
-                    fetch(`http://localhost:8080/api/posts/searchItems/${itemNameToSearch}`, options)
+                    fetch(url + `/api/posts/searchItems/${itemNameToSearch}`, options)
                         .then(res => res.json())
                         .then(data => {
                             startCards(data)
@@ -238,12 +239,10 @@ function searchPostsByItemNameEventListener() {
 
 function getAllUserPost(userId) {
     const options = {
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers: getHeaders(),
         method: 'GET'
     }
-    fetch(`http://localhost:8080/api/users/${userId}`, options)
+    fetch(url + `/api/users/${userId}`, options)
         .then(res => res.json())
         .then(data => {
             startCards(data.posts)

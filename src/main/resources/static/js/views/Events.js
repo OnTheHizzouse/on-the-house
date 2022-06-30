@@ -1,3 +1,4 @@
+import {myFooter} from "../views/partials/footer.js";
 import {createEventsReceivedCards, createEventsSentCards} from "./partials/postCards.js";
 import {waitForElm} from "../mapboxSearch.js";
 let url = `http://localhost:8080`
@@ -10,11 +11,11 @@ const put = {
 
 export default function (props){
     getUserProps(props);
-
+    console.log(props)
     // language=HTML
     return`
     <body>
-    
+
     <div class="d-flex justify-content-center">
         <h3>Your Requests</h3>
     </div>
@@ -31,6 +32,7 @@ export default function (props){
     
     <span id="waiting-span-one"></span>
     <span id="waiting-span-two"></span>
+    ${myFooter()}
     </body>
     
     `
@@ -68,6 +70,7 @@ function getPendingShares(props) {
         if(props.user.donorEvents[i].status === "OPEN" || props.user.donorEvents[i].status === "PENDING") {
             arrayOfShares.push(props.user.donorEvents[i])
         }
+        console.log(arrayOfShares)
     }
 }
 
@@ -128,22 +131,14 @@ function getPendingRequests(props) {
 function getArrayOfActiveRequestedPosts(arrayOfActiveEvents){
     console.log(arrayOfActiveEvents)
 
-        const options = {
-            headers: {
-                "Content-Type": "application/json"
-            },
-            method: 'GET'
-        }
+
 // Todo: filter out the users post
-        fetch(`${url}/api/posts`, options)
-            .then(res => res.json())
-            .then(data => {
-                arrayOfPostsUserIsRequesting = data
+
+                arrayOfPostsUserIsRequesting = userProps.posts
                 filterEventPost(arrayOfActiveEvents)
                 $('#waiting-span-two').html(`<span id="loaded-span-two"></span>`)
                 startRequestCards(arrayOfRequests, requstedPost)
-            })
-            .catch(err => console.log(err))
+
 
 }
 
@@ -152,6 +147,8 @@ function filterEventPost(events){
 
     for (let i = 0; i < events.length; i++) {
         console.log(events[i].id)
+        console.log(arrayOfPostsUserIsRequesting)
+        console.log(arrayOfPostsUserIsRequesting.length)
         for (let j = 0; j < arrayOfPostsUserIsRequesting.length; j++) {
             if (arrayOfPostsUserIsRequesting[j].id == events[i].postId) {
                 console.log('getting the post and event')
@@ -184,6 +181,7 @@ function onClickListener(){
     onclickCancel()
     onClickAccept()
     onClickDecline()
+    onClickFinalAccept()
 }
 
 
@@ -218,6 +216,20 @@ function onClickAccept(){
         console.log('click')
         console.log(id)
         fetch(`${url}/api/requester/events/changeStatus/open/${id}`, put)
+            .then(setTimeout (reload, 1500))
+            .catch(err=>console.log(err))
+    })
+}
+
+function onClickFinalAccept(){
+    $(document).on('click', '#final-accept-btn', function (){
+        let id = $(this).data('id');
+        let postId = $(this).data('postid');
+        console.log(postId);
+        console.log("FINAL ACCEPT BUTTON CLICKED")
+        fetch(`${url}/api/requester/events/changeStatus/close/${id}`, put)
+            .then(fetch(`${url}/api/posts/changeStatus/close/${postId}`, put))
+            .then("FINAL ACCEPT FINALLY ACCEPTED")
             .then(setTimeout (reload, 1500))
             .catch(err=>console.log(err))
     })

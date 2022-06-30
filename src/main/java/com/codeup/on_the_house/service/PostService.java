@@ -9,9 +9,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PostService {
+
+
     private final PostsRepository postsRepository;
     private final UserService userService;
 
@@ -80,5 +83,16 @@ public class PostService {
         return postsRepository.findAllByUserId(id);
     }
 
+
+    public void changePostStatusToClosed(long id) {
+        System.out.println(id);
+        Post currentPost = postsRepository.findById(id);
+        Post.Status closed = Post.Status.CLOSED;
+
+        System.out.println(currentPost);
+        currentPost.setStatus(closed);
+
+        postsRepository.save(currentPost);
+    }
 }
 
