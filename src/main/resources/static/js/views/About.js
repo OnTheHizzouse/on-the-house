@@ -127,7 +127,7 @@ export default function About() {
                 <br>
                 <div class="about-bios text-center">
                     <p>Casey Edwards</p>
-                    <p>Code wizard. Bennie extraordinaire, and hater of pop-up modals.</p>
+                    <p>Code wizard. Bennie enthusiast, and hater of pop-up modals.</p>
                     <br>
                     <a href="https://www.linkedin.com/in/casey-edwards-639289145/">
                         <img alt="..." src="js/views/img/linkedin.png"
@@ -168,6 +168,22 @@ export default function About() {
                         <img alt="..." src="js/views/img/linkedin.png"
                              width=35" height="35">
                         <a href="https://github.com/jordysolis96">
+                            <img alt="..." src="js/views/img/github.png"
+                                 width=35" height="35">
+                        </a>
+                </div>
+            </div>
+            <div class="col-4" style="width: 15rem;">
+                <img src="js/views/img/docrob.png" class="card-img-top" alt="..." id="about-me-pics">
+                <br>
+                <div class="about-bios text-center">
+                    <p>Doctor Mark Robinson</p>
+                    <p id="docRobBio">Smartest man in the world. Lover of comic-sans! </p>
+                    <br>
+                    <a href="https://www.linkedin.com/in/mark-robinson-0b38975b/">
+                        <img alt="..." src="js/views/img/linkedin.png"
+                             width=35" height="35">
+                        <a href="https://github.com/madmarcos-codeup">
                             <img alt="..." src="js/views/img/github.png"
                                  width=35" height="35">
                         </a>
