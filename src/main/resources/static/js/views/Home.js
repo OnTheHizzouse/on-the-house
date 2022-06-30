@@ -182,8 +182,7 @@ function searchPostsByItemNameEventListener() {
             do {
 
                 if (postsOfUsersWithin5Miles[p].itemName.toLowerCase().includes(itemNameToSearch.toLowerCase())) {
-                    fetch(`
-                    /posts/searchItems/${itemNameToSearch}`, options)
+                    fetch(`${url}/api/posts/searchItems/${itemNameToSearch}`, options)
                         .then(res => res.json())
                         .then(data => {
                             startCards(data)
@@ -483,7 +482,10 @@ function saveEventInfo(){
             .then(fetch(url + `/api/requester/events/createRequesterEvent/${currentUser}/${postOwner}/${postId}`,options))
             .catch(err=> console . log(err))
             .catch(err => console.log(err))
-            .finally(setTimeout(location.reload(), 5000))
+            .finally(setTimeout(reload, 2000))
 
     })
+    function reload(){
+        location.reload()
+    }
 }
