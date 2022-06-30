@@ -3,7 +3,7 @@ import {myFooter} from "../views/partials/footer.js";
 import {myPostCards} from "./partials/postCards.js";
 import {editPostModal, editUserProfileModal} from "./partials/modals.js";
 
-let url = `http://localhost:8080`
+let url = `https://onthehouse.fulgentcorp.com:8080`
 const postUrl = url + "/api/posts"
 const profileEditURL = url + "/api/users"
 let postId = "";

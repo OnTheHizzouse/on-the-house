@@ -4,7 +4,7 @@ import {createPostModal} from "./partials/modals.js";
 import {myFooter} from "../views/partials/footer.js";
 import {getHeaders} from "../auth.js";
 
-let url = `http://localhost:8080`
+let url = `https://onthehouse.fulgentcorp.com:8080`
 
 export default function Home(props) {
     //todo styling
