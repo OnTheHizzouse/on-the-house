@@ -177,8 +177,15 @@ export default function About() {
         <br>
         <br>
         <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         </div>
+        <div>
         ${myFooter()}
+        </div>
         </body>
     `;
 }
