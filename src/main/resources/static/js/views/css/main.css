@@ -264,6 +264,7 @@ span.psw {
 
 #register-btn-two{
     width: 100%;
+    margin-bottom: 20px;
 }
 
 #login-btn {
@@ -382,6 +383,13 @@ img {
     width: auto;
 }
 
+.cancel-btn {
+    width: 100%;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    margin-bottom: 20px;
+}
 
 /***************************************BREAK POINTS**************/
 
