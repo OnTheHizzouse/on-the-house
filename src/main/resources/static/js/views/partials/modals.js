@@ -73,14 +73,14 @@ export function editPostModal(post) {
                                 <label For="photo"><b>Edit Photo:</b></label>
 
                                 <!--  vvvv Will eventually need to be changed to Post img. Maybe inside a div with these props (id="photo-post.id">post.photo<) Using Jquery-->
-                                <input type="file" class="inputFields" accept="image/png, image/jpg"
-                                       placeholder="Photo upload here.." name="photo" id="photo-${post.id}"
+                                <input class="inputFields" value="${post.itemPhoto}"
+                                       placeholder="Photo upload here..." name="photo" id="photo-${post.id}"
                                        required>
 
                                     <br>
                                         <!--     todo possible calender integration -->
                                         <label For="date"><b>Edit Expiration Date:</b></label>
-                                        <input class="inputFields" placeholder="yyyy-mm-dd" name="date" value="${post.expiryDate}"
+                                        <input class="inputFields" placeholder="yyyy-mm-dd" name="date" value="${post.expiryDate.split("-").reverse().join("-")}"
                                                id="expiryDate-${post.id}" required>
                                             <br>
                                                 <label For="quantity"><b>Edit Quantity:</b></label>
@@ -114,7 +114,7 @@ Request
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Create an Event with ${username}</h5>
+        <h5 class="modal-title">Create an Event With ${username}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -130,7 +130,7 @@ Request
        
       <div class="modal-footer">
 
-        <button type="button" class="btn btn-primary"  data-id="${postId}" data-name="${username}" id="create-event-btn" data-bs-dismiss="modal" >Save Post</button>
+        <button type="button" class="btn btn-primary"  data-id="${postId}" data-name="${username}" id="create-event-btn" data-bs-dismiss="modal" >Save Event</button>
       </div>
     </div>
   </div>

@@ -429,15 +429,26 @@ function getPostsOfUsersWithin5Miles(arrayOfUsers) {
 
     for (let i = 0; i < arrayOfUsers.length; i++) {
         let id = arrayOfUsers[i].id;
+        let tempArray = [];
+        console.log("LOOK HERE DUMMY")
+        console.log(arrayOfUsers)
         fetch(url + `/api/posts/searchItemsByUserId/${id}`, options)
             .then(res => res.json())
             .then(data => {
                 for (let j = 0; j < data.length; j++) {
-                    postsOfUsersWithin5Miles.push(data[j]);
+                    tempArray.push(data[j]);
+                }})
+            .then(data => {
+                for (let j = 0; j < tempArray.length ; j++) {
+                    if(tempArray[j].status === "OPEN") {
+                        postsOfUsersWithin5Miles.push(tempArray[j]);
+                        console.log(postsOfUsersWithin5Miles)
+                        startCards(postsOfUsersWithin5Miles)
+                    }
                 }
-                console.log(postsOfUsersWithin5Miles)
-                startCards(postsOfUsersWithin5Miles)
             })
+
+
             .catch(err => console.log(err))
     }
 }

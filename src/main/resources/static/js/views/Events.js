@@ -181,6 +181,7 @@ function onClickListener(){
     onclickCancel()
     onClickAccept()
     onClickDecline()
+    onClickFinalAccept()
 }
 
 
@@ -215,6 +216,20 @@ function onClickAccept(){
         console.log('click')
         console.log(id)
         fetch(`${url}/api/requester/events/changeStatus/open/${id}`, put)
+            .then(setTimeout (reload, 1500))
+            .catch(err=>console.log(err))
+    })
+}
+
+function onClickFinalAccept(){
+    $(document).on('click', '#final-accept-btn', function (){
+        let id = $(this).data('id');
+        let postId = $(this).data('postid');
+        console.log(postId);
+        console.log("FINAL ACCEPT BUTTON CLICKED")
+        fetch(`${url}/api/requester/events/changeStatus/close/${id}`, put)
+            .then(fetch(`${url}/api/posts/changeStatus/close/${postId}`, put))
+            .then("FINAL ACCEPT FINALLY ACCEPTED")
             .then(setTimeout (reload, 1500))
             .catch(err=>console.log(err))
     })

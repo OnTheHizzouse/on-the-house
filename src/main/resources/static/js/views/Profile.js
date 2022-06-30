@@ -87,6 +87,7 @@ export default function Profile(props) {
 var userContinue = 0;
 var profileProps;
 
+
 export function userPostEvents() {
 
     $('body').css("background", "none");

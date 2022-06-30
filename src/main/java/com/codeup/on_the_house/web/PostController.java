@@ -69,4 +69,10 @@ public class PostController {
         System.out.println("Post with an ID of " + id + " has been deleted");
     }
 
+    @PutMapping("changeStatus/close/{id}")
+    private void changePostStatusToClosed(@PathVariable long id) {
+        postService.changePostStatusToClosed(id);
+        System.out.println("Post Status Has Been Changed");
+    }
+
 }
