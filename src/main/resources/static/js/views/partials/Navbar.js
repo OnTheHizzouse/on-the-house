@@ -11,12 +11,12 @@ export default function Navbar(props) {
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav d-flex align-items-center">
                         <div id="navImg">
-                            <img id="OTH" src="js/views/img/OTHLogo(final).png" alt="Oth logo">
+                            <img id="OTH-Nav" src="js/views/img/OTHLogo(final).png" alt="Oth logo">
                             <br>
                         </div>
                         <a class="nav-link mx-5" href="/home" id="nav-home" data-link>HOME</a>
                         <p class="nav-dividers">|</p>
-                        <a class="nav-link mx-5" href="/profile" id="nav-profile" data-link onclick="location.replace('/profile')">PROFILE</a>
+                        <a class="nav-link mx-5" href="/profile" id="nav-profile" data-link>PROFILE</a>
                         <p class="nav-dividers">|</p>
                         <a class="nav-link mx-5" href="/events" id="nav-events" data-link>EVENTS</a>
                         <p class="nav-dividers">|</p>

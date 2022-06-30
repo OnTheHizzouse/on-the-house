@@ -1,16 +1,19 @@
 import {getHeaders} from "../auth.js";
+import {myFooter} from "../views/partials/footer.js";
 import {myPostCards} from "./partials/postCards.js";
-import {editUserProfileModal} from "./partials/modals.js";
+import {editPostModal, editUserProfileModal} from "./partials/modals.js";
 
-const postUrl = "http://localhost:8080/api/posts"
-const profileEditURL = "http://localhost:8080/api/users"
+let url = `http://localhost:8080`
+const postUrl = url + "/api/posts"
+const profileEditURL = url + "/api/users"
 let postId = "";
 
 
 export default function Profile(props) {
     console.log("This is the Profile page");
-    console.log(props)
-    console.log(props.posts)
+    console.log(props.user.posts)
+    // console.log(props)
+    // console.log(props.posts)
     profileProps = props;
 // language=html
     return `
@@ -67,10 +70,15 @@ export default function Profile(props) {
             </div>
         </div>
 
-        <div id="profileCards" class="row mt-4 justify-content-center">
-            ${myPostCards(profileProps.posts)}
-        </div>
 
+    
+<!--MY PROFILE POSTCARDS-->
+        <div class="row mt-4 justify-content-center" id="profileCards">
+            ${myPostCards(props.user)}
+            
+
+        </div>
+        ${myFooter()}
         </body>
     `;
 
@@ -79,13 +87,16 @@ export default function Profile(props) {
 var userContinue = 0;
 var profileProps;
 
+
 export function userPostEvents() {
 
     $('body').css("background", "none");
     $('body').css("background-color", "#FBFAF2")
+    // changeNavbarLanding();
     deletePostListener();
     saveEditsPostListener();
     saveProfileEventListener();
+
 }
 
 
@@ -127,7 +138,7 @@ function saveEditsPostListener() {
 
         fetch(`${postUrl}/${postId}`, request)
             .then(res => {
-                location.reload();
+                // location.reload();
             })
             .catch(err => console.log(err));
     })
@@ -157,10 +168,6 @@ function deletePostListener() {
         } else {
             return null;
         }
-        //CAUSING ERRORS WHEN UNCOMMENTED...FOR NOW JUST IMPLEMENTING PAGE RELOAD
-        //     .finally(() => {
-        //     createView("/profile")
-        // })
     })
 }
 
@@ -236,5 +243,12 @@ function confirmAction() {
     }
 
 }
+
+// function changeNavbarLanding() {
+//     $('#nav-home').attr('href', '/home');
+//     $('#nav-profile').attr('href', '/profile');
+//     $('#nav-events').attr('href', '/events');
+//     $('#nav-about').html(`<a class="nav-link mr-5" href="/about" id="nav-about" data-link>ABOUT</a>`);
+// }
 
 

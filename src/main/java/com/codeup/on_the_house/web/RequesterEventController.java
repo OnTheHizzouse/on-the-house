@@ -57,5 +57,15 @@ public class RequesterEventController {
         System.out.println("New event created by: " + donorName + " for post with ID of: " + postId + " for user: " + username + "to populate Requester table");
     }
 
+    @PutMapping("changeStatus/open/{id}")
+    private void changeStatusToOpen(@PathVariable long id){
+        requesterEventService.changeStatusToOpen(id);
+        System.out.println("Status has been changed");
+    }
 
+    @PutMapping("changeStatus/close/{id}")
+    private void changeStatusToClosed(@PathVariable long id){
+        requesterEventService.changeStatusToClosed(id);
+        System.out.println("Status has been changed");
+    }
 }

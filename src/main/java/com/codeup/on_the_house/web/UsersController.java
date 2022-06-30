@@ -4,6 +4,7 @@ package com.codeup.on_the_house.web;
 import com.codeup.on_the_house.data.User;
 import com.codeup.on_the_house.dto.CreateUserDTO;
 import com.codeup.on_the_house.service.UserService;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,8 +33,14 @@ public class UsersController {
     }
 
     @GetMapping("/email/{email}")
-     public User getByEmail(@PathVariable String email){
+     public Optional<User> getByEmail(@PathVariable String email){
         return userService.getUserByEmail(email);
+    }
+
+    @GetMapping("me")
+    public Optional<User> getCurrentUser(OAuth2Authentication auth){
+        System.out.println(auth.toString());
+        return userService.getUserByEmail(auth.getName());
     }
 
 

@@ -26,7 +26,7 @@ Create Post
       <br>
 <!--     todo possible calender integration -->
        <label for="date"><b>Post Expiration Date:</b></label>
-      <input class="inputFields" placeholder="dd-mm-yyyy" name="date" id="create-expire-date"  required>
+      <input class="inputFields" placeholder="yyyy-mm-dd" name="date" id="create-expire-date"  required>
       <br>
        <label for="quantity"><b>Quantity:</b></label>
       <input class="inputFields" placeholder="Enter the number available" name="quantity" id="create-quantity"  required>
@@ -73,8 +73,8 @@ export function editPostModal(post) {
                                 <label For="photo"><b>Edit Photo:</b></label>
 
                                 <!--  vvvv Will eventually need to be changed to Post img. Maybe inside a div with these props (id="photo-post.id">post.photo<) Using Jquery-->
-                                <input type="file" class="inputFields" accept="image/png, image/jpg"
-                                       placeholder="Photo upload here.." name="photo" id="photo-${post.id}"
+                                <input class="inputFields" value="${post.itemPhoto}"
+                                       placeholder="Photo upload here..." name="photo" id="photo-${post.id}"
                                        required>
 
                                     <br>
@@ -114,12 +114,12 @@ Request
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Create an Event with ${username}</h5>
+        <h5 class="modal-title">Create an Event With ${username}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
        <label for="meet-date"><b>Meet up date::</b></label>
-      <input class="inputFields" placeholder="dd-mm-yyyy" name="meet-date" id="meet-date${postId}">
+      <input class="inputFields" placeholder="yyyy-mm-dd" name="meet-date" id="meet-date${postId}">
       <br>
 
        <label for="meet-time"><b>Meet up time:</b></label>
@@ -130,7 +130,7 @@ Request
        
       <div class="modal-footer">
 
-        <button type="button" class="btn btn-primary"  data-id="${postId}" data-name="${username}" id="create-event-btn" data-bs-dismiss="modal" >Save Post</button>
+        <button type="button" class="btn btn-primary"  data-id="${postId}" data-name="${username}" id="create-event-btn" data-bs-dismiss="modal" >Save Event</button>
       </div>
     </div>
   </div>

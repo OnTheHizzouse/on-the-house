@@ -1,10 +1,12 @@
-import Splash, {SplashEvents} from "./views/Splash.js";
+import Splash from "./views/Splash.js";
+import addLoginEvent from "./auth.js";
 import Error404 from "./views/Error404.js";
 import Loading from "./views/Loading.js";
 import Home, {homepageEvent} from "./views/Home.js";
 import Profile, {userPostEvents} from "./views/Profile.js";
 import Events, {eventsEvents} from "./views/Events.js";
 import Landing, {LandingEvents} from "./views/Landing.js";
+
 
 import About from "./views/About.js";
 
@@ -23,7 +25,8 @@ export default function router(URI) {
             state: {},
             uri: '/login',
             title: 'Login/Register',
-            viewEvent: SplashEvents
+            viewEvent: addLoginEvent
+
         },'/error': {
             returnView: Error404,
             state: {},
@@ -39,29 +42,29 @@ export default function router(URI) {
         '/home': {
             returnView: Home,
             state: {
-                //todo change from fake user to a real user
-                user:'/api/users/email/test1@email.com',
+                user:'/api/users/me',
                 posts:'/api/posts'
             },
             uri: '/home',
             title: 'Home',
             viewEvent: homepageEvent
+
         },
         '/profile': {
             returnView: Profile,
             state: {
-                //todo change from fake user to a real user
-                user:'/api/users/1',
-                posts:'/api/posts/searchItemsByUserId/1'
+                user:'/api/users/me'
             },
             uri: '/profile',
             title: 'Profile',
             viewEvent: userPostEvents
+
         },
         '/events':{
             returnView: Events,
             state: {
-                user:'/api/users/1'
+                user:'/api/users/me',
+                posts:'/api/posts'
                 },
             uri: '/events',
             title: "Events",
